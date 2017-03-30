@@ -8,7 +8,6 @@ libbluray
 libbs2b
 libcaca
 libgme
-libidn2
 libilbc
 libvpx
 libwebp
