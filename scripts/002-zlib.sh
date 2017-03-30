@@ -1,4 +1,3 @@
-#compile_with_configure false zlib-1.2.11 -static
 download_file http://zlib.net/zlib-1.2.11.tar.xz
 cd $SRC_ROOT/zlib-1.2.11
 echo $BUILD_INSTALL_ROOT
