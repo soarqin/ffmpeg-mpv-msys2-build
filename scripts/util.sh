@@ -7,31 +7,58 @@ function strcontains {
 }
 
 function git_clone {
-    cd $SRC_ROOT || exit 1
+    cd $SRC_ROOT
     if [ ! -d $SRC_ROOT/$2 ]; then
-        git clone --recursive $1 $2 || exit 1
+        git clone --recursive $1 $2
     fi
-    cd $2 || exit 1
-    git fetch
+    cd $2
     local branch=master
     if [ $# -gt 2 ]; then
         branch = $3
     fi
-    git checkout -- . && git pull --recurse-submodules origin $branch || exit 1
+    git checkout -- . && git pull --recurse-submodules origin $branch
+}
+
+function hg_clone {
+    cd $SRC_ROOT
+    if [ ! -d $SRC_ROOT/$2 ]; then
+        hg clone $1 $2
+    fi
+    cd $2
+    hg revert --all && hg pull -u
+}
+
+function svn_checkout {
+    cd $SRC_ROOT
+    if [ ! -d $SRC_ROOT/$2 ]; then
+        svn checkout $1 $2
+    fi
+    cd $2
+    svn revert -R . && svn update
 }
 
 function download_file {
-    local filename=${1##*/}
-    local dirname=${filename%.tar.*}
+    local filename=${1%/download}
+    if [ "x$filename" == "x" ]; then
+        filename=${1##*/}
+    else
+        filename=${filename##*/}
+    fi
+    local dirname=
+    if [ $# -gt 1 ]; then
+        dirname=$2
+    else
+        dirname=${filename%.tar.*}
+    fi
     if [ ! -d $SRC_ROOT/$dirname ]; then
         local ext=${filename#*.tar.}
-        cd $SRC_ROOT || exit 1
+        cd $SRC_ROOT
         case $ext in
-            gz) curl -LJ $1 | tar xz || exit 1
+            gz) curl -LJ $1 | tar xz
                 ;;
-            bz2) curl -LJ $1 | tar xj || exit 1
+            bz2) curl -LJ $1 | tar xj
                 ;;
-            xz) curl -LJ $1 | tar xJ || exit 1
+            xz) curl -LJ $1 | tar xJ
                 ;;
         esac
     fi

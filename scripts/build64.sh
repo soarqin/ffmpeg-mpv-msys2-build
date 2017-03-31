@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 ARCH=64
 
 SCRIPT_ROOT=$(realpath $(dirname $0))
