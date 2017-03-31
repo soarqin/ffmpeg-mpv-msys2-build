@@ -1,9 +1,8 @@
 git_clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
-compile_with_configure ffmpeg \
+LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg \
   --enable-static \
   --disable-shared \
-  --extra-ldflags="-static -static-libgcc -static-libstdc++" \
-  --pkg-config-flags="--static" \
+  --pkg-config-flags='--static' \
   --enable-gpl \
   --enable-version3 \
   --enable-nonfree \
