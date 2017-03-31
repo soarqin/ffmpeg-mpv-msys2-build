@@ -1,4 +1,4 @@
-git_clone git://anongit.freedesktop.org/fribidi/fribidi fribidi
+git_clone https://anongit.freedesktop.org/git/fribidi/fribidi.git fribidi
 cd $BUILD_ROOT
 mkdir -p fribidi
 cd fribidi

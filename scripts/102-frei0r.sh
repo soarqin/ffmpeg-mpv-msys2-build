@@ -1,4 +1,4 @@
-git_clone git://code.dyne.org/frei0r.git frei0r
+git_clone https://code.dyne.org/frei0r frei0r
 cd $SRC_ROOT/frei0r
 touch README
 mkdir -p m4
