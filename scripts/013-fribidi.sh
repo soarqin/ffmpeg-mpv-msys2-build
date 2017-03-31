@@ -6,5 +6,5 @@ mkdir -p gen.tab
 cp -rf $SRC_ROOT/fribidi/gen.tab/unidata gen.tab/
 JOBS_OLD=$JOBS
 JOBS=-j1
-compile_with_configure fribidi --enable-static --disable-shared
+compile_with_configure fribidi --enable-static --disable-shared --without-glib
 JOBS=$JOBS_OLD
