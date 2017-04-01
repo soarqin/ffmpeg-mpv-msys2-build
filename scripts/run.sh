@@ -2,7 +2,7 @@ BUILD_ROOT=$(realpath $SCRIPT_ROOT/../build$ARCH)
 BUILD_INSTALL_ROOT=$(realpath $HOME/mingw$ARCH)
 PATCH_ROOT=$(realpath $SCRIPT_ROOT/../patches)
 
-pacman -Syq --noconfirm --needed autoconf autogen automake libtool m4 bison flex gzip bzip2 xz tar ca-certificates curl dos2unix doxygen texinfo gettext git mercurial subversion patch gawk glib2 gperf grep info make nasm yasm pkg-config ${ARCH_PREFIX}toolchain ${ARCH_PREFIX}python2-lxml ${ARCH_PREFIX}python2-six
+pacman -Syq --noconfirm --needed autoconf autogen automake libtool m4 bison flex gzip bzip2 xz tar ca-certificates curl dos2unix doxygen texinfo gettext git mercurial subversion patch gawk glib2 gperf grep info make nasm yasm pkg-config ${ARCH_PREFIX}toolchain ${ARCH_PREFIX}cmake ${ARCH_PREFIX}python2-lxml ${ARCH_PREFIX}python2-six
 
 mkdir -p $BUILD_ROOT
 
