@@ -1,0 +1,27 @@
+--- configure.orig	2012-02-29 02:54:37.000000000 +0800
++++ configure	2017-04-01 16:36:40.113394900 +0800
+@@ -11922,7 +11922,7 @@
+ 		 sys/soundcard.h \
+ 		 sys/time.h \
+ 		 unistd.h \
+-		 xmmintrin.h \
++		 $check_xmmintrin \
+ 		 linux/soundcard.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+@@ -17290,7 +17290,14 @@
+     ofile='$ofile'
+ 
+ 
+-
++case $host_cpu in
++powerpc*|i686*)
++    check_xmmintrin=
++    ;;
++*)
++    check_xmmintrin="xmmintrin.h"
++    ;;
++esac
+ 
+ _ACEOF
+ 
