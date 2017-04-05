@@ -7,6 +7,7 @@ pacman -Syq --noconfirm --needed autoconf autogen automake libtool m4 bison flex
 mkdir -p $BUILD_ROOT
 
 . $SCRIPT_ROOT/env.sh
+mkdir -p $SRC_ROOT $BUILD_INSTALL_ROOT
 . $SCRIPT_ROOT/util.sh
 . $SCRIPT_ROOT/compile.sh
 
