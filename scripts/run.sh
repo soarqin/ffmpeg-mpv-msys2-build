@@ -19,15 +19,10 @@ fi
 for v in $SCRIPT_ROOT/[0-9][0-9][0-9]-*.sh; do
     fn=${v##*/}
     fnprefix=${fn:0:3}
-#    strcontains "$FINISHED" "$fnprefix"
-#    if [ $result == true ]; then
-#        echo Skipping finished $fn
-#        continue
-#    fi
-    export -n revision=""
+    export -n _lib_revision=""
     . $v
-    if [ "x${revision}" != "x" ]; then
+    if [ "x${_lib_revision}" != "x" ]; then
         sed -i -e "/^${fnprefix} /d" "${FINISHED}"
-        echo "${revision}" >> ${FINISHED}
+        echo "${_lib_revision}" >> ${FINISHED}
     fi
 done

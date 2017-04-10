@@ -9,14 +9,14 @@ function git_clone {
         branch=$3
     fi
     git checkout -- . && git pull --recurse-submodules origin $branch
-    revision=$(git reflog -n1 HEAD)
-    export revision="${fnprefix} $2-${revision/ *}"
-    found=$(grep "^$revision\$" "$FINISHED" || true)
+    _lib_revision=$(git reflog -n1 HEAD)
+    export _lib_revision="${fnprefix} $2-${_lib_revision/ *}"
+    found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
     result=true
     if [ "x$found" != "x" ]; then
         if [ "x$4" == "x" ]; then
-            echo "${revision} is up-to-date."
-            export -n revision=""
+            echo "${_lib_revision} is up-to-date."
+            export -n _lib_revision=""
         fi
         return
     else
@@ -32,13 +32,13 @@ function hg_clone {
     fi
     cd $2
     hg revert --all && hg pull -u
-    export revision="${fnprefix} $2-$(hg log -r. --template "{node}" | cut -c-8)"
-    found=$(grep "^$revision\$" "$FINISHED" || true)
+    export _lib_revision="${fnprefix} $2-$(hg log -r. --template "{node}" | cut -c-8)"
+    found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
     result=true
     if [ "x$found" != "x" ]; then
         if [ "x$3" == "x" ]; then
-            echo "${revision} is up-to-date."
-            export -n revision=""
+            echo "${_lib_revision} is up-to-date."
+            export -n _lib_revision=""
         fi
         return
     else
@@ -54,13 +54,13 @@ function svn_checkout {
     fi
     cd $2
     svn revert -R . && svn update
-    export revision="${fnprefix} $2-r$(svn info --show-item revision)"
-    found=$(grep "^$revision\$" "$FINISHED" || true)
+    export _lib_revision="${fnprefix} $2-r$(svn info --show-item revision)"
+    found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
     result=true
     if [ "x$found" != "x" ]; then
         if [ "x$3" == "x" ]; then
-            echo "${revision} is up-to-date."
-            export -n revision=""
+            echo "${_lib_revision} is up-to-date."
+            export -n _lib_revision=""
         fi
         return
     else
@@ -82,13 +82,13 @@ function download_file {
     else
         dirname=${filename%.tar.*}
     fi
-    export revision="${fnprefix} ${dirname}"
-    found=$(grep "^$revision\$" "$FINISHED" || true)
+    export _lib_revision="${fnprefix} ${dirname}"
+    found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
     result=true
     if [ "x$found" != "x" ]; then
         if [ "x$3" == "x" ]; then
-            echo "${revision} is up-to-date."
-            export -n revision=""
+            echo "${_lib_revision} is up-to-date."
+            export -n _lib_revision=""
         fi
         return 0
     else
