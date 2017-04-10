@@ -11,19 +11,23 @@ mkdir -p $SRC_ROOT $BUILD_INSTALL_ROOT
 . $SCRIPT_ROOT/util.sh
 . $SCRIPT_ROOT/compile.sh
 
-FINISHED=
-if [ -f $BUILD_ROOT/finished ]; then
-    FINISHED=$(cat $BUILD_ROOT/finished | xargs)
+FINISHED=$BUILD_ROOT/finished
+if [ ! -f ${FINISHED} ]; then
+    touch ${FINISHED}
 fi
 
 for v in $SCRIPT_ROOT/[0-9][0-9][0-9]-*.sh; do
     fn=${v##*/}
     fnprefix=${fn:0:3}
-    strcontains "$FINISHED" "$fnprefix"
-    if [ $result == true ]; then
-        echo Skipping finished $fn
-        continue
-    fi
+#    strcontains "$FINISHED" "$fnprefix"
+#    if [ $result == true ]; then
+#        echo Skipping finished $fn
+#        continue
+#    fi
+    export -n revision=""
     . $v
-    echo $fnprefix >> $BUILD_ROOT/finished
+    if [ "x${revision}" != "x" ]; then
+        sed -i -e "/^${fnprefix} /d" "${FINISHED}"
+        echo "${revision}" >> ${FINISHED}
+    fi
 done

@@ -1,4 +1,5 @@
 git_clone https://anongit.freedesktop.org/git/fribidi/fribidi.git fribidi
+if [ $result == true ]; then return; fi
 cd $BUILD_ROOT
 mkdir -p fribidi
 cd fribidi

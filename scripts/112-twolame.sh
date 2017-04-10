@@ -1,4 +1,5 @@
 git_clone https://github.com/njh/twolame twolame
+if [ $result == true ]; then return; fi
 cd $SRC_ROOT/twolame
 dos2unix configure.ac
 sed -i -e 's, doc tests,,g' Makefile.am

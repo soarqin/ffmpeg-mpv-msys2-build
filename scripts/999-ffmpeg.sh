@@ -1,4 +1,5 @@
-git_clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
+git_clone https://git.ffmpeg.org/ffmpeg.git ffmpeg master 1
+if [ $any_dirty != true ]; then return; fi
 LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg \
   --enable-static \
   --disable-shared \

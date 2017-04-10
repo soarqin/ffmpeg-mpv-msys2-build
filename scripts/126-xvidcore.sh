@@ -1,4 +1,6 @@
-download_file http://downloads.xvid.org/downloads/xvidcore-1.3.4.tar.bz2 xvidcore
+XVID_VERSION=1.3.4
+download_file http://downloads.xvid.org/downloads/xvidcore-${XVID_VERSION}.tar.bz2 xvidcore
+if [ $result == true ]; then return; fi
 cd $BUILD_ROOT && mkdir -p xvidcore && cd xvidcore
 cp -Rf $SRC_ROOT/xvidcore/* .
 cd build/generic

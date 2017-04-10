@@ -1,4 +1,5 @@
 git_clone https://github.com/cacalabs/libcaca libcaca
+if [ $result == true ]; then return; fi
 cd $SRC_ROOT/libcaca
 sed -i -e 's,java doc,java,g' Makefile.am
 sed -i -e 's,defined _WIN32 && !defined __LIBCACA__ && !defined CACA_STATIC,0,g' caca/caca.h

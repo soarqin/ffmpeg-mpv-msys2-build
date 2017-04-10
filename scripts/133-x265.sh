@@ -1,4 +1,5 @@
 hg_clone https://bitbucket.org/multicoreware/x265 x265
+if [ $result == true ]; then return; fi
 cd $SRC_ROOT/x265
 hg log -r0 --template "repo: {node}\n" > .hg_archival.txt
 hg log -r. --template "node: {node}\n" >> .hg_archival.txt

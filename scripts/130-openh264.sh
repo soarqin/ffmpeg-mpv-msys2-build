@@ -1,4 +1,5 @@
 git_clone https://github.com/cisco/openh264 openh264
+if [ $result == true ]; then return; fi
 cd $BUILD_ROOT && mkdir -p openh264 && cd openh264
 cp -Rf $SRC_ROOT/openh264/* .
 if [ "x$ARCH" == "x32" ]; then

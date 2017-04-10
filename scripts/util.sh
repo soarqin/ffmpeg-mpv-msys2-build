@@ -1,11 +1,3 @@
-function strcontains {
-    if [[ $1 =~ (^|[[:space:]])$2($|[[:space:]]) ]]; then
-        result=true
-    else
-        result=false
-    fi
-}
-
 function git_clone {
     cd $SRC_ROOT
     if [ ! -d $SRC_ROOT/$2 ]; then
@@ -14,9 +6,23 @@ function git_clone {
     cd $2
     local branch=master
     if [ $# -gt 2 ]; then
-        branch = $3
+        branch=$3
     fi
     git checkout -- . && git pull --recurse-submodules origin $branch
+    revision=$(git reflog -n1 HEAD)
+    export revision="${fnprefix} $2-${revision/ *}"
+    found=$(grep "^$revision\$" "$FINISHED" || true)
+    result=true
+    if [ "x$found" != "x" ]; then
+        if [ "x$4" == "x" ]; then
+            echo "${revision} is up-to-date."
+            export -n revision=""
+        fi
+        return
+    else
+        result=false
+        any_dirty=true
+    fi
 }
 
 function hg_clone {
@@ -26,6 +32,19 @@ function hg_clone {
     fi
     cd $2
     hg revert --all && hg pull -u
+    export revision="${fnprefix} $2-$(hg log -r. --template "{node}" | cut -c-8)"
+    found=$(grep "^$revision\$" "$FINISHED" || true)
+    result=true
+    if [ "x$found" != "x" ]; then
+        if [ "x$3" == "x" ]; then
+            echo "${revision} is up-to-date."
+            export -n revision=""
+        fi
+        return
+    else
+        result=false
+        any_dirty=true
+    fi
 }
 
 function svn_checkout {
@@ -35,6 +54,19 @@ function svn_checkout {
     fi
     cd $2
     svn revert -R . && svn update
+    export revision="${fnprefix} $2-r$(svn info --show-item revision)"
+    found=$(grep "^$revision\$" "$FINISHED" || true)
+    result=true
+    if [ "x$found" != "x" ]; then
+        if [ "x$3" == "x" ]; then
+            echo "${revision} is up-to-date."
+            export -n revision=""
+        fi
+        return
+    else
+        result=false
+        any_dirty=true
+    fi
 }
 
 function download_file {
@@ -49,6 +81,19 @@ function download_file {
         dirname=$2
     else
         dirname=${filename%.tar.*}
+    fi
+    export revision="${fnprefix} ${dirname}"
+    found=$(grep "^$revision\$" "$FINISHED" || true)
+    result=true
+    if [ "x$found" != "x" ]; then
+        if [ "x$3" == "x" ]; then
+            echo "${revision} is up-to-date."
+            export -n revision=""
+        fi
+        return 0
+    else
+        result=false
+        any_dirty=true
     fi
     if [ ! -d $SRC_ROOT/$dirname ]; then
         local ext=${filename#*.tar.}

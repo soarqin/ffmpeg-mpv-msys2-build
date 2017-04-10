@@ -1,2 +1,4 @@
-download_file https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz
-compile_with_configure gmp-6.1.2 --enable-static --disable-shared
+GMP_VERSION=6.1.2
+download_file https://gmplib.org/download/gmp/gmp-${GMP_VERSION}.tar.xz
+if [ $result == true ]; then return; fi
+compile_with_configure gmp-${GMP_VERSION} --enable-static --disable-shared
