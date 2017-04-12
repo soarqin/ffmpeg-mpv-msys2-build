@@ -1,5 +1,11 @@
-git_clone https://github.com/ultravideo/kvazaar kvazaar
+if [ "x${KVAZAAR_VERSION}" == "xgit" ]; then
+    git_clone https://github.com/ultravideo/kvazaar kvazaar-${KVAZAAR_VERSION}
+else
+    download_file https://github.com/ultravideo/kvazaar/releases/download/v${KVAZAAR_VERSION}/kvazaar-v${KVAZAAR_VERSION}.tar.gz
+fi
 if [ $result == true ]; then return; fi
-cd $SRC_ROOT/kvazaar
+pushd $SRC_ROOT/kvazaar-${KVAZAAR_VERSION}
 sed -i -e 's,defined(KVZ_STATIC_LIB),1,g' src/kvazaar.h
-compile_with_configure kvazaar --enable-static --disable-shared
+sed -i -e 's/\[CFLAGS="-Werror $CFLAGS"\], \[\]/\[\], \[CFLAGS="-Werror $CFLAGS"\]/g' configure.ac
+popd
+compile_with_configure kvazaar-${KVAZAAR_VERSION} --enable-static --disable-shared

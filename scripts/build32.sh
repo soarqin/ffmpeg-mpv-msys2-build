@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 ARCH=32
 ARCH_PREFIX=mingw-w64-i686-
 

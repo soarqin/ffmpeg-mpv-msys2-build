@@ -1,14 +1,19 @@
-git_clone https://git.ffmpeg.org/ffmpeg.git ffmpeg master 1
+if [ "x${FFMPEG_VERSION}" == "xgit" ]; then
+    git_clone https://git.ffmpeg.org/ffmpeg.git ffmpeg-${FFMPEG_VERSION} master 1
+    FFMPEG_EXTRA_FLAGS="--enable-cuda --enable-cuvid"
+else
+    download_file http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2
+fi
 if [ $any_dirty != true ]; then return; fi
-LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg \
+
+LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg-${FFMPEG_VERSION} \
   --enable-static \
   --disable-shared \
   --pkg-config-flags='--static' \
   --enable-gpl \
   --enable-version3 \
   --enable-nonfree \
-  --enable-cuda \
-  --enable-cuvid \
+  --enable-iconv \
   --enable-d3d11va \
   --enable-dxva2 \
   --enable-libmfx \
@@ -28,12 +33,12 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-libgsm \
   --enable-libilbc \
   --enable-libkvazaar \
-  --enable-libmodplug \
   --enable-libmp3lame \
   --enable-libopencore-amrnb \
   --enable-libopencore-amrwb \
   --enable-libopenh264 \
   --enable-libopenjpeg \
+  --enable-libopenmpt \
   --enable-libopus \
   --enable-librtmp \
   --enable-libsnappy \
@@ -53,4 +58,4 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-libzimg \
   --enable-lzma \
   --enable-zlib \
-  --enable-iconv
+  ${FFMPEG_EXTRA_FLAGS}

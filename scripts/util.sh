@@ -1,9 +1,8 @@
 function git_clone {
-    cd $SRC_ROOT
     if [ ! -d $SRC_ROOT/$2 ]; then
-        git clone --recursive $1 $2
+        git clone --recursive $1 $SRC_ROOT/$2
     fi
-    cd $2
+    pushd $SRC_ROOT/$2
     local branch=master
     if [ $# -gt 2 ]; then
         branch=$3
@@ -13,6 +12,7 @@ function git_clone {
     export _lib_revision="${fnprefix} $2-${_lib_revision/ *}"
     found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
     result=true
+    popd
     if [ "x$found" != "x" ]; then
         if [ "x$4" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
@@ -26,15 +26,15 @@ function git_clone {
 }
 
 function hg_clone {
-    cd $SRC_ROOT
     if [ ! -d $SRC_ROOT/$2 ]; then
-        hg clone $1 $2
+        hg clone $1 $SRC_ROOT/$2
     fi
-    cd $2
+    pushd $SRC_ROOT/$2
     hg revert --all && hg pull -u
     export _lib_revision="${fnprefix} $2-$(hg log -r. --template "{node}" | cut -c-8)"
     found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
     result=true
+    popd
     if [ "x$found" != "x" ]; then
         if [ "x$3" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
@@ -48,15 +48,15 @@ function hg_clone {
 }
 
 function svn_checkout {
-    cd $SRC_ROOT
     if [ ! -d $SRC_ROOT/$2 ]; then
-        svn checkout $1 $2
+        svn checkout $1 $SRC_ROOT/$2
     fi
-    cd $2
+    pushd $SRC_ROOT/$2
     svn revert -R . && svn update
     export _lib_revision="${fnprefix} $2-r$(svn info --show-item revision)"
     found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
     result=true
+    popd
     if [ "x$found" != "x" ]; then
         if [ "x$3" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
@@ -97,7 +97,7 @@ function download_file {
     fi
     if [ ! -d $SRC_ROOT/$dirname ]; then
         local ext=${filename#*.tar.}
-        cd $SRC_ROOT
+        pushd $SRC_ROOT
         case $ext in
             gz) curl -LJ $1 | tar xz
                 ;;
@@ -106,5 +106,6 @@ function download_file {
             xz) curl -LJ $1 | tar xJ
                 ;;
         esac
+        popd
     fi
 }
