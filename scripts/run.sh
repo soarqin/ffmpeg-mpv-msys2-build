@@ -1,5 +1,11 @@
-BUILD_ROOT=$(realpath ${SCRIPT_ROOT}/../build${ARCH})
-BUILD_INSTALL_ROOT=$(realpath ${HOME}/mingw${ARCH})
+if [ "x${VERSION_FILE}" == "x" ]; then
+    . version.inc
+else
+    . ${VERSION_FILE}
+fi
+
+BUILD_ROOT=$(realpath ${SCRIPT_ROOT}/../build${ARCH}${BUILD_EXTRA_SUFFIX})
+BUILD_INSTALL_ROOT=$(realpath ${HOME}/mingw${ARCH}${BUILD_EXTRA_SUFFIX})
 PATCH_ROOT=$(realpath ${SCRIPT_ROOT}/../patches)
 
 set -e
@@ -13,11 +19,6 @@ cd ${SCRIPT_ROOT}
 mkdir -p ${SRC_ROOT} ${BUILD_INSTALL_ROOT}
 . util.sh
 . compile.sh
-if [ "x${VERSION_FILE}" == "x" ]; then
-    . version.inc
-else
-    . ${VERSION_FILE}
-fi
 
 FINISHED=${BUILD_ROOT}/finished
 if [ ! -f ${FINISHED} ]; then
