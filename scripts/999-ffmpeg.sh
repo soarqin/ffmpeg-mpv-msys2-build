@@ -12,28 +12,30 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-gpl \
   --enable-version3 \
   --enable-nonfree \
-  --enable-iconv \
+  --enable-avisynth \
+  --enable-avresample \
+  --enable-bzlib \
   --enable-cuda \
   --enable-cuvid \
   --enable-d3d11va \
   --enable-dxva2 \
-  --enable-libmfx \
-  --enable-nvenc \
-  --enable-avisynth \
-  --enable-bzlib \
   --enable-fontconfig \
   --enable-frei0r \
+  --enable-gmp \
   --enable-gnutls \
+  --enable-iconv \
   --enable-libass \
   --enable-libbluray \
   --enable-libbs2b \
   --enable-libcaca \
   --enable-libfdk-aac \
   --enable-libfreetype \
+  --enable-libfribidi \
   --enable-libgme \
   --enable-libgsm \
   --enable-libilbc \
   --enable-libkvazaar \
+  --enable-libmfx \
   --enable-libmp3lame \
   --enable-libopencore-amrnb \
   --enable-libopencore-amrwb \
@@ -42,6 +44,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-libopenmpt \
   --enable-libopus \
   --enable-librtmp \
+  --enable-libschroedinger \
   --enable-libsnappy \
   --enable-libsoxr \
   --enable-libspeex \
@@ -58,4 +61,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-libxvid \
   --enable-libzimg \
   --enable-lzma \
+  --enable-netcdf \
+  --enable-nvenc \
   --enable-zlib

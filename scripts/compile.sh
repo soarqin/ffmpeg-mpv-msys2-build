@@ -8,7 +8,9 @@ function compile_with_configure {
     mkdir -p $BUILD_ROOT/$dst_dir
     pushd $BUILD_ROOT/$dst_dir
     make distclean || true
-    `realpath --relative-to=. $SRC_ROOT`/$src_dir/configure --prefix="$BUILD_INSTALL_ROOT" $* && make $JOBS && make install
+    `realpath --relative-to=. $SRC_ROOT`/$src_dir/configure --prefix="$BUILD_INSTALL_ROOT" $*
+    make $JOBS
+    make install
     popd
 }
 
@@ -23,7 +25,9 @@ function compile_with_configure_dirty {
     if [ ! -f ./configure ]; then
         autoreconf -ifv
     fi
-    ./configure --prefix=$BUILD_INSTALL_ROOT $* && make $JOBS && make install
+    ./configure --prefix=$BUILD_INSTALL_ROOT $*
+    make $JOBS
+    make install
     popd
 }
 
@@ -34,6 +38,7 @@ function compile_with_cmake {
     rm -rf $BUILD_ROOT/$dst_dir && mkdir -p $BUILD_ROOT/$dst_dir
     pushd $BUILD_ROOT/$dst_dir
     cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$BUILD_INSTALL_ROOT" $* $SRC_ROOT/$src_dir
-    make $JOBS && make install
+    make $JOBS
+    make install
     popd
 }
