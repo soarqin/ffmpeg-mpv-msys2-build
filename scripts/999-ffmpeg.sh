@@ -1,6 +1,5 @@
 if [ "x${FFMPEG_VERSION}" == "xgit" ]; then
     git_clone https://git.ffmpeg.org/ffmpeg.git ffmpeg-${FFMPEG_VERSION} master 1
-    FFMPEG_EXTRA_FLAGS="--enable-cuda --enable-cuvid"
 else
     download_file http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2
 fi
@@ -14,6 +13,8 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-version3 \
   --enable-nonfree \
   --enable-iconv \
+  --enable-cuda \
+  --enable-cuvid \
   --enable-d3d11va \
   --enable-dxva2 \
   --enable-libmfx \
@@ -57,5 +58,4 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-libxvid \
   --enable-libzimg \
   --enable-lzma \
-  --enable-zlib \
-  ${FFMPEG_EXTRA_FLAGS}
+  --enable-zlib
