@@ -1,19 +1,19 @@
 function git_clone {
-    if [ ! -d $SRC_ROOT/$2 ]; then
-        git clone --recursive $1 $SRC_ROOT/$2
-    fi
-    pushd $SRC_ROOT/$2
     local branch=master
     if [ $# -gt 2 ]; then
         branch=$3
     fi
-    git checkout -- . && git pull --recurse-submodules origin $branch
+    if [ ! -d ${SRC_ROOT}/$2 ]; then
+        git clone --recursive $1 ${SRC_ROOT}/$2 -b ${branch}
+    fi
+    pushd ${SRC_ROOT}/$2
+    git checkout -- . && git pull --recurse-submodules origin ${branch}
     _lib_revision=$(git reflog -n1 HEAD)
     export _lib_revision="${fnprefix} $2-${_lib_revision/ *}"
-    found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
+    found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
     popd
-    if [ "x$found" != "x" ]; then
+    if [ "x${found}" != "x" ]; then
         if [ "x$4" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
@@ -26,16 +26,16 @@ function git_clone {
 }
 
 function hg_clone {
-    if [ ! -d $SRC_ROOT/$2 ]; then
-        hg clone $1 $SRC_ROOT/$2
+    if [ ! -d ${SRC_ROOT}/$2 ]; then
+        hg clone $1 ${SRC_ROOT}/$2
     fi
-    pushd $SRC_ROOT/$2
+    pushd ${SRC_ROOT}/$2
     hg revert --all && hg pull -u
     export _lib_revision="${fnprefix} $2-$(hg log -r. --template "{node}" | cut -c-8)"
-    found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
+    found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
     popd
-    if [ "x$found" != "x" ]; then
+    if [ "x${found}" != "x" ]; then
         if [ "x$3" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
@@ -48,16 +48,16 @@ function hg_clone {
 }
 
 function svn_checkout {
-    if [ ! -d $SRC_ROOT/$2 ]; then
-        svn checkout $1 $SRC_ROOT/$2
+    if [ ! -d ${SRC_ROOT}/$2 ]; then
+        svn checkout $1 ${SRC_ROOT}/$2
     fi
-    pushd $SRC_ROOT/$2
+    pushd ${SRC_ROOT}/$2
     svn revert -R . && svn update
     export _lib_revision="${fnprefix} $2-r$(svn info --show-item revision)"
-    found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
+    found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
     popd
-    if [ "x$found" != "x" ]; then
+    if [ "x${found}" != "x" ]; then
         if [ "x$3" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
@@ -83,9 +83,9 @@ function download_file {
         dirname=${filename%.tar.*}
     fi
     export _lib_revision="${fnprefix} ${dirname}"
-    found=$(grep "^$_lib_revision\$" "$FINISHED" || true)
+    found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
-    if [ "x$found" != "x" ]; then
+    if [ "x${found}" != "x" ]; then
         if [ "x$3" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
@@ -95,15 +95,17 @@ function download_file {
         result=false
         any_dirty=true
     fi
-    if [ ! -d $SRC_ROOT/$dirname ]; then
-        local ext=${filename#*.tar.}
-        pushd $SRC_ROOT
-        case $ext in
-            gz) curl -LJ $1 | tar xz
+    if [ ! -d ${SRC_ROOT}/${dirname} ]; then
+        pushd ${SRC_ROOT}
+        case ${filename} in
+	    *.tgz) ;&
+            *.tar.gz) curl -LJ $1 | tar xz
                 ;;
-            bz2) curl -LJ $1 | tar xj
+	    *.tbz2) ;&
+            *.tar.bz2) curl -LJ $1 | tar xj
                 ;;
-            xz) curl -LJ $1 | tar xJ
+	    *.txz) ;&
+            *.tar.xz) curl -LJ $1 | tar xJ
                 ;;
         esac
         popd
