@@ -4,15 +4,16 @@ else
     download_file http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2
 fi
 if [ $any_dirty != true ]; then return; fi
-mkdir -p ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
-pushd ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
-LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_VERSION}/configure \
+sed -i -e "/^${fnprefix} /d" "${FINISHED}"
+
+LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg-${FFMPEG_VERSION} \
   --enable-static \
   --disable-shared \
   --pkg-config-flags='--static' \
   --enable-gpl \
   --enable-version3 \
-  --enable-nonfree \
+  --disable-encoders \
+  --disable-muxers \
   --enable-avisynth \
   --enable-avresample \
   --enable-bzlib \
@@ -29,7 +30,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-libbluray \
   --enable-libbs2b \
   --enable-libcaca \
-  --enable-libfdk-aac \
   --enable-libfreetype \
   --enable-libfribidi \
   --enable-libgme \
@@ -65,4 +65,3 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-netcdf \
   --enable-nvenc \
   --enable-zlib
-popd
