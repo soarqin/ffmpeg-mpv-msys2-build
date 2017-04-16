@@ -5,4 +5,4 @@ ARCH_PREFIX=mingw-w64-i686-
 
 SCRIPT_ROOT=$(realpath $(dirname $0))
 
-. $SCRIPT_ROOT/run.sh
+. $SCRIPT_ROOT/run-ffmpeg.sh
