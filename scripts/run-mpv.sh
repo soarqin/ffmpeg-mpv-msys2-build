@@ -1,3 +1,5 @@
+set BUILD_EXTRA_SUFFIX=_mpv${BUILD_EXTRA_SUFFIX}
+
 . ${SCRIPT_ROOT}/prep.sh
 
 for v in ${SCRIPT_ROOT}/mpv/[0-9][0-9][0-9]-*.sh; do
