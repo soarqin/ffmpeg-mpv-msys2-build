@@ -1,4 +1,4 @@
-BUILD_EXTRA_SUFFIX=_mpv
+BUILD_TARGET_SUFFIX=_mpv
 
 . ${SCRIPT_ROOT}/prep.sh
 

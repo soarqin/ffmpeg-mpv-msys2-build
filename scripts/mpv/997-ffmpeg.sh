@@ -12,6 +12,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --pkg-config-flags='--static' \
   --enable-gpl \
   --enable-version3 \
+  --disable-programs \
   --disable-encoders \
   --disable-muxers \
   --disable-doc \

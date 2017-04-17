@@ -4,7 +4,7 @@ else
     . ${VERSION_FILE}
 fi
 
-BUILD_ROOT=$(realpath ${SCRIPT_ROOT}/../build${ARCH}${BUILD_EXTRA_SUFFIX})
+BUILD_ROOT=$(realpath ${SCRIPT_ROOT}/../build${ARCH}${BUILD_TARGET_SUFFIX}${BUILD_EXTRA_SUFFIX})
 BUILD_INSTALL_ROOT=$(realpath ${HOME}/mingw${ARCH}${BUILD_EXTRA_SUFFIX})
 PATCH_ROOT=$(realpath ${SCRIPT_ROOT}/../patches)
 
