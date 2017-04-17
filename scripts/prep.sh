@@ -1,5 +1,5 @@
 if [ "x${VERSION_FILE}" == "x" ]; then
-    . version.inc
+    . ${SCRIPT_ROOT}/version.inc
 else
     . ${VERSION_FILE}
 fi
