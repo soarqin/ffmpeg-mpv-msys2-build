@@ -14,6 +14,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-version3 \
   --disable-encoders \
   --disable-muxers \
+  --disable-doc \
   --enable-avisynth \
   --enable-avresample \
   --enable-bzlib \

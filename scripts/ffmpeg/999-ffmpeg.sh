@@ -6,13 +6,16 @@ fi
 if [ $any_dirty != true ]; then return; fi
 mkdir -p ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 pushd ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
+if [ "x${NO_FDK_AAC}" == "x" ]; then
+    FFMPEG_EXTRA_FLAGS='--enable-nonfree --enable-libfdk-aac'
+fi
 LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_VERSION}/configure \
   --enable-static \
   --disable-shared \
   --pkg-config-flags='--static' \
   --enable-gpl \
   --enable-version3 \
-  --enable-nonfree \
+  --disable-doc \
   --enable-avisynth \
   --enable-avresample \
   --enable-bzlib \
@@ -29,7 +32,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-libbluray \
   --enable-libbs2b \
   --enable-libcaca \
-  --enable-libfdk-aac \
   --enable-libfreetype \
   --enable-libfribidi \
   --enable-libgme \
@@ -64,6 +66,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-lzma \
   --enable-netcdf \
   --enable-nvenc \
-  --enable-zlib
+  --enable-zlib \
+  ${FFMPEG_EXTRA_FLAGS}
 make ${JOBS}
 popd
