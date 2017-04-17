@@ -5,7 +5,16 @@
 > * If you need a distributable ffmpeg, set NO_FDK_AAC=1 to avoid linking to libfdk_aac.
 
 # Usage
-* scripts/ffmpeg32.sh   Build FFMPEG on MSYS2 with MinGW32
-* scripts/ffmpeg64.sh   Build FFMPEG on MSYS2 with MinGW64
-* scripts/mpv32.sh      Build MPV on MSYS2 with MinGW32
-* scripts/mpv64.sh      Build MPV on MSYS2 with MinGW64
+<table>
+<tr><td>scripts/ffmpeg32.sh</td><td>Build FFMPEG on MSYS2 with MinGW32</td></tr>
+<tr><td>scripts/ffmpeg64.sh</td><td>Build FFMPEG on MSYS2 with MinGW64</td></tr>
+<tr><td>scripts/mpv32.sh</td><td>Build MPV on MSYS2 with MinGW32</td></tr>
+<tr><td>scripts/mpv64.sh</td><td>Build MPV on MSYS2 with MinGW64</td></tr>
+</table>
+
+# Env vars
+<table>
+<tr><td>NO_FDK_AAC</td><td>Set to disable linking to libfdk_aac</td></tr>
+<tr><td>NODEPS</td><td>Set to disable MSYS2 packages' installation/update on startup</td></tr>
+<tr><td>VERSION_FILE</td><td>Set to 'version-repo.inc' to make use of latest codes in svn/hg/git for most components</td></tr>
+</table>
