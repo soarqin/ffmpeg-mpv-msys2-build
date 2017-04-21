@@ -68,5 +68,5 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-nvenc \
   --enable-zlib \
   ${FFMPEG_EXTRA_FLAGS}
-make ${JOBS}
+make ${MAKE_JOBS}
 popd

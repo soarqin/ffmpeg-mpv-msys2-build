@@ -10,7 +10,7 @@ pushd ${SRC_ROOT}/mpv-${MPV_VERSION}
 python3 waf configure --prefix=${BUILD_INSTALL_ROOT} -o ${BUILD_ROOT}/mpv-${MPV_VERSION} --enable-static-build --disable-manpage-build
 replace_str="LIBPATH_lib\1 = ['${LOCALDESTDIR}/lib','${MINGW_PREFIX}/lib']"
 sed -r -i "s:LIBPATH_lib(ass|av(|device|filter)) = .*:${replace_str}:g" ${BUILD_ROOT}/mpv-${MPV_VERSION}/c4che/_cache.py
-python3 waf build ${JOBS}
+python3 waf build ${MAKE_JOBS}
 popd
 pushd ${BUILD_ROOT}/mpv-${MPV_VERSION}
 strip ./mpv.exe

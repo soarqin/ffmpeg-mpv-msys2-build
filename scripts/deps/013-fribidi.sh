@@ -8,8 +8,9 @@ mkdir -p $BUILD_ROOT/fribidi-${FRIBIDI_VERSION}
 pushd $BUILD_ROOT/fribidi-${FRIBIDI_VERSION}
 mkdir -p gen.tab/unidata
 cp -rf $SRC_ROOT/fribidi-${FRIBIDI_VERSION}/gen.tab/unidata/* gen.tab/unidata/
-JOBS_OLD=$JOBS
-JOBS=-j1
+JOBS_OLD=${MAKE_JOBS}
+MAKE_JOBS=-j1
 popd
 compile_with_configure fribidi-${FRIBIDI_VERSION} --enable-static --disable-shared --without-glib
-JOBS=$JOBS_OLD
+MAKE_JOBS=${JOBS_OLD}
+JOBS_OLD=

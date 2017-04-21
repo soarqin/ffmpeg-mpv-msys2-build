@@ -6,7 +6,7 @@ cp -Rf $SRC_ROOT/xvidcore/* .
 pushd build/generic
 sed -i -e 's,_LIB="xvidcore,_LIB="libxvidcore,g' configure
 ./configure --prefix=$BUILD_INSTALL_ROOT --disable-pthread
-make $JOBS
+make ${MAKE_JOBS}
 make install
 rm -f $BUILD_INSTALL_ROOT/bin/libxvidcore.dll $BUILD_INSTALL_ROOT/lib/libxvidcore.dll.a
 popd

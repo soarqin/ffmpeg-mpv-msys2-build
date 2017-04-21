@@ -5,6 +5,6 @@ rm -rf bzip2
 cp -Rf $SRC_ROOT/bzip2-${BZIP_VERSION} ./bzip2
 pushd bzip2
 sed -i -e "/PREFIX=/d" Makefile
-make PREFIX=$BUILD_INSTALL_ROOT $JOBS install
+make PREFIX=$BUILD_INSTALL_ROOT ${MAKE_JOBS} install
 popd
 popd

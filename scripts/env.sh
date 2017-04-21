@@ -4,5 +4,7 @@ export PATH="$BUILD_INSTALL_ROOT/bin:$PATH"
 export PKG_CONFIG_PATH="$BUILD_INSTALL_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH"
 export CPATH="$BUILD_INSTALL_ROOT/include"
 export LIBRARY_PATH="$BUILD_INSTALL_ROOT/lib"
-JOBS=-j4
+if [ "x${MAKE_JOBS}" == "x" ]; then
+    MAKE_JOBS=-j4
+fi
 SRC_ROOT=$(realpath $SCRIPT_ROOT/../src)
