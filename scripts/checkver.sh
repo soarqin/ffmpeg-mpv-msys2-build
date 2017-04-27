@@ -41,7 +41,6 @@ check_version libxml2 'http://xmlsoft.org/news.html' 'public\ releases:</p><h3>[
 check_version fribidi 'https://fribidi.org' 'fribidi-([0-9\.]+[0-9])' ${FRIBIDI_VERSION}
 check_version nettle 'https://ftp.gnu.org/gnu/nettle/?C=M;O=D' 'nettle-([0-9\.]+[0-9])' ${NETTLE_VERSION}
 check_version GnuTLS 'http://www.gnutls.org/news.html' 'GnuTLS.([0-9\.]+[0-9])' ${GNUTLS_VERSION}
-check_version uchardet 'https://www.freedesktop.org/wiki/Software/uchardet/' 'uchardet\ version\ ([0-9\.]+[0-9])' ${UCHARDET_VERSION}
 check_version OpenJPEG 'https://github.com/uclouvain/openjpeg/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${OPENJPEG_VERSION}
 check_version libpng 'http://libpng.org/pub/png/libpng.html' 'version:[^\.]+<B>([0-9\.]+[0-9])' ${LIBPNG_VERSION}
 check_version FreeType 'https://www.freetype.org' 'FreeType\ ([0-9\.]+[0-9])' ${FREETYPE_VERSION}
@@ -77,4 +76,8 @@ check_version x265 'https://bitbucket.org/multicoreware/x265/downloads' 'x265_([
 check_version libopenmpt 'https://lib.openmpt.org/libopenmpt' '>([0-9\.]+[0-9])-(beta[0-9]+)' ${LIBOPENMPT_VERSION} ${LIBOPENMPT_VERSION_BETA}
 check_version netcdf 'https://github.com/Unidata/netcdf-c/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${NETCDF_VERSION}
 check_version FFMPEG 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
+check_version uchardet 'https://www.freedesktop.org/wiki/Software/uchardet/' 'uchardet\ version\ ([0-9\.]+[0-9])' ${UCHARDET_VERSION}
+check_version libdvdcss 'http://www.videolan.org/developers/libdvdcss.html' 'libdvdcss<\/code> is <b>([0-9\.]+[0-9])' ${DVDCSS_VERSION}
+check_version dvdread 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdread<\/code> is <b>([0-9\.]+[0-9])' ${DVDREAD_VERSION}
+check_version dvdnav 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdnav<\/code> is <b>([0-9\.]+[0-9])' ${DVDNAV_VERSION}
 check_version mpv 'https://github.com/mpv-player/mpv/releases' 'tag\/v([0-9\.]+[0-9])' ${MPV_VERSION}
