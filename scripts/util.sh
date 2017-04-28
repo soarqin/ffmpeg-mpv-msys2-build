@@ -98,13 +98,13 @@ function download_file {
     if [ ! -d ${SRC_ROOT}/${dirname} ]; then
         pushd ${SRC_ROOT}
         case ${filename} in
-	    *.tgz) ;&
+	        *.tgz) ;&
             *.tar.gz) curl -LJ $1 | tar xz
                 ;;
-	    *.tbz2) ;&
+	        *.tbz2) ;&
             *.tar.bz2) curl -LJ $1 | tar xj
                 ;;
-	    *.txz) ;&
+	        *.txz) ;&
             *.tar.xz) curl -LJ $1 | tar xJ
                 ;;
         esac

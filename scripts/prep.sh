@@ -4,6 +4,17 @@ else
     . ${VERSION_FILE}
 fi
 
+case `gcc -dumpmachine` in
+    x86_64-w64-mingw32)
+        ARCH=64
+        ARCH_PREFIX=mingw-w64-x86_64-
+        ;;
+    i686-w64-mingw32)
+        ARCH=32
+        ARCH_PREFIX=mingw-w64-i686-
+        ;;
+esac
+
 BUILD_ROOT=$(realpath ${SCRIPT_ROOT}/../build${ARCH}${BUILD_TARGET_SUFFIX}${BUILD_EXTRA_SUFFIX})
 BUILD_INSTALL_ROOT=$(realpath ${HOME}/mingw${ARCH}${BUILD_EXTRA_SUFFIX})
 PATCH_ROOT=$(realpath ${SCRIPT_ROOT}/../patches)

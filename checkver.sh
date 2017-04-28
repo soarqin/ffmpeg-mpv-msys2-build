@@ -25,7 +25,7 @@ function check_version {
 
 set -e
 
-SCRIPT_ROOT=$(realpath $(dirname $0))
+SCRIPT_ROOT=$(realpath $(dirname $0))/scripts
 if [ "x${VERSION_FILE}" == "x" ]; then
     . ${SCRIPT_ROOT}/version.inc
 else

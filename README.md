@@ -9,10 +9,8 @@ Note
 Usage
 =====
 <table>
-<tr><td>scripts/ffmpeg32.sh</td><td>Build FFMPEG on MSYS2 with MinGW32</td></tr>
-<tr><td>scripts/ffmpeg64.sh</td><td>Build FFMPEG on MSYS2 with MinGW64</td></tr>
-<tr><td>scripts/mpv32.sh</td><td>Build MPV on MSYS2 with MinGW32</td></tr>
-<tr><td>scripts/mpv64.sh</td><td>Build MPV on MSYS2 with MinGW64</td></tr>
+<tr><td>./ffmpeg.sh</td><td>Build FFMPEG on MSYS2 with MinGW i686/x86_64</td></tr>
+<tr><td>./mpv.sh</td><td>Build MPV on MSYS2 with MinGW64 i686/x86_64</td></tr>
 </table>
 
 Env vars
