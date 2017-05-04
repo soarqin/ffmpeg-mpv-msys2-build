@@ -3,8 +3,8 @@ Note
 * These Scripts is written to build static FFMPEG and MPV with most of depedencies on MSYS2.
 
 > ## IMPORTANT!!
-> * FFMPEG links to non-free libfdk_aac by default so that the binaries are not distributable.
-> * If you need a distributable ffmpeg, set NO_FDK_AAC=1 to avoid linking to libfdk_aac.
+> * FFMPEG links to non-free delay-loaded libfdk-aac-1.dll which are not distributable freely.
+> * If you want to distribute compiled binaries, be sure to supply libfdk-aac-1.dll in non-free part.
 
 Usage
 =====
@@ -16,7 +16,6 @@ Usage
 Env vars
 ========
 <table>
-<tr><td>NO_FDK_AAC</td><td>Set to disable linking to libfdk_aac</td></tr>
 <tr><td>NODEPS</td><td>Set to disable MSYS2 packages' installation/update on startup</td></tr>
-<tr><td>VERSION_FILE</td><td>Set to 'version-repo.inc' to make use of latest codes in svn/hg/git for most components</td></tr>
+<tr><td>VERSION_FILE</td><td>Set to 'scripts/version-repo.inc' to make use of latest codes in svn/hg/git for most components</td></tr>
 </table>

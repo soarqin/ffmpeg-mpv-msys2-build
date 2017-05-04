@@ -11,14 +11,14 @@ function check_version {
         if [ "x$5" != "x" ]; then
             newbeta=${BASH_REMATCH[2]}
             if [ "x${newbeta}" != "x$5" ]; then
-                echo $1 $4$5 has new version: ${newver}${newbeta}
+                echo '!!NEW VERSION!!' $1 $4$5 has new version: ${newver}${newbeta}
                 return
             fi
         fi
         if [ "x${newver}" == "x$4" ]; then
-            echo $1 $4 is up-to-date
+            echo '[Up-to-date]' $1 $4$5
         else
-            echo $1 $4 has new version: ${newver}
+            echo '!!NEW VERSION!!' $1 $4 has new version: ${newver}
         fi
     fi
 }
