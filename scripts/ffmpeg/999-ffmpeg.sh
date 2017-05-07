@@ -65,7 +65,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-lzma \
   --enable-netcdf \
   --enable-nvenc \
-  --enable-zlib \
+  --enable-zlib
 make ${MAKE_JOBS}
 make install
 popd

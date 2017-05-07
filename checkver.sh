@@ -26,10 +26,10 @@ function check_version {
 set -e
 
 SCRIPT_ROOT=$(realpath $(dirname $0))/scripts
-if [ "x${VERSION_FILE}" == "x" ]; then
+if [ "x${USE_REPO}" == "x" ]; then
     . ${SCRIPT_ROOT}/version.inc
 else
-    . ${VERSION_FILE}
+    . ${SCRIPT_ROOT}/version-repo.inc
 fi
 
 check_version zlib 'http://zlib.net' 'Current\ release:[^z]*zlib\ ([0-9\.]+[0-9])' ${ZLIB_VERSION}

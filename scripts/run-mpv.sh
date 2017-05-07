@@ -2,6 +2,8 @@ BUILD_TARGET_SUFFIX=_mpv
 
 . ${SCRIPT_ROOT}/prep.sh
 
+any_dirty=false
+. ${SCRIPT_ROOT}/run-deps.sh
 for v in ${SCRIPT_ROOT}/mpv/[0-9][0-9][0-9]-*.sh; do
     fn=${v##*/}
     fnprefix=${fn:0:3}

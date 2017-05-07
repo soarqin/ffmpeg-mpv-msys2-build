@@ -16,6 +16,6 @@ Usage
 Env vars
 ========
 <table>
-<tr><td>NODEPS</td><td>Set to disable MSYS2 packages' installation/update on startup</td></tr>
-<tr><td>VERSION_FILE</td><td>Set to 'scripts/version-repo.inc' to make use of latest codes in svn/hg/git for most components</td></tr>
+<tr><td>NO_PKG_INSTALL</td><td>Set to disable MSYS2 packages' installation/update on startup</td></tr>
+<tr><td>USE_REPO</td><td>Set to make use of latest codes in svn/hg/git for most components</td></tr>
 </table>
