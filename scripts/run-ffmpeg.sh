@@ -1,3 +1,6 @@
+BUILD_TARGET_SUFFIX=
+. ${SCRIPT_ROOT}/setup.sh
+. ${SCRIPT_ROOT}/setup-build.sh
 . ${SCRIPT_ROOT}/prep.sh
 
 any_dirty=false
