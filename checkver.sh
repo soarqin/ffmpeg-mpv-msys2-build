@@ -2,7 +2,7 @@
 
 function check_version {
     if [[ $4 =~ ^hg|git|svn$ ]]; then
-        echo $1 is skipped due to pulling from $4
+        echo "[SKIPPED] $1 is skipped due to pulling from $4"
         return
     fi
     _content=`curl -LJ $2 2>/dev/null`
@@ -11,14 +11,14 @@ function check_version {
         if [ "x$5" != "x" ]; then
             newbeta=${BASH_REMATCH[2]}
             if [ "x${newbeta}" != "x$5" ]; then
-                echo '!!NEW VERSION!!' $1 $4$5 has new version: ${newver}${newbeta}
+                echo "!!NEW VERSION!! $1 $4$5 has new version: ${newver}${newbeta}"
                 return
             fi
         fi
         if [ "x${newver}" == "x$4" ]; then
-            echo '[Up-to-date]' $1 $4$5
+            echo "[UP-TO-DATE] $1 $4$5"
         else
-            echo '!!NEW VERSION!!' $1 $4 has new version: ${newver}
+            echo "!!NEW VERSION!! $1 $4 has new version: ${newver}"
         fi
     fi
 }
@@ -45,7 +45,6 @@ check_version OpenJPEG 'https://github.com/uclouvain/openjpeg/releases/latest' '
 check_version libpng 'http://libpng.org/pub/png/libpng.html' 'version:[^\.]+<B>([0-9\.]+[0-9])' ${LIBPNG_VERSION}
 check_version FreeType 'https://www.freetype.org' 'FreeType\ ([0-9\.]+[0-9])' ${FREETYPE_VERSION}
 check_version FontConfig 'https://www.freedesktop.org/software/fontconfig/release/?C=M;O=D' 'fontconfig-([0-9\.]+[0-9])' ${FONTCONFIG_VERSION}
-check_version libjpeg-turbo 'https://github.com/libjpeg-turbo/libjpeg-turbo/releases/latest' 'tag/([0-9\.]+[0-9])' ${LIBJPEG_TURBO_VERSION}
 check_version SDL2 'http://www.libsdl.org/download-2.0.php' 'SDL\ version\ ([0-9\.]+[0-9])' ${SDL2_VERSION}
 check_version orc 'https://gstreamer.freedesktop.org/src/orc/?C=M;O=D' 'orc-([0-9\.]+[0-9])' ${ORC_VERSION}
 check_version fdk-aac 'https://github.com/mstorsjo/fdk-aac/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${FDK_AAC_VERSION}
@@ -76,6 +75,7 @@ check_version x265 'https://bitbucket.org/multicoreware/x265/downloads' 'x265_([
 check_version libopenmpt 'https://lib.openmpt.org/libopenmpt' '>([0-9\.]+[0-9])-(beta[0-9]+)' ${LIBOPENMPT_VERSION} ${LIBOPENMPT_VERSION_BETA}
 check_version netcdf 'https://github.com/Unidata/netcdf-c/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${NETCDF_VERSION}
 check_version FFMPEG 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
+check_version libjpeg-turbo 'https://github.com/libjpeg-turbo/libjpeg-turbo/releases/latest' 'tag/([0-9\.]+[0-9])' ${LIBJPEG_TURBO_VERSION}
 check_version uchardet 'https://www.freedesktop.org/wiki/Software/uchardet/' 'uchardet\ version\ ([0-9\.]+[0-9])' ${UCHARDET_VERSION}
 check_version libdvdcss 'http://www.videolan.org/developers/libdvdcss.html' 'libdvdcss<\/code> is <b>([0-9\.]+[0-9])' ${DVDCSS_VERSION}
 check_version dvdread 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdread<\/code> is <b>([0-9\.]+[0-9])' ${DVDREAD_VERSION}
