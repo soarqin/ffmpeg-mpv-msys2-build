@@ -1,6 +1,5 @@
-BUILD_INSTALL_ROOT=$(realpath ${HOME}/mingw${ARCH}${BUILD_EXTRA_SUFFIX})
 SRC_ROOT=$(realpath ${SCRIPT_ROOT}/../src)
-mkdir -p ${SRC_ROOT} ${BUILD_INSTALL_ROOT}
+mkdir -p ${SRC_ROOT}
 PATCH_ROOT=$(realpath ${SCRIPT_ROOT}/../patches)
 
 set -e
