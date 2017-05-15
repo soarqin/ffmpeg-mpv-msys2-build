@@ -46,6 +46,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-libopenmpt \
   --enable-libopus \
   --enable-librtmp \
+  --enable-librubberband \
   --enable-libschroedinger \
   --enable-libsnappy \
   --enable-libsoxr \
