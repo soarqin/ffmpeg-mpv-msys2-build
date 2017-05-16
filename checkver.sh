@@ -41,6 +41,7 @@ check_version libxml2 'http://xmlsoft.org/news.html' 'public\ releases:</p><h3>[
 check_version fribidi 'https://fribidi.org' 'fribidi-([0-9\.]+[0-9])' ${FRIBIDI_VERSION}
 check_version nettle 'https://ftp.gnu.org/gnu/nettle/?C=M;O=D' 'nettle-([0-9\.]+[0-9])' ${NETTLE_VERSION}
 check_version GnuTLS 'http://www.gnutls.org/news.html' 'GnuTLS.([0-9\.]+[0-9])' ${GNUTLS_VERSION}
+check_version fftw 'http://www.fftw.org/download.html' 'fftw-([0-9\.]+[0-9]-pl[0-9])' ${FFTW_VERSION}
 check_version OpenJPEG 'https://github.com/uclouvain/openjpeg/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${OPENJPEG_VERSION}
 check_version libpng 'http://libpng.org/pub/png/libpng.html' 'version:[^\.]+<B>([0-9\.]+[0-9])' ${LIBPNG_VERSION}
 check_version FreeType 'https://www.freetype.org' 'FreeType\ ([0-9\.]+[0-9])' ${FREETYPE_VERSION}
@@ -81,4 +82,7 @@ check_version uchardet 'https://www.freedesktop.org/wiki/Software/uchardet/' 'uc
 check_version libdvdcss 'http://www.videolan.org/developers/libdvdcss.html' 'libdvdcss<\/code> is <b>([0-9\.]+[0-9])' ${DVDCSS_VERSION}
 check_version dvdread 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdread<\/code> is <b>([0-9\.]+[0-9])' ${DVDREAD_VERSION}
 check_version dvdnav 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdnav<\/code> is <b>([0-9\.]+[0-9])' ${DVDNAV_VERSION}
+check_version vamp-plugin-sdk 'http://www.vamp-plugins.org/develop.html' '\(version ([0-9\.]+[0-9])\)' ${VAMP_VERSION}
+check_version libsamplerate 'http://www.mega-nerd.com/SRC/download.html' 'libsamplerate-([0-9\.]+[0-9])\.tar\.gz' ${LIBSAMPLERATE_VERSION}
+check_version rubberband 'http://breakfastquay.com/rubberband/' 'Rubber Band Library v([0-9\.]+[0-9])' ${RUBBERBAND_VERSION}
 check_version mpv 'https://github.com/mpv-player/mpv/releases' 'tag\/v([0-9\.]+[0-9])' ${MPV_VERSION}
