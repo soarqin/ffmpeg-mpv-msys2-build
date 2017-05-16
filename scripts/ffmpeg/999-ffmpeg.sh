@@ -7,6 +7,7 @@ if [ $any_dirty != true ]; then return; fi
 mkdir -p ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 pushd ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_VERSION}/configure \
+  --prefix="$BUILD_INSTALL_ROOT" \
   --enable-static \
   --disable-shared \
   --pkg-config-flags='--static' \
