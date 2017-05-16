@@ -53,6 +53,7 @@ check_version frei0r 'https://files.dyne.org/frei0r/' 'frei0r-plugins-([0-9\.]+[
 check_version z.img 'https://github.com/sekrit-twc/zimg/releases/latest' 'tag\/(release-[0-9\.]+[0-9])' ${ZIMG_VERSION}
 check_version libogg 'https://www.xiph.org/downloads/' 'libogg-([0-9\.]+[0-9])' ${OGG_VERSION}
 check_version libvorbis 'https://www.xiph.org/downloads/' 'libvorbis-([0-9\.]+[0-9])' ${VORBIS_VERSION}
+check_version libvorbis 'https://www.xiph.org/downloads/' 'libtheora-([0-9\.]+[0-9])' ${THEORA_VERSION}
 check_version speex 'https://www.xiph.org/downloads/' 'speex-([0-9\.]+[0-9])' ${SPEEX_VERSION}
 check_version libopus 'http://www.opus-codec.org/downloads/' '>libopus\ ([0-9\.]+[0-9])' ${OPUS_VERSION}
 check_version twolame 'http://www.twolame.org' 'twolame\ ([0-9\.]+[0-9])' ${TWOLAME_VERSION}
