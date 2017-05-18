@@ -20,6 +20,8 @@ function check_version {
         else
             echo "!!NEW VERSION!! $1 $4 has new version: ${newver}"
         fi
+    else
+        echo "!!ERROR!! Cannot check update for $1 $4$5"
     fi
 }
 
@@ -53,7 +55,7 @@ check_version frei0r 'https://files.dyne.org/frei0r/' 'frei0r-plugins-([0-9\.]+[
 check_version z.img 'https://github.com/sekrit-twc/zimg/releases/latest' 'tag\/(release-[0-9\.]+[0-9])' ${ZIMG_VERSION}
 check_version libogg 'https://www.xiph.org/downloads/' 'libogg-([0-9\.]+[0-9])' ${OGG_VERSION}
 check_version libvorbis 'https://www.xiph.org/downloads/' 'libvorbis-([0-9\.]+[0-9])' ${VORBIS_VERSION}
-check_version libvorbis 'https://www.xiph.org/downloads/' 'libtheora-([0-9\.]+[0-9])' ${THEORA_VERSION}
+check_version libtheora 'https://www.xiph.org/downloads/' 'libtheora-([0-9\.]+[0-9])' ${THEORA_VERSION}
 check_version speex 'https://www.xiph.org/downloads/' 'speex-([0-9\.]+[0-9])' ${SPEEX_VERSION}
 check_version libopus 'http://www.opus-codec.org/downloads/' '>libopus\ ([0-9\.]+[0-9])' ${OPUS_VERSION}
 check_version twolame 'http://www.twolame.org' 'twolame\ ([0-9\.]+[0-9])' ${TWOLAME_VERSION}
@@ -72,7 +74,7 @@ check_version xvidcore 'https://labs.xvid.com/source/' 'Xvid\ ([0-9\.]+[0-9])\ s
 check_version libwebp 'https://developers.google.com/speed/webp/download' 'webp\/libwebp-([0-9\.]+[0-9])\.tar\.gz' ${WEBP_VERSION}
 check_version libvpx 'https://chromium.googlesource.com/webm/libvpx' '>v([0-9\.]+[0-9])' ${LIBVPX_VERSION}
 check_version openh264 'https://github.com/cisco/openh264/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${OPENH264_VERSION}
-check_version kvazaar 'https://github.com/ultravideo/kvazaar/releases/latest' 'tag\/([0-9\.]+[0-9])' v${KVAZAAR_VERSION}
+check_version kvazaar 'https://github.com/ultravideo/kvazaar/releases/latest' 'tag\/(v[0-9\.]+[0-9])' v${KVAZAAR_VERSION}
 check_version x265 'https://bitbucket.org/multicoreware/x265/downloads' 'x265_([0-9\.]+[0-9])' ${X265_VERSION}
 check_version libopenmpt 'https://lib.openmpt.org/libopenmpt' '>([0-9\.]+[0-9])-(beta[0-9]+)' ${LIBOPENMPT_VERSION} ${LIBOPENMPT_VERSION_BETA}
 check_version netcdf 'https://github.com/Unidata/netcdf-c/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${NETCDF_VERSION}
