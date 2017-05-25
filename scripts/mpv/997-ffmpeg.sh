@@ -6,6 +6,7 @@ fi
 if [ $result == true ]; then return; fi
 sed -i -e "/^${fnprefix} /d" "${FINISHED}"
 
+rm -Rf ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg-${FFMPEG_VERSION} \
   --enable-static \
   --disable-shared \
