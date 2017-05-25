@@ -1,0 +1,12 @@
+diff -ur vid.stab-release-0.98b-orig/CMakeLists.txt vid.stab-release-0.98b/CMakeLists.txt
+--- vid.stab-release-0.98b-orig/CMakeLists.txt	2017-05-25 19:33:53.689459000 +0800
++++ vid.stab-release-0.98b/CMakeLists.txt	2017-05-25 19:33:58.650562400 +0800
+@@ -44,7 +44,7 @@
+ 
+ # Create the vidstab library
+ # add_library (vidstab STATIC ${SOURCES})
+-add_library (vidstab SHARED ${SOURCES})
++add_library (vidstab STATIC ${SOURCES})
+ 
+ #set version of lib
+ set_target_properties(vidstab PROPERTIES SOVERSION ${MAJOR_VERSION}.${MINOR_VERSION})

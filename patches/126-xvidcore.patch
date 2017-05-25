@@ -1,0 +1,14 @@
+diff -ur xvidcore-orig/build/generic/configure xvidcore/build/generic/configure
+--- xvidcore-orig/build/generic/configure	2017-05-25 19:55:21.829538900 +0800
++++ xvidcore/build/generic/configure	2017-05-25 19:55:28.105627900 +0800
+@@ -4385,8 +4385,8 @@
+      [cC][yY][gG][wW][iI][nN]*|mingw32*|mks*)
+ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: ok" >&5
+ $as_echo "ok" >&6; }
+-	STATIC_LIB="xvidcore.\$(STATIC_EXTENSION)"
+-	SHARED_LIB="xvidcore.\$(SHARED_EXTENSION)"
++	STATIC_LIB="libxvidcore.\$(STATIC_EXTENSION)"
++	SHARED_LIB="libxvidcore.\$(SHARED_EXTENSION)"
+ 	SPECIFIC_LDFLAGS="-shared -Wl,--dll,--out-implib,\$@.a libxvidcore.def"
+ 	SPECIFIC_CFLAGS="-mno-cygwin"
+ 	;;

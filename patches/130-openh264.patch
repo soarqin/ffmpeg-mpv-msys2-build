@@ -1,0 +1,23 @@
+diff -ur openh264-1.6.0-orig/build/platform-mingw_nt.mk openh264-1.6.0/build/platform-mingw_nt.mk
+--- openh264-1.6.0-orig/build/platform-mingw_nt.mk	2016-07-11 16:17:38.000000000 +0800
++++ openh264-1.6.0/build/platform-mingw_nt.mk	2017-05-25 21:07:44.404065400 +0800
+@@ -11,7 +11,7 @@
+ ASMFLAGS_PLATFORM = -DWIN64
+ CC = x86_64-w64-mingw32-gcc
+ CXX = x86_64-w64-mingw32-g++
+-AR = x86_64-w64-mingw32-ar
++AR = ar
+ else
+ ASMFLAGS += -f win32 -DPREFIX
+ endif
+diff -ur openh264-1.6.0-orig/Makefile openh264-1.6.0/Makefile
+--- openh264-1.6.0-orig/Makefile	2016-07-11 16:17:38.000000000 +0800
++++ openh264-1.6.0/Makefile	2017-05-25 21:09:42.300330100 +0800
+@@ -21,7 +21,6 @@
+ CFLAGS_DEBUG=-g
+ BUILDTYPE=Release
+ V=Yes
+-PREFIX=/usr/local
+ SHARED=-shared
+ OBJ=o
+ DESTDIR=

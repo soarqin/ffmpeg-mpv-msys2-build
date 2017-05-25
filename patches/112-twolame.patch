@@ -1,0 +1,24 @@
+diff -ur twolame-0.3.13-orig/libtwolame/twolame.h twolame-0.3.13/libtwolame/twolame.h
+--- twolame-0.3.13-orig/libtwolame/twolame.h	2011-01-02 03:15:01.000000000 +0800
++++ twolame-0.3.13/libtwolame/twolame.h	2017-05-25 19:12:48.908478100 +0800
+@@ -40,7 +40,7 @@
+  */
+ 
+ #ifdef _WIN32
+-#ifdef LIBTWOLAME_STATIC
++#if 1
+ #define DLL_EXPORT
+ #else
+ #ifdef LIBTWOLAME_DLL_EXPORTS
+diff -ur twolame-0.3.13-orig/Makefile.am twolame-0.3.13/Makefile.am
+--- twolame-0.3.13-orig/Makefile.am	2011-01-10 02:04:52.000000000 +0800
++++ twolame-0.3.13/Makefile.am	2017-05-25 19:12:48.889963000 +0800
+@@ -2,7 +2,7 @@
+ AUTOMAKE_OPTIONS = foreign
+ ACLOCAL_AMFLAGS = -I build-scripts
+ 
+-SUBDIRS = libtwolame frontend simplefrontend doc tests
++SUBDIRS = libtwolame frontend simplefrontend
+ 
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = twolame.pc

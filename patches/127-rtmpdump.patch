@@ -1,0 +1,24 @@
+diff --git a/Makefile b/Makefile
+index a1595a8..07b4934 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,16 +1,16 @@
+ VERSION=v2.4
+ 
+-prefix=/usr/local
++prefix=
+ 
+ CC=$(CROSS_COMPILE)gcc
+ LD=$(CROSS_COMPILE)ld
+ 
+-SYS=posix
++SYS=mingw
+ #SYS=mingw
+ 
+ CRYPTO=OPENSSL
+ #CRYPTO=POLARSSL
+-#CRYPTO=GNUTLS
++CRYPTO=GNUTLS
+ LIBZ=-lz
+ LIB_GNUTLS=-lgnutls -lhogweed -lnettle -lgmp $(LIBZ)
+ LIB_OPENSSL=-lssl -lcrypto $(LIBZ)

@@ -1,0 +1,23 @@
+diff -ur libopenmpt-0.2.8190-orig/libopenmpt/libopenmpt.pc.in libopenmpt-0.2.8190/libopenmpt/libopenmpt.pc.in
+--- libopenmpt-0.2.8190-orig/libopenmpt/libopenmpt.pc.in	2017-05-25 20:24:32.354375900 +0800
++++ libopenmpt-0.2.8190/libopenmpt/libopenmpt.pc.in	2017-05-25 20:25:11.930530200 +0800
+@@ -9,6 +9,6 @@
+ Version: @VERSION@
+ Requires.private: @LIBOPENMPT_REQUIRES_PRIVATE@
+ Libs: -L${libdir} -lopenmpt
+-Libs.private: @LIBOPENMPT_LIBS_PRIVATE@
++Libs.private: @LIBOPENMPT_LIBS_PRIVATE@ -lrpcrt4
+ Cflags: -I${includedir}
+ 
+diff -ur libopenmpt-0.2.8190-orig/Makefile libopenmpt-0.2.8190/Makefile
+--- libopenmpt-0.2.8190-orig/Makefile	2017-05-25 20:24:28.926456400 +0800
++++ libopenmpt-0.2.8190/Makefile	2017-05-25 20:24:35.733420500 +0800
+@@ -190,7 +190,7 @@
+ 
+ # host setup
+ 
+-ifeq ($(OS),Windows_NT)
++ifeq ($(OS),dummy)
+ 
+ HOST=windows
+ HOST_FLAVOUR=

@@ -1,0 +1,82 @@
+diff -ur gsm-1.0-pl13-orig/Makefile gsm-1.0-pl13/Makefile
+--- gsm-1.0-pl13-orig/Makefile	2006-04-27 03:14:26.000000000 +0800
++++ gsm-1.0-pl13/Makefile	2017-05-25 19:08:57.185614500 +0800
+@@ -71,7 +71,6 @@
+ # Leave INSTALL_ROOT empty (or just don't execute "make install") to
+ # not install gsm and toast outside of this directory.
+ 
+-INSTALL_ROOT	=
+ 
+ # Where do you want to install the gsm library, header file, and manpages?
+ #
+@@ -80,7 +79,7 @@
+ 
+ GSM_INSTALL_ROOT = $(INSTALL_ROOT)
+ GSM_INSTALL_LIB = $(GSM_INSTALL_ROOT)/lib
+-GSM_INSTALL_INC = $(GSM_INSTALL_ROOT)/inc
++GSM_INSTALL_INC = $(GSM_INSTALL_ROOT)/include
+ GSM_INSTALL_MAN = $(GSM_INSTALL_ROOT)/man/man3
+ 
+ 
+@@ -352,7 +351,7 @@
+ 
+ $(TOAST_INSTALL_BIN)/toast:	$(TOAST)
+ 		-rm $@
+-		cp $(TOAST) $@
++		cp -f $(TOAST) $@
+ 		chmod 755 $@
+ 
+ $(TOAST_INSTALL_BIN)/untoast:	$(TOAST_INSTALL_BIN)/toast
+@@ -365,38 +364,38 @@
+ 
+ $(TOAST_INSTALL_MAN)/toast.1:	$(MAN)/toast.1
+ 		-rm $@
+-		cp $? $@
+-		chmod 444 $@
++		cp -f $? $@
++		chmod 666 $@
+ 
+ $(GSM_INSTALL_MAN)/gsm.3:	$(MAN)/gsm.3
+ 		-rm $@
+-		cp $? $@
+-		chmod 444 $@
++		cp -f $? $@
++		chmod 666 $@
+ 
+ $(GSM_INSTALL_MAN)/gsm_option.3:	$(MAN)/gsm_option.3
+ 		-rm $@
+-		cp $? $@
+-		chmod 444 $@
++		cp -f $? $@
++		chmod 666 $@
+ 
+ $(GSM_INSTALL_MAN)/gsm_explode.3:	$(MAN)/gsm_explode.3
+ 		-rm $@
+-		cp $? $@
+-		chmod 444 $@
++		cp -f $? $@
++		chmod 666 $@
+ 
+ $(GSM_INSTALL_MAN)/gsm_print.3:	$(MAN)/gsm_print.3
+ 		-rm $@
+-		cp $? $@
+-		chmod 444 $@
++		cp -f $? $@
++		chmod 666 $@
+ 
+ $(GSM_INSTALL_INC)/gsm.h:	$(INC)/gsm.h
+ 		-rm $@
+-		cp $? $@
+-		chmod 444 $@
++		cp -f $? $@
++		chmod 666 $@
+ 
+ $(GSM_INSTALL_LIB)/libgsm.a:	$(LIBGSM)
+ 		-rm $@
+-		cp $? $@
+-		chmod 444 $@
++		cp -f $? $@
++		chmod 666 $@
+ 
+ 
+ # Distribution

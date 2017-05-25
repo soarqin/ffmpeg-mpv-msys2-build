@@ -1,0 +1,13 @@
+只在 kvazaar-1.1.0/ 存在：autom4te.cache
+diff -ur kvazaar-1.1.0-orig/src/kvazaar.h kvazaar-1.1.0/src/kvazaar.h
+--- kvazaar-1.1.0-orig/src/kvazaar.h	2017-02-14 01:53:12.000000000 +0800
++++ kvazaar-1.1.0/src/kvazaar.h	2017-05-25 20:18:46.312281300 +0800
+@@ -47,7 +47,7 @@
+     #define KVZ_PUBLIC
+   #endif
+ #else
+-  #if defined(KVZ_STATIC_LIB)
++  #if 1
+     // Using static kvazaar library.
+     #define KVZ_PUBLIC
+   #elif defined(_WIN32) || defined(__CYGWIN__)

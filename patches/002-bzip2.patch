@@ -1,0 +1,13 @@
+diff -ur bzip2-1.0.6-orig/Makefile bzip2-1.0.6/Makefile
+--- bzip2-1.0.6-orig/Makefile	2017-05-25 17:12:34.848382400 +0800
++++ bzip2-1.0.6/Makefile	2017-05-25 17:12:53.066420000 +0800
+@@ -23,9 +23,6 @@
+ BIGFILES=-D_FILE_OFFSET_BITS=64
+ CFLAGS=-Wall -Winline -O2 -g $(BIGFILES)
+ 
+-# Where you want it installed when you do 'make install'
+-PREFIX=/usr/local
+-
+ 
+ OBJS= blocksort.o  \
+       huffman.o    \

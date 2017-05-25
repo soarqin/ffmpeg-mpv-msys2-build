@@ -80,7 +80,7 @@ function download_file {
     if [ $# -gt 1 ]; then
         dirname=$2
     else
-        dirname=${filename%.tar.*}
+        dirname=${filename%.tar*}
     fi
     export _lib_revision="${fnprefix} ${dirname}"
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
@@ -95,19 +95,31 @@ function download_file {
         result=false
         any_dirty=true
     fi
-    if [ ! -d ${SRC_ROOT}/${dirname} ]; then
-        pushd ${SRC_ROOT}
-        case ${filename} in
-	        *.tgz) ;&
-            *.tar.gz) curl -LJ $1 | tar xz
-                ;;
-	        *.tbz2) ;&
-            *.tar.bz2) curl -LJ $1 | tar xj
-                ;;
-	        *.txz) ;&
-            *.tar.xz) curl -LJ $1 | tar xJ
-                ;;
-        esac
+    save_name=${DOWNLOAD_ROOT}/${dirname}.tar${filename#*.tar}
+    if [ -f "${SRC_ROOT}/${dirname}" ]; then
+        rm -Rf ${SRC_ROOT}/${dirname}
+    fi
+    if [ ! -f "${save_name}" ]; then
+        curl -LJ -o "${save_name}" $1
+    fi
+    case ${filename} in
+        *.tgz) ;&
+        *.tar.gz) tar xfz "${save_name}" -C "${SRC_ROOT}"
+            ;;
+        *.tbz2) ;&
+        *.tar.bz2) tar xfj "${save_name}" -C "${SRC_ROOT}"
+            ;;
+        *.txz) ;&
+        *.tar.xz) tar xfJ "${save_name}" -C "${SRC_ROOT}"
+            ;;
+    esac
+}
+
+function patch_source {
+    if [ "x$(cat ${SRC_ROOT}/$1/patched >/dev/null 2>&1 || true)" != "x$3" ]; then
+        pushd ${SRC_ROOT}/$1
+        patch -p1 < ${PATCH_ROOT}/$2
+        echo $3 > ./patched
         popd
     fi
 }
