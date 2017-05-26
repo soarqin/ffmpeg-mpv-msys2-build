@@ -1,0 +1,34 @@
+diff -ur LuaJIT-2.1.0-beta3-orig/etc/luajit.pc LuaJIT-2.1.0-beta3/etc/luajit.pc
+--- LuaJIT-2.1.0-beta3-orig/etc/luajit.pc	2017-05-26 11:19:58.923856300 +0800
++++ LuaJIT-2.1.0-beta3/etc/luajit.pc	2017-05-26 11:20:04.810649500 +0800
+@@ -21,5 +21,5 @@
+ Version: ${version}
+ Requires:
+ Libs: -L${libdir} -l${libname}
+-Libs.private: -Wl,-E -lm -ldl
++Libs.private: -Wl,-E -lm
+ Cflags: -I${includedir}
+diff -ur LuaJIT-2.1.0-beta3-orig/Makefile LuaJIT-2.1.0-beta3/Makefile
+--- LuaJIT-2.1.0-beta3-orig/Makefile	2017-05-26 11:19:59.524340300 +0800
++++ LuaJIT-2.1.0-beta3/Makefile	2017-05-26 11:20:04.047444900 +0800
+@@ -25,7 +25,7 @@
+ # Change the installation path as needed. This automatically adjusts
+ # the paths in src/luaconf.h, too. Note: PREFIX must be an absolute path!
+ #
+-export PREFIX= /usr/local
++export PREFIX= 
+ export MULTILIB= lib
+ ##############################################################################
+ 
+diff -ur LuaJIT-2.1.0-beta3-orig/src/Makefile LuaJIT-2.1.0-beta3/src/Makefile
+--- LuaJIT-2.1.0-beta3-orig/src/Makefile	2017-05-26 11:19:59.001968300 +0800
++++ LuaJIT-2.1.0-beta3/src/Makefile	2017-05-26 11:20:04.108697600 +0800
+@@ -74,7 +74,7 @@
+ BUILDMODE= mixed
+ #
+ # Static mode creates a static library and a statically linked luajit.
+-#BUILDMODE= static
++BUILDMODE= static
+ #
+ # Dynamic mode creates a dynamic library and a dynamically linked luajit.
+ # Note: this executable will only run when the library is installed!
