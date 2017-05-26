@@ -1,0 +1,83 @@
+diff --git a/Makefile.am b/Makefile.am
+index 4c9f255..3ce2ceb 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -2,7 +2,7 @@
+ include $(top_srcdir)/build/autotools/common.am
+ 
+ SUBDIRS = kernel caca src examples tools \
+-          cxx caca-sharp python ruby java doc
++          cxx caca-sharp python ruby java
+ DIST_SUBDIRS = $(SUBDIRS) build
+ 
+ EXTRA_DIST = NOTES COPYING.GPL COPYING.ISC COPYING.LGPL bootstrap caca-config.in libcaca.spec libcaca.sln
+diff --git a/caca/caca.h b/caca/caca.h
+index b978dab..b1b9e25 100644
+--- a/caca/caca.h
++++ b/caca/caca.h
+@@ -31,7 +31,7 @@
+ #if defined _DOXYGEN_SKIP_ME
+ #elif defined _WIN32 && defined __LIBCACA__ && defined DLL_EXPORT
+ #   define __extern extern __declspec(dllexport)
+-#elif defined _WIN32 && !defined __LIBCACA__ && !defined CACA_STATIC
++#elif 0
+ #   define __extern extern __declspec(dllimport)
+ #else
+ #   define __extern extern
+diff --git a/caca/caca0.h b/caca/caca0.h
+index a48a921..52c8ce6 100644
+--- a/caca/caca0.h
++++ b/caca/caca0.h
+@@ -24,7 +24,7 @@
+ #if defined _DOXYGEN_SKIP_ME
+ #elif defined _WIN32 && defined __LIBCACA__ && defined DLL_EXPORT
+ #   define __extern extern __declspec(dllexport)
+-#elif defined _WIN32 && !defined __LIBCACA__
++#elif 0
+ #   define __extern extern __declspec(dllimport)
+ #else
+ #   define __extern extern
+diff --git a/caca/figfont.c b/caca/figfont.c
+index e098d1a..a0da2c0 100644
+--- a/caca/figfont.c
++++ b/caca/figfont.c
+@@ -34,7 +34,7 @@
+ int sprintf_s(char *s, size_t n, const char *fmt, ...) CACA_WEAK;
+ #   endif
+ #   if !HAVE_VSNPRINTF
+-int vsnprintf(char *s, size_t n, const char *fmt, va_list ap) CACA_WEAK;
++int vsnprintf_dummy(char *s, size_t n, const char *fmt, va_list ap) CACA_WEAK;
+ #   endif
+ #endif
+ 
+@@ -654,7 +654,7 @@ int sprintf_s(char *s, size_t n, const char *fmt, ...)
+ #   endif
+ 
+ #   if !HAVE_VSNPRINTF
+-int vsnprintf(char *s, size_t n, const char *fmt, va_list ap)
++int vsnprintf_dummy(char *s, size_t n, const char *fmt, va_list ap)
+ {
+     return 0;
+ }
+diff --git a/caca/string.c b/caca/string.c
+index 795207e..8a7a6c5 100644
+--- a/caca/string.c
++++ b/caca/string.c
+@@ -42,7 +42,7 @@ int vsnprintf_s(char *s, size_t n, size_t c,
+                 const char *fmt, va_list ap) CACA_WEAK;
+ #   endif
+ #   if !HAVE_VSNPRINTF
+-int vsnprintf(char *s, size_t n, const char *fmt, va_list ap) CACA_WEAK;
++int vsnprintf_dummy(char *s, size_t n, const char *fmt, va_list ap) CACA_WEAK;
+ #   endif
+ #endif
+ 
+@@ -623,7 +623,7 @@ int vsnprintf_s(char *s, size_t n, size_t c, const char *fmt, va_list ap)
+ #   endif
+ 
+ #   if !HAVE_VSNPRINTF
+-int vsnprintf(char *s, size_t n, const char *fmt, va_list ap)
++int vsnprintf_dummy(char *s, size_t n, const char *fmt, va_list ap)
+ {
+     return 0;
+ }

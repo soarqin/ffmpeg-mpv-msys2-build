@@ -1,10 +1,12 @@
 if [ "x${LIBOPENMPT_VERSION}" == "xsvn" ]; then
     svn_checkout https://source.openmpt.org/svn/openmpt/trunk/OpenMPT/ libopenmpt-${LIBOPENMPT_VERSION}
+    if [ $result == true ]; then return; fi
+    patch_source libopenmpt-${LIBOPENMPT_VERSION} 134-libopenmpt-svn.patch
 else
     download_file https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-${LIBOPENMPT_VERSION}-${LIBOPENMPT_VERSION_BETA}.tar.gz libopenmpt-${LIBOPENMPT_VERSION}
+    if [ $result == true ]; then return; fi
+    patch_source libopenmpt-${LIBOPENMPT_VERSION} 134-libopenmpt.patch
 fi
-if [ $result == true ]; then return; fi
-patch_source libopenmpt-${LIBOPENMPT_VERSION} 134-libopenmpt.patch 1
 rm -rf ${BUILD_ROOT}/libopenmpt-${LIBOPENMPT_VERSION}
 mkdir -p ${BUILD_ROOT}/libopenmpt-${LIBOPENMPT_VERSION}
 pushd ${BUILD_ROOT}/libopenmpt-${LIBOPENMPT_VERSION}

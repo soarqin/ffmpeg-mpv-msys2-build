@@ -4,7 +4,7 @@ else
     download_file https://github.com/cisco/openh264/archive/v${OPENH264_VERSION}.tar.gz openh264-${OPENH264_VERSION}
 fi
 if [ $result == true ]; then return; fi
-patch_source openh264-${OPENH264_VERSION} 130-openh264.patch 1
+patch_source openh264-${OPENH264_VERSION} 130-openh264.patch
 mkdir -p ${BUILD_ROOT}/openh264-${OPENH264_VERSION}
 pushd ${BUILD_ROOT}/openh264-${OPENH264_VERSION}
 cp -Rf ${SRC_ROOT}/openh264-${OPENH264_VERSION}/* .

@@ -25,8 +25,8 @@ diff -ur libopenmpt-0.2.8190-orig/Makefile libopenmpt-0.2.8190/Makefile
  	$(VERYSILENT)echo 'Version: $(DIST_LIBOPENMPT_VERSION)' >> $@.tmp
  	$(VERYSILENT)echo 'Requires.private: $(PC_REQUIRES_ZLIB) $(PC_REQUIRES_MPG123) $(PC_REQUIRES_OGG) $(PC_REQUIRES_VORBIS) $(PC_REQUIRES_VORBISFILE)' >> $@.tmp
  	$(VERYSILENT)echo 'Libs: -L$${libdir} -lopenmpt' >> $@.tmp
--	$(VERYSILENT)echo 'Libs.private: $(PC_LIBS_DL) $(PC_LIBS_LTDL)' >> $@.tmp
-+	$(VERYSILENT)echo 'Libs.private: $(LIBS_DEPS) $(PC_LIBS_DL) $(PC_LIBS_LTDL)' >> $@.tmp
+-	$(VERYSILENT)echo 'Libs.private: ' >> $@.tmp
++	$(VERYSILENT)echo 'Libs.private: $(LIBS_DEPS)' >> $@.tmp
  	$(VERYSILENT)echo 'Cflags: -I$${includedir}' >> $@.tmp
  	$(VERYSILENT)mv $@.tmp $@
  

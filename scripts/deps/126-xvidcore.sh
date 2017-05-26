@@ -1,6 +1,6 @@
 download_file http://downloads.xvid.org/downloads/xvidcore-${XVID_VERSION}.tar.bz2 xvidcore
 if [ $result == true ]; then return; fi
-patch_source xvidcore 126-xvidcore.patch 1
+patch_source xvidcore 126-xvidcore.patch
 mkdir -p $BUILD_ROOT/xvidcore
 pushd $BUILD_ROOT/xvidcore
 cp -Rf $SRC_ROOT/xvidcore/* .

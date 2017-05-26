@@ -7,7 +7,7 @@ function git_clone {
         git clone --recursive $1 ${SRC_ROOT}/$2 -b ${branch}
     fi
     pushd ${SRC_ROOT}/$2
-    git checkout -- . && git pull --recurse-submodules origin ${branch}
+    git clean -dfx . && git checkout -- . && git pull --recurse-submodules origin ${branch}
     _lib_revision=$(git reflog -n1 HEAD)
     export _lib_revision="${fnprefix} $2-${_lib_revision/ *}"
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
@@ -30,7 +30,7 @@ function hg_clone {
         hg clone $1 ${SRC_ROOT}/$2
     fi
     pushd ${SRC_ROOT}/$2
-    hg revert --all && hg pull -u
+    hg clean --all && hg revert --all && hg pull -u
     export _lib_revision="${fnprefix} $2-$(hg log -r. --template "{node}" | cut -c-8)"
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
@@ -52,7 +52,7 @@ function svn_checkout {
         svn checkout $1 ${SRC_ROOT}/$2
     fi
     pushd ${SRC_ROOT}/$2
-    svn revert -R . && svn update
+    svnclean -f && svn revert -R . && svn update
     export _lib_revision="${fnprefix} $2-r$(svn info --show-item revision)"
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
@@ -116,10 +116,7 @@ function download_file {
 }
 
 function patch_source {
-    if [ "x$(cat ${SRC_ROOT}/$1/patched >/dev/null 2>&1 || true)" != "x$3" ]; then
-        pushd ${SRC_ROOT}/$1
-        patch -p1 < ${PATCH_ROOT}/$2
-        echo $3 > ./patched
-        popd
-    fi
+    pushd ${SRC_ROOT}/$1
+    patch -p1 < ${PATCH_ROOT}/$2
+    popd
 }

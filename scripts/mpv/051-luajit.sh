@@ -4,7 +4,7 @@ else
     download_file http://luajit.org/download/LuaJIT-${LUAJIT_VERSION}.tar.gz
 fi
 if [ $result == true ]; then return; fi
-patch_source LuaJIT-${LUAJIT_VERSION} 051-luajit.patch 1
+patch_source LuaJIT-${LUAJIT_VERSION} 051-luajit.patch
 rm -rf ${BUILD_ROOT}/LuaJIT-${LUAJIT_VERSION}
 mkdir -p ${BUILD_ROOT}/LuaJIT-${LUAJIT_VERSION}
 pushd ${BUILD_ROOT}/LuaJIT-${LUAJIT_VERSION}
