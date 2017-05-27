@@ -1,0 +1,12 @@
+diff -ur zlib-1.2.11-orig/win32/Makefile.gcc zlib-1.2.11/win32/Makefile.gcc
+--- zlib-1.2.11-orig/win32/Makefile.gcc	2017-05-27 11:33:06.601445900 +0800
++++ zlib-1.2.11/win32/Makefile.gcc	2017-05-27 11:33:46.780895800 +0800
+@@ -36,7 +36,7 @@
+ #
+ # Set to 1 if shared object needs to be installed
+ #
+-SHARED_MODE=0
++SHARED_MODE=1
+ 
+ #LOC = -DASMV
+ #LOC = -DZLIB_DEBUG -g
