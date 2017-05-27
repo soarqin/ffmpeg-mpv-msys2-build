@@ -16,7 +16,7 @@ diff -ur LuaJIT-2.1.0-beta3-orig/Makefile LuaJIT-2.1.0-beta3/Makefile
  # the paths in src/luaconf.h, too. Note: PREFIX must be an absolute path!
  #
 -export PREFIX= /usr/local
-+export PREFIX= 
++#export PREFIX= /usr/local
  export MULTILIB= lib
  ##############################################################################
  
