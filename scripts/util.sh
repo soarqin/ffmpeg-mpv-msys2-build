@@ -7,7 +7,7 @@ function git_clone {
         git clone --recursive $1 ${SRC_ROOT}/$2 -b ${branch}
     fi
     pushd ${SRC_ROOT}/$2
-    git clean -dfx . && git checkout -- . && git pull --recurse-submodules origin ${branch}
+    git clean -dfx . && git checkout -f ${branch} && git submodule foreach 'git clean -dfx && git checkout -f .' && git pull --recurse-submodules origin ${branch}
     _lib_revision=$(git reflog -n1 HEAD)
     export _lib_revision="${fnprefix} $2-${_lib_revision/ *}"
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)

@@ -12,21 +12,23 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-shared \
   --disable-static \
   --pkg-config-flags='--static' \
+  --disable-debug \
+  --disable-postproc \
   --enable-gpl \
   --enable-nonfree \
   --disable-programs \
   --enable-bzlib \
+  --enable-fontconfig \
   --enable-iconv \
   --enable-libfdk-aac \
+  --enable-libfreetype \
   --enable-libopus \
   --enable-libvorbis \
   --enable-libvpx \
   --enable-libx264 \
   --enable-lzma \
   --enable-nvenc \
-  --enable-zlib \
-  --disable-debug \
-  --disable-postproc
+  --enable-zlib
 make ${MAKE_JOBS}
 make install
 popd
