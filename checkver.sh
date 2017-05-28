@@ -34,6 +34,7 @@ else
     . ${SCRIPT_ROOT}/version-repo.inc
 fi
 
+check_version speexdsp 'https://speex.org/downloads/' 'SpeexDSP ([0-9\.a-z]+[0-9])' ${SPEEXDSP_VERSION}
 check_version zlib 'http://zlib.net' 'Current\ release:[^z]*zlib\ ([0-9\.]+[0-9])' ${ZLIB_VERSION}
 check_version bzip2 'http://bzip.org' 'The\ current\ version\ is[^0-9]*([0-9\.]+[0-9])' ${BZIP_VERSION}
 check_version XZ 'http://tukaani.org/xz/' '([0-9\.]+[0-9])\ was\ released\ on' ${XZ_VERSION}

@@ -22,6 +22,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-iconv \
   --enable-libfdk-aac \
   --enable-libfreetype \
+  --enable-libfribidi \
   --enable-libopus \
   --enable-libvorbis \
   --enable-libvpx \
