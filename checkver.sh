@@ -34,7 +34,6 @@ else
     . ${SCRIPT_ROOT}/version-repo.inc
 fi
 
-check_version speexdsp 'https://speex.org/downloads/' 'SpeexDSP ([0-9\.a-z]+[0-9])' ${SPEEXDSP_VERSION}
 check_version zlib 'http://zlib.net' 'Current\ release:[^z]*zlib\ ([0-9\.]+[0-9])' ${ZLIB_VERSION}
 check_version bzip2 'http://bzip.org' 'The\ current\ version\ is[^0-9]*([0-9\.]+[0-9])' ${BZIP_VERSION}
 check_version XZ 'http://tukaani.org/xz/' '([0-9\.]+[0-9])\ was\ released\ on' ${XZ_VERSION}
@@ -79,14 +78,16 @@ check_version kvazaar 'https://github.com/ultravideo/kvazaar/releases/latest' 't
 check_version x265 'https://bitbucket.org/multicoreware/x265/downloads' 'x265_([0-9\.]+[0-9])' ${X265_VERSION}
 check_version libopenmpt 'https://lib.openmpt.org/libopenmpt' '>([0-9\.]+[0-9])-(beta[0-9]+)' ${LIBOPENMPT_VERSION} ${LIBOPENMPT_VERSION_BETA}
 check_version netcdf 'https://github.com/Unidata/netcdf-c/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${NETCDF_VERSION}
-check_version FFMPEG 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
-check_version libarchive 'https://github.com/libarchive/libarchive/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBARCHIVE_VERSION}
-check_version libjpeg-turbo 'https://github.com/libjpeg-turbo/libjpeg-turbo/releases/latest' 'tag/([0-9\.]+[0-9])' ${LIBJPEG_TURBO_VERSION}
-check_version uchardet 'https://www.freedesktop.org/wiki/Software/uchardet/' 'uchardet\ version\ ([0-9\.]+[0-9])' ${UCHARDET_VERSION}
-check_version libdvdcss 'http://www.videolan.org/developers/libdvdcss.html' 'libdvdcss<\/code> is <b>([0-9\.]+[0-9])' ${DVDCSS_VERSION}
-check_version dvdread 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdread<\/code> is <b>([0-9\.]+[0-9])' ${DVDREAD_VERSION}
-check_version dvdnav 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdnav<\/code> is <b>([0-9\.]+[0-9])' ${DVDNAV_VERSION}
 check_version vamp-plugin-sdk 'http://www.vamp-plugins.org/develop.html' '\(version ([0-9\.]+[0-9])\)' ${VAMP_VERSION}
 check_version libsamplerate 'http://www.mega-nerd.com/SRC/download.html' 'libsamplerate-([0-9\.]+[0-9])\.tar\.gz' ${LIBSAMPLERATE_VERSION}
 check_version rubberband 'http://breakfastquay.com/rubberband/' 'Rubber Band Library v([0-9\.]+[0-9])' ${RUBBERBAND_VERSION}
+check_version FFMPEG 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
+check_version libarchive 'https://github.com/libarchive/libarchive/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBARCHIVE_VERSION}
+check_version libjpeg-turbo 'https://github.com/libjpeg-turbo/libjpeg-turbo/releases/latest' 'tag/([0-9\.]+[0-9])' ${LIBJPEG_TURBO_VERSION}
+check_version LuaJIT 'http://luajit.org/download.html' 'LuaJIT-([0-9\.]+[0-9]-[a-z]+[0-9])' ${LUAJIT_VERSION}
+check_version uchardet 'https://www.freedesktop.org/wiki/Software/uchardet/' 'uchardet\ version\ ([0-9\.]+[0-9])' ${UCHARDET_VERSION}
+check_version dvdcss 'http://www.videolan.org/developers/libdvdcss.html' 'libdvdcss<\/code> is <b>([0-9\.]+[0-9])' ${DVDCSS_VERSION}
+check_version dvdread 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdread<\/code> is <b>([0-9\.]+[0-9])' ${DVDREAD_VERSION}
+check_version dvdnav 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdnav<\/code> is <b>([0-9\.]+[0-9])' ${DVDNAV_VERSION}
 check_version mpv 'https://github.com/mpv-player/mpv/releases' 'tag\/v([0-9\.]+[0-9])' ${MPV_VERSION}
+check_version speexdsp 'https://speex.org/downloads/' 'SpeexDSP ([0-9\.a-z]+[0-9])' ${SPEEXDSP_VERSION}
