@@ -3,5 +3,6 @@ if [ "x${FONTCONFIG_VERSION}" == "xgit" ]; then
 else
     download_file https://www.freedesktop.org/software/fontconfig/release/fontconfig-${FONTCONFIG_VERSION}.tar.bz2
 fi
+patch_source fontconfig-${FONTCONFIG_VERSION} 024-fontconfig.patch
 if [ $result == true ]; then return; fi
 compile_with_configure fontconfig-${FONTCONFIG_VERSION} --enable-static --disable-shared --disable-docs --enable-iconv --enable-libxml2
