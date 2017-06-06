@@ -7,7 +7,10 @@ if [ $result == true ]; then return; fi
 sed -i -e "/^${fnprefix} /d" "${FINISHED}"
 
 rm -Rf ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
-LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg-${FFMPEG_VERSION} \
+mkdir -p ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
+pushd ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
+LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_VERSION}/configure \
+  --prefix=$(realpath ${SCRIPT_ROOT}/../dist/${ARCH}_mpv${BUILD_EXTRA_SUFFIX}) \
   --enable-static \
   --disable-shared \
   --pkg-config-flags='--static' \
@@ -68,3 +71,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-netcdf \
   --enable-nvenc \
   --enable-zlib
+make ${MAKE_JOBS}
+make install
+popd

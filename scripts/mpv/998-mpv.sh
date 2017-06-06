@@ -5,6 +5,7 @@ else
 fi
 sed -i -e "/^${fnprefix} /d" "${FINISHED}"
 
+export PKG_CONFIG_PATH=$(realpath ${SCRIPT_ROOT}/../dist/${ARCH}_mpv${BUILD_EXTRA_SUFFIX}/lib/pkgconfig):${PKG_CONFIG_PATH}
 pushd ${SRC_ROOT}/mpv-${MPV_VERSION}
 ./bootstrap.py
 python3 waf configure --prefix=${BUILD_INSTALL_ROOT} -o ${BUILD_ROOT}/mpv-${MPV_VERSION} --enable-static-build --disable-manpage-build --enable-dvdread --enable-dvdnav --enable-libarchive

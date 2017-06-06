@@ -69,5 +69,5 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-nvenc \
   --enable-zlib
 make ${MAKE_JOBS}
-make install DESTDIR="$(realpath ${SCRIPT_ROOT}/../dist${ARCH}${BUILD_EXTRA_SUFFIX}-dev)"
+make install DESTDIR="$(realpath ${SCRIPT_ROOT}/../dist/${ARCH}${BUILD_EXTRA_SUFFIX}-dev)"
 popd
