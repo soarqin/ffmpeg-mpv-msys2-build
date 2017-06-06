@@ -6,7 +6,7 @@ BUILD_TARGET_SUFFIX=
 any_dirty=false
 . ${SCRIPT_ROOT}/obs-run-deps.sh
 
-for v in ${SCRIPT_ROOT}/obs/{001,131,140}-*.sh; do
+for v in ${SCRIPT_ROOT}/obs/{001,009,131,140}-*.sh; do
     fn=${v##*/}
     fnprefix=${fn:0:3}
     export -n _lib_revision=""
@@ -37,6 +37,12 @@ rm -f x264.orig.def
 sed -i -e "/\\t.*DATA/d" -e "/\\t\".*/d" -e "s/\s@.*//" x264.def
 dlltool -m i386:x86-64 -d x264.def -l x264.lib -D libx264-*.dll
 
+dlltool -z curl.orig.def --export-all-symbols libcurl-*.dll
+grep "EXPORTS\|curl_" curl.orig.def > curl.def
+rm -f curl.orig.def
+sed -i -e "/\\t.*DATA/d" -e "/\\t\".*/d" -e "s/\s@.*//" curl.def
+dlltool -m i386:x86-64 -d curl.def -l curl.lib -D libcurl-*.dll
+
 dlltool -z speexdsp.orig.def --export-all-symbols libspeexdsp-1.dll
 grep "EXPORTS\|filterbank_\|jitter_\|speex_\|spx_" speexdsp.orig.def > speexdsp.def
 rm -f speexdsp.orig.def
@@ -49,10 +55,6 @@ rm -rf fdk-aac.orig.def
 sed -i -e "/\\t.*DATA/d" -e "/\\t\".*/d" -e "s/\s@.*//" fdk-aac.def
 dlltool -m i386:x86-64 -d fdk-aac.def -l fdk-aac.lib -D libfdk-aac-1.dll
 popd
-
-mkdir -p lib${ARCH}
-cp bin/*.lib lib${ARCH}/
-
 popd
 
 for v in ${SCRIPT_ROOT}/obs/99[0-9]-*.sh; do
@@ -65,3 +67,8 @@ for v in ${SCRIPT_ROOT}/obs/99[0-9]-*.sh; do
         echo "${_lib_revision}" >> ${FINISHED}
     fi
 done
+
+pushd ${BUILD_INSTALL_ROOT}
+mkdir -p lib${ARCH}
+cp bin/*.lib lib${ARCH}/
+popd

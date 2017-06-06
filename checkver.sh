@@ -90,4 +90,5 @@ check_version dvdcss 'http://www.videolan.org/developers/libdvdcss.html' 'libdvd
 check_version dvdread 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdread<\/code> is <b>([0-9\.]+[0-9])' ${DVDREAD_VERSION}
 check_version dvdnav 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdnav<\/code> is <b>([0-9\.]+[0-9])' ${DVDNAV_VERSION}
 check_version mpv 'https://github.com/mpv-player/mpv/releases' 'tag\/v([0-9\.]+[0-9])' ${MPV_VERSION}
+check_version curl 'https://curl.haxx.se/download.html' 'curl ([0-9\.a-z]+[0-9])' ${CURL_VERSION}
 check_version speexdsp 'https://speex.org/downloads/' 'SpeexDSP ([0-9\.a-z]+[0-9])' ${SPEEXDSP_VERSION}

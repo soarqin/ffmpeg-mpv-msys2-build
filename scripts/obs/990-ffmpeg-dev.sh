@@ -17,6 +17,8 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-gpl \
   --enable-nonfree \
   --disable-programs \
+  --enable-avisynth \
+  --enable-avresample \
   --enable-bzlib \
   --enable-fontconfig \
   --enable-iconv \
