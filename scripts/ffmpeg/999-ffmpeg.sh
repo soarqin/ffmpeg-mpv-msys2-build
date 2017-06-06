@@ -48,7 +48,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-libopus \
   --enable-librtmp \
   --enable-librubberband \
-  --enable-libschroedinger \
   --enable-libsnappy \
   --enable-libsoxr \
   --enable-libspeex \

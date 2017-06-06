@@ -49,7 +49,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' compile_with_configure ffmpeg
   --enable-libopus \
   --enable-librtmp \
   --enable-librubberband \
-  --enable-libschroedinger \
   --enable-libsnappy \
   --enable-libsoxr \
   --enable-libspeex \
