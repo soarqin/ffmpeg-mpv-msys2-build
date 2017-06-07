@@ -1,0 +1,63 @@
+diff -ur fontconfig-2.12.3-orig/src/fcobjshash.h fontconfig-2.12.3/src/fcobjshash.h
+--- fontconfig-2.12.3-orig/src/fcobjshash.h	2017-02-22 20:37:50.000000000 +0800
++++ fontconfig-2.12.3/src/fcobjshash.h	2017-06-03 19:44:53.222208000 +0800
+@@ -47,7 +47,7 @@
+ #endif
+ #endif
+ static unsigned int
+-FcObjectTypeHash (register const char *str, register unsigned int len)
++FcObjectTypeHash (register const char *str, register FC_GPERF_SIZE_T len)
+ {
+   static const unsigned char asso_values[] =
+     {
+@@ -191,7 +191,7 @@
+ #endif
+ #endif
+ const struct FcObjectTypeInfo *
+-FcObjectTypeLookup (register const char *str, register unsigned int len)
++FcObjectTypeLookup (register const char *str, register FC_GPERF_SIZE_T len)
+ {
+   enum
+     {
+--- fontconfig-2.12.3-orig/src/fcdir.c
++++ fontconfig-2.12.3/src/fcdir.c
+@@ -362,7 +362,9 @@ FcDirCacheScan (const FcChar8 *dir, FcConfig *config)
+     if (!dirs)
+ 	goto bail1;
+ 
++#ifndef _WIN32
+     fd = FcDirCacheLock (dir, config);
++#endif
+     /*
+      * Scan the dir
+      */
+@@ -382,7 +384,9 @@ FcDirCacheScan (const FcChar8 *dir, FcConfig *config)
+     FcDirCacheWrite (cache, config);
+ 
+  bail2:
++#ifndef _WIN32
+     FcDirCacheUnlock (fd);
++#endif
+     FcStrSetDestroy (dirs);
+  bail1:
+     FcFontSetDestroy (set);
+@@ -417,7 +421,9 @@ FcDirCacheRescan (const FcChar8 *dir, FcConfig *config)
+     if (!dirs)
+ 	goto bail;
+ 
++#ifndef _WIN32
+     fd = FcDirCacheLock (dir, config);
++#endif
+     /*
+      * Scan the dir
+      */
+@@ -436,7 +442,9 @@ FcDirCacheRescan (const FcChar8 *dir, FcConfig *config)
+     FcDirCacheWrite (new, config);
+ 
+ bail1:
++#ifndef _WIN32
+     FcDirCacheUnlock (fd);
++#endif
+     FcStrSetDestroy (dirs);
+ bail:
+     if (d)

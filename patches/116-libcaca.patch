@@ -1,78 +1,61 @@
-diff -ur libcaca-0.99.beta19-orig/caca/caca.h libcaca-0.99.beta19/caca/caca.h
---- libcaca-0.99.beta19-orig/caca/caca.h	2017-05-25 19:21:52.444979200 +0800
-+++ libcaca-0.99.beta19/caca/caca.h	2017-05-25 19:22:33.817452200 +0800
-@@ -31,7 +31,7 @@
+--- libcaca-0.99.beta17/caca/caca.h.orig	2010-02-08 16:34:28 +0400
++++ libcaca-0.99.beta17/caca/caca.h	2012-04-03 18:21:06 +0400
+@@ -29,9 +29,9 @@
+ 
+ #undef __extern
  #if defined _DOXYGEN_SKIP_ME
- #elif defined _WIN32 && defined __LIBCACA__ && defined DLL_EXPORT
+-#elif defined _WIN32 && defined __LIBCACA__ && defined DLL_EXPORT
++#elif defined _MSC_VER && defined __LIBCACA__ && defined DLL_EXPORT
  #   define __extern extern __declspec(dllexport)
 -#elif defined _WIN32 && !defined __LIBCACA__ && !defined CACA_STATIC
-+#elif 0
++#elif defined _MSC_VER && !defined __LIBCACA__ && !defined CACA_STATIC
  #   define __extern extern __declspec(dllimport)
  #else
  #   define __extern extern
-diff -ur libcaca-0.99.beta19-orig/caca/caca0.h libcaca-0.99.beta19/caca/caca0.h
---- libcaca-0.99.beta19-orig/caca/caca0.h	2017-05-25 19:21:52.449481900 +0800
-+++ libcaca-0.99.beta19/caca/caca0.h	2017-05-25 19:22:33.865986700 +0800
-@@ -24,7 +24,7 @@
+--- libcaca-0.99.beta17/caca/caca0.h.orig	2010-02-08 16:34:28 +0400
++++ libcaca-0.99.beta17/caca/caca0.h	2012-04-03 18:21:17 +0400
+@@ -22,9 +22,9 @@
+ 
+ #undef __extern
  #if defined _DOXYGEN_SKIP_ME
- #elif defined _WIN32 && defined __LIBCACA__ && defined DLL_EXPORT
+-#elif defined _WIN32 && defined __LIBCACA__ && defined DLL_EXPORT
++#elif defined _MSC_VER && defined __LIBCACA__ && defined DLL_EXPORT
  #   define __extern extern __declspec(dllexport)
 -#elif defined _WIN32 && !defined __LIBCACA__
-+#elif 0
++#elif defined _MSC_VER && !defined __LIBCACA__
  #   define __extern extern __declspec(dllimport)
  #else
  #   define __extern extern
-diff -ur libcaca-0.99.beta19-orig/caca/figfont.c libcaca-0.99.beta19/caca/figfont.c
---- libcaca-0.99.beta19-orig/caca/figfont.c	2017-05-25 19:21:52.400447200 +0800
-+++ libcaca-0.99.beta19/caca/figfont.c	2017-05-25 19:22:34.772629200 +0800
-@@ -31,7 +31,7 @@
+--- libcaca-0.99.beta17/cxx/caca++.h.orig	2010-02-08 16:34:28 +0400
++++ libcaca-0.99.beta17/cxx/caca++.h	2012-04-03 18:21:46 +0400
+@@ -23,7 +23,7 @@
+ #include <caca.h>
  
- #if defined _WIN32 && defined __GNUC__ && __GNUC__ >= 3
- int sprintf_s(char *s, size_t n, const char *fmt, ...) CACA_WEAK;
--int vsnprintf(char *s, size_t n, const char *fmt, va_list ap) CACA_WEAK;
-+int vsnprintf_dummy(char *s, size_t n, const char *fmt, va_list ap) CACA_WEAK;
- #endif
- 
- struct caca_charfont
-@@ -647,7 +647,7 @@
-     return ret;
- }
- 
--int vsnprintf(char *s, size_t n, const char *fmt, va_list ap)
-+int vsnprintf_dummy(char *s, size_t n, const char *fmt, va_list ap)
- {
-     return 0;
- }
-diff -ur libcaca-0.99.beta19-orig/caca/string.c libcaca-0.99.beta19/caca/string.c
---- libcaca-0.99.beta19-orig/caca/string.c	2017-05-25 19:21:52.660130900 +0800
-+++ libcaca-0.99.beta19/caca/string.c	2017-05-25 19:22:33.909516800 +0800
+ #undef __class
+-#if defined(_WIN32) && defined(__LIBCACA_PP__)
++#if defined(_MSC_VER) && defined(__LIBCACA_PP__)
+ #   define __class class __declspec(dllexport)
+ #else
+ #   define __class class
+--- libcaca-0.99.beta17/doc/Makefile.am.orig	2010-02-08 16:34:28 +0400
++++ libcaca-0.99.beta17/doc/Makefile.am	2012-04-03 19:09:57 +0400
 @@ -39,7 +39,7 @@
- #if defined _WIN32 && defined __GNUC__ && __GNUC__ >= 3
- int vsnprintf_s(char *s, size_t n, size_t c,
-                 const char *fmt, va_list ap) CACA_WEAK;
--int vsnprintf(char *s, size_t n, const char *fmt, va_list ap) CACA_WEAK;
-+int vsnprintf_dummy(char *s, size_t n, const char *fmt, va_list ap) CACA_WEAK;
- #endif
+ clean-local:
+ 	-rm -Rf html latex man
  
- /** \brief Set cursor position.
-@@ -616,7 +616,7 @@
-     return vsnprintf(s, n, fmt, ap);
- }
+-install-data-local:
++install-data-local: install-man1
+ if BUILD_DOCUMENTATION
+ 	mkdir -p $(DESTDIR)$(datadir)/doc
+ 	ln -sf libcaca-dev $(DESTDIR)$(datadir)/doc/libcucul-dev
+--- libcaca-0.99.beta19/ruby/Makefile.am.orig	2010-02-08 00:49:49.000000000 +0000
++++ libcaca-0.99.beta19/ruby/Makefile.am	2014-07-30 11:20:48.699589900 +0000
+@@ -24,7 +24,7 @@
+                   caca-event.c \
+                   caca-event.h \
+                   $(NULL)
+-caca_la_LDFLAGS = -module -avoid-version -shared $(RUBY_LIBS)
++caca_la_LDFLAGS = -module -avoid-version -shared $(RUBY_LIBS) -no-undefined
+ caca_la_LIBADD = ../caca/libcaca.la
  
--int vsnprintf(char *s, size_t n, const char *fmt, va_list ap)
-+int vsnprintf_dummy(char *s, size_t n, const char *fmt, va_list ap)
- {
-     return 0;
- }
-diff -ur libcaca-0.99.beta19-orig/Makefile.am libcaca-0.99.beta19/Makefile.am
---- libcaca-0.99.beta19-orig/Makefile.am	2017-05-25 19:21:51.636906600 +0800
-+++ libcaca-0.99.beta19/Makefile.am	2017-05-25 19:22:10.332620000 +0800
-@@ -1,7 +1,7 @@
- 
- SUBDIRS = kernel caca src examples tools \
-           cxx caca-sharp python ruby java \
--          doc test
-+          test
- DIST_SUBDIRS = $(SUBDIRS) win32
- 
- EXTRA_DIST = NOTES COPYING.GPL COPYING.ISC COPYING.LGPL bootstrap build-dos build-kernel build-win32 build-win64 caca-config.in libcaca.spec libcaca.sln
+ EXTRA_DIST = ruby.dox \
