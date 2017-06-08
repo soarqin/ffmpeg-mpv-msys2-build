@@ -9,13 +9,12 @@ mkdir -p ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 pushd ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_VERSION}/configure \
   --prefix=/usr \
-  --enable-shared \
-  --disable-static \
+  --enable-static \
+  --disable-shared \
   --pkg-config-flags='--static' \
   --enable-gpl \
   --enable-version3 \
   --enable-nonfree \
-  --disable-programs \
   --enable-avisynth \
   --enable-avresample \
   --enable-bzlib \
@@ -69,5 +68,5 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-nvenc \
   --enable-zlib
 make ${MAKE_JOBS}
-make install DESTDIR="$(realpath ${SCRIPT_ROOT}/../dist/${ARCH}${BUILD_EXTRA_SUFFIX}-dev)"
+make install DESTDIR="$(realpath ${SCRIPT_ROOT}/../dist/${ARCH}${BUILD_EXTRA_SUFFIX}-static)"
 popd
