@@ -1,19 +1,12 @@
-diff -ur SDL2-2.0.5-orig/src/core/windows/SDL_xinput.h SDL2-2.0.5/src/core/windows/SDL_xinput.h
---- SDL2-2.0.5-orig/src/core/windows/SDL_xinput.h	2016-10-20 11:56:26.000000000 +0800
-+++ SDL2-2.0.5/src/core/windows/SDL_xinput.h	2017-05-25 17:27:17.429155900 +0800
-@@ -110,13 +110,13 @@
-     SHORT sThumbRX;
-     SHORT sThumbRY;
-     DWORD dwPaddingReserved;
--} XINPUT_GAMEPAD_EX;
-+} XINPUT_GAMEPAD_EX2;
+diff -ur SDL2-2.0.5-orig/include/begin_code.h SDL2-2.0.5/include/begin_code.h
+--- SDL2-2.0.5-orig/include/begin_code.h	2016-10-20 11:56:26.000000000 +0800
++++ SDL2-2.0.5/include/begin_code.h	2017-06-08 11:24:21.921915500 +0800
+@@ -51,7 +51,7 @@
  
- typedef struct
- {
-     DWORD dwPacketNumber;
-     XINPUT_GAMEPAD_EX Gamepad;
--} XINPUT_STATE_EX;
-+} XINPUT_STATE_EX2;
- 
- typedef struct
- {
+ /* Some compilers use a special export keyword */
+ #ifndef DECLSPEC
+-# if defined(__WIN32__) || defined(__WINRT__)
++# if defined(_MSC_VER) || defined(__WINRT__)
+ #  ifdef __BORLANDC__
+ #   ifdef BUILD_SDL
+ #    define DECLSPEC

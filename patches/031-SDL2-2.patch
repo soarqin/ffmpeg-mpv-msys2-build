@@ -1,0 +1,19 @@
+diff -ur SDL2-2.0.5-orig/src/core/windows/SDL_xinput.h SDL2-2.0.5/src/core/windows/SDL_xinput.h
+--- SDL2-2.0.5-orig/src/core/windows/SDL_xinput.h	2016-10-20 11:56:26.000000000 +0800
++++ SDL2-2.0.5/src/core/windows/SDL_xinput.h	2017-06-07 11:50:27.708161600 +0800
+@@ -110,13 +110,13 @@
+     SHORT sThumbRX;
+     SHORT sThumbRY;
+     DWORD dwPaddingReserved;
+-} XINPUT_GAMEPAD_EX;
++} XINPUT_GAMEPAD_EX2;
+ 
+ typedef struct
+ {
+     DWORD dwPacketNumber;
+     XINPUT_GAMEPAD_EX Gamepad;
+-} XINPUT_STATE_EX;
++} XINPUT_STATE_EX2;
+ 
+ typedef struct
+ {
