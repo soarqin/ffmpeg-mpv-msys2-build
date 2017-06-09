@@ -1,7 +1,7 @@
-SRC_ROOT=$(realpath ${SCRIPT_ROOT}/../src)
-DOWNLOAD_ROOT=$(realpath ${SCRIPT_ROOT}/../download)
+SRC_ROOT=$(realpath -m ${SCRIPT_ROOT}/../src)
+DOWNLOAD_ROOT=$(realpath -m ${SCRIPT_ROOT}/../download)
 mkdir -p ${SRC_ROOT} ${DOWNLOAD_ROOT}
-PATCH_ROOT=$(realpath ${SCRIPT_ROOT}/../patches)
+PATCH_ROOT=$(realpath -m ${SCRIPT_ROOT}/../patches)
 
 set -e
 

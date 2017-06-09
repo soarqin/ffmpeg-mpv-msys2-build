@@ -8,7 +8,7 @@ function compile_with_configure {
     mkdir -p $BUILD_ROOT/$dst_dir
     pushd $BUILD_ROOT/$dst_dir
     make distclean || true
-    `realpath --relative-to=. $SRC_ROOT`/$src_dir/configure --prefix="$BUILD_INSTALL_ROOT" $*
+    `realpath -m --relative-to=. $SRC_ROOT`/$src_dir/configure --prefix="$BUILD_INSTALL_ROOT" $*
     make ${MAKE_JOBS} || make ${MAKE_JOBS}
     make install
     popd
