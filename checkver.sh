@@ -48,6 +48,7 @@ check_version OpenJPEG 'https://github.com/uclouvain/openjpeg/releases/latest' '
 check_version libpng 'http://libpng.org/pub/png/libpng.html' 'version:[^\.]+<B>([0-9\.]+[0-9])' ${LIBPNG_VERSION}
 check_version FreeType 'https://www.freetype.org' 'FreeType\ ([0-9\.]+[0-9])' ${FREETYPE_VERSION}
 check_version FontConfig 'https://www.freedesktop.org/software/fontconfig/release/?C=M;O=D' 'fontconfig-([0-9\.]+[0-9])' ${FONTCONFIG_VERSION}
+check_version HarfBuzz 'https://www.freedesktop.org/software/harfbuzz/release/?C=M;O=D' 'harfbuzz-([0-9\.]+[0-9])\.tar\.bz2' ${HARFBUZZ_VERSION}
 check_version SDL2 'http://www.libsdl.org/download-2.0.php' 'SDL\ version\ ([0-9\.]+[0-9])' ${SDL2_VERSION}
 check_version orc 'https://gstreamer.freedesktop.org/src/orc/?C=M;O=D' 'orc-([0-9\.]+[0-9])' ${ORC_VERSION}
 check_version fdk-aac 'https://github.com/mstorsjo/fdk-aac/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${FDK_AAC_VERSION}
@@ -77,7 +78,7 @@ check_version openh264 'https://github.com/cisco/openh264/releases/latest' 'tag\
 check_version kvazaar 'https://github.com/ultravideo/kvazaar/releases/latest' 'tag\/(v[0-9\.]+[0-9])' v${KVAZAAR_VERSION}
 check_version x265 'https://bitbucket.org/multicoreware/x265/downloads' 'x265_([0-9\.]+[0-9])' ${X265_VERSION}
 check_version libopenmpt 'https://lib.openmpt.org/libopenmpt' '>([0-9\.]+[0-9])-(beta[0-9]+)' ${LIBOPENMPT_VERSION} ${LIBOPENMPT_VERSION_BETA}
-check_version netcdf 'https://github.com/Unidata/netcdf-c/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${NETCDF_VERSION}
+check_version libmysofa 'https://github.com/hoene/libmysofa/releases/latest' 'tag\/v([0-9\.,]+[0-9])' ${LIBMYSOFA_VERSION}
 check_version vamp-plugin-sdk 'http://www.vamp-plugins.org/develop.html' '\(version ([0-9\.]+[0-9])\)' ${VAMP_VERSION}
 check_version libsamplerate 'http://www.mega-nerd.com/SRC/download.html' 'libsamplerate-([0-9\.]+[0-9])\.tar\.gz' ${LIBSAMPLERATE_VERSION}
 check_version rubberband 'http://breakfastquay.com/rubberband/' 'Rubber Band Library v([0-9\.]+[0-9])' ${RUBBERBAND_VERSION}
