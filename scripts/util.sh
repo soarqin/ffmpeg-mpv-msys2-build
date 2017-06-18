@@ -120,3 +120,9 @@ function patch_source {
     patch -p1 < ${PATCH_ROOT}/$2
     popd
 }
+
+function auto_reconf {
+    pushd ${SRC_ROOT}/$1
+    autoreconf -fi
+    popd
+}

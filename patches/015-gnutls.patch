@@ -9,3 +9,25 @@ diff -ur gnutls-3.5.12-orig/lib/gnutls.pc.in gnutls-3.5.12/lib/gnutls.pc.in
 +Libs.private: -lcrypt32 @LIBZ_PC@ @LIBINTL@ @LIBSOCKET@ @LIBNSL@ @LIBPTHREAD@ @LIB_SELECT@ @TSS_LIBS@ @GMP_LIBS@ @LIBUNISTRING@ @LIBIDN2_LIBS@
  @GNUTLS_REQUIRES_PRIVATE@
  Cflags: -I${includedir}
+--- gnutls-3.4.0-orig/lib/includes/gnutls/gnutls.h.in	2015-04-09 23:38:42.018400000 +0300
++++ gnutls-3.4.0/lib/includes/gnutls/gnutls.h.in	2015-04-09 23:39:31.860400000 +0300
+@@ -67,6 +67,8 @@
+ #define GNUTLS_CIPHER_RIJNDAEL_CBC GNUTLS_CIPHER_AES_128_CBC
+ #define GNUTLS_CIPHER_ARCFOUR GNUTLS_CIPHER_ARCFOUR_128
+ 
++#define GNUTLS_INTERNAL_BUILD 1
++
+ #if !defined(GNUTLS_INTERNAL_BUILD) && defined(_WIN32)
+ # define _SYM_EXPORT __declspec(dllimport)
+ #else
+--- a/extra/Makefile.in	2013-02-03 19:40:27.000000000 -0600
++++ b/extra/Makefile.in	2013-02-06 23:08:54.619176090 -0600
+@@ -76,7 +76,7 @@
+ @ENABLE_MINITASN1_TRUE@am__append_1 = -I$(srcdir)/../lib/minitasn1
+ @ENABLE_OPENSSL_TRUE@am__append_2 = -version-info $(LT_SSL_CURRENT):$(LT_SSL_REVISION):$(LT_SSL_AGE)
+ @ENABLE_MINITASN1_TRUE@@ENABLE_OPENSSL_TRUE@am__append_3 = ../lib/minitasn1/libminitasn1.la
+-@ENABLE_MINITASN1_FALSE@@ENABLE_OPENSSL_TRUE@am__append_4 = $(LTLIBTASN1)
++@ENABLE_MINITASN1_FALSE@@ENABLE_OPENSSL_TRUE@am__append_4 = $(LIBTASN1_LIBS)
+ @ENABLE_OPENSSL_TRUE@@HAVE_LD_OUTPUT_DEF_TRUE@am__append_5 = \
+ @ENABLE_OPENSSL_TRUE@@HAVE_LD_OUTPUT_DEF_TRUE@	-Wl,--output-def,libgnutls-openssl-$(DLL_VERSION).def
+ 

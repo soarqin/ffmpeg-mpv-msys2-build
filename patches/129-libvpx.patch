@@ -1,0 +1,238 @@
+diff -aur libvpx-1.6.0-orig/build/make/configure.sh libvpx-1.6.0/build/make/configure.sh
+--- libvpx-1.6.0-orig/build/make/configure.sh	2016-07-21 04:15:41.000000000 +0300
++++ libvpx-1.6.0/build/make/configure.sh	2016-07-28 18:34:25.287546800 +0300
+@@ -585,11 +585,14 @@
+       --libdir=*)
+         libdir="${optval}"
+         ;;
++      --bindir=*)
++        bindir="${optval}"
++        ;;
+       --sdk-path=*)
+         [ -d "${optval}" ] || die "Not a directory: ${optval}"
+         sdk_path="${optval}"
+         ;;
+-      --libc|--as|--prefix|--libdir|--sdk-path)
++      --libc|--as|--prefix|--libdir|--bindir|--sdk-path)
+         die "Option ${opt} requires argument"
+         ;;
+       --help|-h)
+@@ -618,9 +621,14 @@
+   prefix="${prefix%/}"
+   libdir="${libdir:-${prefix}/lib}"
+   libdir="${libdir%/}"
++  bindir="${bindir:-${prefix}/bin}"
++  bindir="${bindir%/}"
+   if [ "${libdir#${prefix}}" = "${libdir}" ]; then
+     die "Libdir ${libdir} must be a subdirectory of ${prefix}"
+   fi
++  if [ "${bindir#${prefix}}" = "${bindir}" ]; then
++    die "Bindir ${bindir} must be a subdirectory of ${prefix}"
++  fi
+ }
+ 
+ post_process_cmdline() {
+diff -aur libvpx-1.6.0-orig/build/make/Makefile libvpx-1.6.0/build/make/Makefile
+--- libvpx-1.6.0-orig/build/make/Makefile	2016-07-21 04:15:41.000000000 +0300
++++ libvpx-1.6.0/build/make/Makefile	2016-07-28 18:34:25.287546800 +0300
+@@ -300,6 +300,20 @@
+             $$(filter %.o,$$^) $$(extralibs)
+ endef
+ 
++define dll_gnu_template
++# Not using a pattern rule here because we don't want to generate empty
++# archives when they are listed as a dependency in files not responsible
++# for creating them.
++#
++# This needs further abstraction for dealing with non-GNU linkers.
++$(1):
++	$(if $(quiet),@echo "    [LD] $$@")
++	$(qexec)$$(LD) -shared $$(LDFLAGS) \
++            -Wl,--no-undefined \
++            -o $$@ \
++            -Wl,--out-implib=$$(subst $(2),.dll.a,$(1)) $$(filter %.o,$$^) $$(extralibs)
++endef
++
+ define dl_template
+ # Not using a pattern rule here because we don't want to generate empty
+ # archives when they are listed as a dependency in files not responsible
+@@ -383,6 +397,7 @@
+ $(foreach lib,$(filter %so.$(SO_VERSION_MAJOR).$(SO_VERSION_MINOR).$(SO_VERSION_PATCH),$(LIBS)),$(eval $(call so_template,$(lib))))
+ $(foreach lib,$(filter %$(SO_VERSION_MAJOR).dylib,$(LIBS)),$(eval $(call dl_template,$(lib))))
+ $(foreach lib,$(filter %$(SO_VERSION_MAJOR).dll,$(LIBS)),$(eval $(call dll_template,$(lib))))
++$(foreach lib,$(filter %-$(VERSION_MAJOR).dll,$(LIBS)),$(eval $(call dll_gnu_template,$(lib),-$(VERSION_MAJOR).dll)))
+ 
+ INSTALL-LIBS=$(call cond_enabled,CONFIG_INSTALL_LIBS,INSTALL-LIBS)
+ ifeq ($(MAKECMDGOALS),dist)
+Only in libvpx-1.6.0/build/make: Makefile.orig
+diff -aur libvpx-1.6.0-orig/configure libvpx-1.6.0/configure
+--- libvpx-1.6.0-orig/configure	2016-07-21 04:15:41.000000000 +0300
++++ libvpx-1.6.0/configure	2016-07-28 18:37:36.879364800 +0300
+@@ -473,6 +473,7 @@
+ DIST_DIR?=\$(DESTDIR)${prefix}
+ endif
+ LIBSUBDIR=${libdir##${prefix}/}
++BINSUBDIR=${bindir##${prefix}/}
+ 
+ VERSION_STRING=${VERSION_STRING}
+ 
+@@ -510,9 +511,13 @@
+             ;;
+         *)
+             if enabled gnu; then
+-                echo "--enable-shared is only supported on ELF; assuming this is OK"
++                echo "--enable-shared is only supported on ELF and PE; assuming this is OK"
++            elif enabled win32; then
++                echo "--enable-shared is only supported on ELF and PE; assuming this is OK"
++            elif enabled win64; then
++                echo "--enable-shared is only supported on ELF and PE; assuming this is OK"
+             else
+-                die "--enable-shared only supported on ELF, OS/2, and Darwin for now"
++                die "--enable-shared only supported on ELF, OS/2, Darwin and PE for now"
+             fi
+             ;;
+         esac
+diff -aur libvpx-1.6.0-orig/examples.mk libvpx-1.6.0/examples.mk
+--- libvpx-1.6.0-orig/examples.mk	2016-07-21 04:15:41.000000000 +0300
++++ libvpx-1.6.0/examples.mk	2016-07-28 18:34:25.303172800 +0300
+@@ -302,9 +302,13 @@
+ ifneq ($(filter os2%,$(TGT_OS)),)
+ SHARED_LIB_SUF=_dll.a
+ else
++ifneq ($(filter win%,$(TGT_OS)),)
++SHARED_LIB_SUF=.dll.a
++else
+ SHARED_LIB_SUF=.so
+ endif
+ endif
++endif
+ CODEC_LIB_SUF=$(if $(CONFIG_SHARED),$(SHARED_LIB_SUF),.a)
+ $(foreach bin,$(BINS-yes),\
+     $(eval $(bin):$(LIB_PATH)/lib$(CODEC_LIB)$(CODEC_LIB_SUF))\
+diff -aur libvpx-1.6.0-orig/libs.mk libvpx-1.6.0/libs.mk
+--- libvpx-1.6.0-orig/libs.mk	2016-07-21 04:15:41.000000000 +0300
++++ libvpx-1.6.0/libs.mk	2016-07-28 18:34:25.303172800 +0300
+@@ -130,6 +130,7 @@
+ INSTALL_MAPS += include/vpx/% $(SRC_PATH_BARE)/vpx/%
+ INSTALL_MAPS += include/vpx/% $(SRC_PATH_BARE)/vpx_ports/%
+ INSTALL_MAPS += $(LIBSUBDIR)/%     %
++INSTALL_MAPS += $(BINSUBDIR)/%     %
+ INSTALL_MAPS += src/%     $(SRC_PATH_BARE)/%
+ ifeq ($(CONFIG_MSVS),yes)
+ INSTALL_MAPS += $(foreach p,$(VS_PLATFORMS),$(LIBSUBDIR)/$(p)/%  $(p)/Release/%)
+@@ -252,6 +253,13 @@
+ LIBVPX_SO_SYMLINKS      :=
+ LIBVPX_SO_IMPLIB        := libvpx_dll.a
+ else
++ifeq ($(filter win%,$(TGT_OS)),$(TGT_OS))
++LIBVPX_SO               := libvpx-$(VERSION_MAJOR).dll
++SHARED_LIB_SUF          := .dll.a
++EXPORT_FILE             :=
++LIBVPX_SO_SYMLINKS      :=
++LIBVPX_SO_IMPLIB        := libvpx.dll.a
++else
+ LIBVPX_SO               := libvpx.so.$(SO_VERSION_MAJOR).$(SO_VERSION_MINOR).$(SO_VERSION_PATCH)
+ SHARED_LIB_SUF          := .so
+ EXPORT_FILE             := libvpx.ver
+@@ -261,13 +269,14 @@
+ endif
+ endif
+ endif
++endif
+ 
+ LIBS-$(CONFIG_SHARED) += $(BUILD_PFX)$(LIBVPX_SO)\
+                            $(notdir $(LIBVPX_SO_SYMLINKS)) \
+                            $(if $(LIBVPX_SO_IMPLIB), $(BUILD_PFX)$(LIBVPX_SO_IMPLIB))
+ $(BUILD_PFX)$(LIBVPX_SO): $(LIBVPX_OBJS) $(EXPORT_FILE)
+ $(BUILD_PFX)$(LIBVPX_SO): extralibs += -lm
+-$(BUILD_PFX)$(LIBVPX_SO): SONAME = libvpx.so.$(SO_VERSION_MAJOR)
++$(BUILD_PFX)$(LIBVPX_SO): SONAME = $(LIBVPX_SO)
+ $(BUILD_PFX)$(LIBVPX_SO): EXPORTS_FILE = $(EXPORT_FILE)
+ 
+ libvpx.ver: $(call enabled,CODEC_EXPORTS)
+@@ -295,6 +304,10 @@
+ 	$(qexec)emximp -o $@ $<
+ CLEAN-OBJS += libvpx_dll.a
+ 
++libvpx.dll.a: $(LIBVPX_SO)
++	@echo "    [IMPLIB] $@"
++CLEAN-OBJS += libvpx.dll.a
++
+ define libvpx_symlink_template
+ $(1): $(2)
+ 	@echo "    [LN]     $(2) $$@"
+@@ -311,7 +324,7 @@
+ 
+ 
+ INSTALL-LIBS-$(CONFIG_SHARED) += $(LIBVPX_SO_SYMLINKS)
+-INSTALL-LIBS-$(CONFIG_SHARED) += $(LIBSUBDIR)/$(LIBVPX_SO)
++INSTALL-LIBS-$(CONFIG_SHARED) += $(BINSUBDIR)/$(LIBVPX_SO)
+ INSTALL-LIBS-$(CONFIG_SHARED) += $(if $(LIBVPX_SO_IMPLIB),$(LIBSUBDIR)/$(LIBVPX_SO_IMPLIB))
+ 
+ 
+diff -aur libvpx-1.6.0-orig/configure libvpx-1.6.0/configure
+--- libvpx-1.6.0-orig/configure	2016-07-21 04:15:41.000000000 +0300
++++ libvpx-1.6.0/configure	2016-07-28 18:48:29.189940600 +0300
+@@ -256,7 +256,6 @@
+ HAVE_LIST="
+     ${ARCH_EXT_LIST}
+     vpx_ports
+-    pthread_h
+     unistd_h
+ "
+ EXPERIMENT_LIST="
+@@ -563,7 +562,6 @@
+ int main(void) {return 0;}
+ EOF
+     # check system headers
+-    check_header pthread.h
+     check_header unistd.h # for sysconf(3) and friends.
+ 
+     check_header vpx/vpx_integer.h -I${source_path} && enable_feature vpx_ports
+diff -aur libvpx-1.6.0-orig/vp8/common/generic/systemdependent.c libvpx-1.6.0/vp8/common/generic/systemdependent.c
+--- libvpx-1.6.0-orig/vp8/common/generic/systemdependent.c	2016-07-21 04:15:41.000000000 +0300
++++ libvpx-1.6.0/vp8/common/generic/systemdependent.c	2016-07-28 18:45:18.419686400 +0300
+@@ -22,7 +22,8 @@
+ #if CONFIG_MULTITHREAD
+ #if HAVE_UNISTD_H && !defined(__OS2__)
+ #include <unistd.h>
+-#elif defined(_WIN32)
++#endif
++#if defined(_WIN32)
+ #include <windows.h>
+ typedef void (WINAPI *PGNSI)(LPSYSTEM_INFO);
+ #elif defined(__OS2__)
+--- libvpx-1.6.1/build/make/configure.sh.orig	2017-04-18 07:55:35.521235500 -0400
++++ libvpx-1.6.1/build/make/configure.sh	2017-04-18 08:03:57.773345200 -0400
+@@ -636,13 +636,13 @@ post_process_cmdline() {
+ }
+ 
+ setup_gnu_toolchain() {
+-  CC=${CC:-${CROSS}gcc}
+-  CXX=${CXX:-${CROSS}g++}
+-  AR=${AR:-${CROSS}ar}
+-  LD=${LD:-${CROSS}${link_with_cc:-ld}}
+-  AS=${AS:-${CROSS}as}
+-  STRIP=${STRIP:-${CROSS}strip}
+-  NM=${NM:-${CROSS}nm}
++  CC=${CC:-gcc}
++  CXX=${CXX:-g++}
++  AR=${AR:-ar}
++  LD=${LD:-${link_with_cc:-ld}}
++  AS=${AS:-as}
++  STRIP=${STRIP:-strip}
++  NM=${NM:-nm}
+   AS_SFX=.S
+   EXE_SFX=
+ }
+diff -Naur libvpx-1.4.0-orig/vpx/exports_enc libvpx-1.4.0/vpx/exports_enc
+--- libvpx-1.4.0-orig/vpx/exports_enc	2015-04-03 21:49:19.000000000 +0300
++++ libvpx-1.4.0/vpx/exports_enc	2015-04-07 09:41:36.904200000 +0300
+@@ -2,6 +2,7 @@
+ text vpx_codec_enc_config_set
+ text vpx_codec_enc_init_multi_ver
+ text vpx_codec_enc_init_ver
++text vpx_codec_enc_init_multi_ver
+ text vpx_codec_encode
+ text vpx_codec_get_cx_data
+ text vpx_codec_get_global_headers

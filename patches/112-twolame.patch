@@ -1,16 +1,3 @@
-diff -ur twolame-0.3.13-orig/libtwolame/twolame.h twolame-0.3.13/libtwolame/twolame.h
---- twolame-0.3.13-orig/libtwolame/twolame.h	2011-01-02 03:15:01.000000000 +0800
-+++ twolame-0.3.13/libtwolame/twolame.h	2017-05-25 19:12:48.908478100 +0800
-@@ -40,7 +40,7 @@
-  */
- 
- #ifdef _WIN32
--#ifdef LIBTWOLAME_STATIC
-+#if 1
- #define DLL_EXPORT
- #else
- #ifdef LIBTWOLAME_DLL_EXPORTS
-diff -ur twolame-0.3.13-orig/Makefile.am twolame-0.3.13/Makefile.am
 --- twolame-0.3.13-orig/Makefile.am	2011-01-10 02:04:52.000000000 +0800
 +++ twolame-0.3.13/Makefile.am	2017-05-25 19:12:48.889963000 +0800
 @@ -2,7 +2,7 @@
@@ -22,3 +9,68 @@ diff -ur twolame-0.3.13-orig/Makefile.am twolame-0.3.13/Makefile.am
  
  pkgconfigdir = $(libdir)/pkgconfig
  pkgconfig_DATA = twolame.pc
+--- twolame-0.3.13-orig/libtwolame/common.h	2011-01-14 13:06:07 +0400
++++ twolame-0.3.13/libtwolame/common.h	2012-04-13 23:23:22 +0400
+@@ -26,7 +26,7 @@
+ #ifndef _COMMON_H
+ #define _COMMON_H
+ 
+-#ifdef _WIN32
++#ifdef _MSC_VER
+ # include "../win32/configwin.h"
+ #else
+ # include "config.h"
+--- twolame-0.3.13-orig/libtwolame/twolame.h	2011-01-01 23:15:01 +0400
++++ twolame-0.3.13/libtwolame/twolame.h	2012-04-13 23:23:34 +0400
+@@ -39,7 +39,7 @@
+  * the library, define LIBTWOLAME_STATIC prior to including this header.
+  */
+ 
+-#ifdef _WIN32
++#ifdef _MSC_VER
+ #ifdef LIBTWOLAME_STATIC
+ #define DLL_EXPORT
+ #else
+--- twolame-0.3.13-orig/libtwolame/Makefile.am	2011-01-21 13:15:32 +0400
++++ twolame-0.3.13/libtwolame/Makefile.am	2012-04-13 23:28:31 +0400
+@@ -3,7 +3,7 @@
+ lib_LTLIBRARIES = libtwolame.la
+ include_HEADERS = twolame.h
+ 
+-libtwolame_la_LDFLAGS  = -export-dynamic -version-info @TWOLAME_SO_VERSION@
++libtwolame_la_LDFLAGS  = -export-dynamic -version-info @TWOLAME_SO_VERSION@ -no-undefined
+ libtwolame_la_SOURCES = \
+ 	ath.c \
+ 	ath.h \
+--- twolame-0.3.13-orig/frontend/audioin_raw.c	2012-09-15 11:23:30 +0400
++++ twolame-0.3.13/frontend/audioin_raw.c	2012-09-15 11:28:13 +0400
+@@ -25,6 +25,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <errno.h>
++#include <fcntl.h>
+ #include "frontend.h"
+ 
+ 
+@@ -94,6 +94,9 @@
+     if (strcmp(filename, "-") == 0) {
+         // Use STDIN
+         audioin->file = stdin;
++#if defined(_WIN32)
++        setmode (fileno (stdin), O_BINARY);
++#endif
+     } else {
+         audioin->file = fopen(filename, "rb");
+     }
+--- twolame-0.3.13-orig/libtwolame/twolame.h	2013-04-04 21:22:42 +0400
++++ twolame-0.3.13/libtwolame/twolame.h	2013-04-04 21:35:50 +0400
+@@ -50,8 +50,9 @@
+ #endif
+ #endif
+ #else
++#undef DLL_EXPORT
+ #define DLL_EXPORT
+ #endif
+ 
+ 
+ #ifndef TRUE

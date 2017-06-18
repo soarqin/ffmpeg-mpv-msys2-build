@@ -1,4 +1,4 @@
---- libcaca-0.99.beta17/caca/caca.h.orig	2010-02-08 16:34:28 +0400
+--- libcaca-0.99.beta17-orig/caca/caca.h	2010-02-08 16:34:28 +0400
 +++ libcaca-0.99.beta17/caca/caca.h	2012-04-03 18:21:06 +0400
 @@ -29,9 +29,9 @@
  
@@ -12,7 +12,7 @@
  #   define __extern extern __declspec(dllimport)
  #else
  #   define __extern extern
---- libcaca-0.99.beta17/caca/caca0.h.orig	2010-02-08 16:34:28 +0400
+--- libcaca-0.99.beta17-orig/caca/caca0.h	2010-02-08 16:34:28 +0400
 +++ libcaca-0.99.beta17/caca/caca0.h	2012-04-03 18:21:17 +0400
 @@ -22,9 +22,9 @@
  
@@ -26,7 +26,7 @@
  #   define __extern extern __declspec(dllimport)
  #else
  #   define __extern extern
---- libcaca-0.99.beta17/cxx/caca++.h.orig	2010-02-08 16:34:28 +0400
+--- libcaca-0.99.beta17-orig/cxx/caca++.h	2010-02-08 16:34:28 +0400
 +++ libcaca-0.99.beta17/cxx/caca++.h	2012-04-03 18:21:46 +0400
 @@ -23,7 +23,7 @@
  #include <caca.h>
@@ -37,7 +37,7 @@
  #   define __class class __declspec(dllexport)
  #else
  #   define __class class
---- libcaca-0.99.beta17/doc/Makefile.am.orig	2010-02-08 16:34:28 +0400
+--- libcaca-0.99.beta17-orig/doc/Makefile.am	2010-02-08 16:34:28 +0400
 +++ libcaca-0.99.beta17/doc/Makefile.am	2012-04-03 19:09:57 +0400
 @@ -39,7 +39,7 @@
  clean-local:
@@ -48,7 +48,7 @@
  if BUILD_DOCUMENTATION
  	mkdir -p $(DESTDIR)$(datadir)/doc
  	ln -sf libcaca-dev $(DESTDIR)$(datadir)/doc/libcucul-dev
---- libcaca-0.99.beta19/ruby/Makefile.am.orig	2010-02-08 00:49:49.000000000 +0000
+--- libcaca-0.99.beta19-orig/ruby/Makefile.am	2010-02-08 00:49:49.000000000 +0000
 +++ libcaca-0.99.beta19/ruby/Makefile.am	2014-07-30 11:20:48.699589900 +0000
 @@ -24,7 +24,7 @@
                    caca-event.c \

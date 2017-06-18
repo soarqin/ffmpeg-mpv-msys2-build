@@ -3,11 +3,10 @@ function compile_with_configure {
     local dst_dir=${1##*/}
     shift
     if [ ! -f $SRC_ROOT/$src_dir/configure ]; then
-        pushd $SRC_ROOT/$src_dir && autoreconf -ifv && popd
+        pushd $SRC_ROOT/$src_dir && autoreconf -fi && popd
     fi
-    mkdir -p $BUILD_ROOT/$dst_dir
+    rm -rf $BUILD_ROOT/$dst_dir && mkdir -p $BUILD_ROOT/$dst_dir 
     pushd $BUILD_ROOT/$dst_dir
-    make distclean || true
     `realpath -m --relative-to=. $SRC_ROOT`/$src_dir/configure --prefix="$BUILD_INSTALL_ROOT" $*
     make ${MAKE_JOBS} || make ${MAKE_JOBS}
     make install
@@ -23,7 +22,7 @@ function compile_with_configure_dirty {
     cp -Rf $SRC_ROOT/$src_dir/* .
     cp -Rf $SRC_ROOT/$src_dir/.svn . 1>/dev/null 2>&1 || true
     if [ ! -f ./configure ]; then
-        autoreconf -ifv
+        autoreconf -fi
     fi
     ./configure --prefix=$BUILD_INSTALL_ROOT $*
     make ${MAKE_JOBS}

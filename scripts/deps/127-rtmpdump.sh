@@ -5,5 +5,5 @@ mkdir -p $BUILD_ROOT/librtmp-git
 pushd $BUILD_ROOT/librtmp-git
 cp -Rf $SRC_ROOT/rtmpdump-git/librtmp/* .
 make ${MAKE_JOBS} librtmp.a
-make install_base
+prefix=${BUILD_INSTALL_ROOT} make install_base
 popd

@@ -3,6 +3,7 @@ if [ $result == true ]; then return; fi
 if [ "x$ARCH" == "x32" ]; then
     ECFLAGS="--host=i686-w64-mingw32"
 fi
+patch_source x264-git-${X264_BRANCH} 131-x264.patch
 rm -rf ${BUILD_ROOT}/x264-git-${X264_BRANCH}
 mkdir -p ${BUILD_ROOT}/x264-git-${X264_BRANCH}
 pushd ${BUILD_ROOT}/x264-git-${X264_BRANCH}
