@@ -50,7 +50,6 @@ check_version FreeType 'https://www.freetype.org' 'FreeType\ ([0-9\.]+[0-9])' ${
 check_version FontConfig 'https://www.freedesktop.org/software/fontconfig/release/?C=M;O=D' 'fontconfig-([0-9\.]+[0-9])' ${FONTCONFIG_VERSION}
 check_version HarfBuzz 'https://www.freedesktop.org/software/harfbuzz/release/?C=M;O=D' 'harfbuzz-([0-9\.]+[0-9])\.tar\.bz2' ${HARFBUZZ_VERSION}
 check_version SDL2 'http://www.libsdl.org/download-2.0.php' 'SDL\ version\ ([0-9\.]+[0-9])' ${SDL2_VERSION}
-check_version orc 'https://gstreamer.freedesktop.org/src/orc/?C=M;O=D' 'orc-([0-9\.]+[0-9])' ${ORC_VERSION}
 check_version fdk-aac 'https://github.com/mstorsjo/fdk-aac/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${FDK_AAC_VERSION}
 check_version frei0r 'https://files.dyne.org/frei0r/' 'frei0r-plugins-([0-9\.]+[0-9])' ${FREI0R_VERSION}
 check_version z.img 'https://github.com/sekrit-twc/zimg/releases/latest' 'tag\/(release-[0-9\.]+[0-9])' ${ZIMG_VERSION}
