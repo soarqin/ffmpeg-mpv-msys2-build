@@ -1,0 +1,12 @@
+diff -r 586d06ad195a source/x265-extras.h
+--- a/source/x265-extras.h	Wed Jun 21 10:03:53 2017 +0530
++++ b/source/x265-extras.h	Thu Jun 22 17:33:20 2017 +0800
+@@ -33,7 +33,7 @@
+ extern "C" {
+ #endif
+ 
+-#if _WIN32
++#if defined(_MSC_VER)
+ #define LIBAPI __declspec(dllexport)
+ #else
+ #define LIBAPI

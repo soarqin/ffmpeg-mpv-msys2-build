@@ -1,5 +1,7 @@
 if [ "x${OPENH264_VERSION}" == "xgit" ]; then
     git_clone https://github.com/cisco/openh264 openh264-${OPENH264_VERSION}
+    if [ $result == true ]; then return; fi
+    patch_source openh264-${OPENH264_VERSION} 130-openh264-git.patch
 else
     download_file https://github.com/cisco/openh264/archive/v${OPENH264_VERSION}.tar.gz openh264-${OPENH264_VERSION}
 fi

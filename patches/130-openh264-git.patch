@@ -1,0 +1,13 @@
+diff --git a/codec/encoder/core/inc/param_svc.h b/codec/encoder/core/inc/param_svc.h
+index 8f0f6ce7..e289dc06 100644
+--- a/codec/encoder/core/inc/param_svc.h
++++ b/codec/encoder/core/inc/param_svc.h
+@@ -63,7 +63,7 @@ extern const uint8_t   g_kuiTemporalIdListTable[MAX_TEMPORAL_LEVEL][MAX_GOP_SIZE
+ * \return   2 based scaling factor
+ */
+ static inline uint32_t GetLogFactor (float base, float upper) {
+-#if defined(_M_X64)
++#if defined(_MSC_VER) && defined(_M_X64)
+   _set_FMA3_enable(0);
+ #endif
+   const double dLog2factor      = log10 (1.0 * upper / base) / log10 (2.0);

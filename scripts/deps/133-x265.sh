@@ -8,6 +8,8 @@ if [ "x${X265_VERSION}" == "xhg" ]; then
     hg log -r. --template "latesttag: {latesttag}\n" >> .hg_archival.txt
     hg log -r. --template "latesttagdistance: {latesttagdistance}\n" >> .hg_archival.txt
     popd
+    if [ $result == true ]; then return; fi
+    patch_source x265_${X265_VERSION} 133-x265-hg.patch
 else
     download_file https://bitbucket.org/multicoreware/x265/downloads/x265_${X265_VERSION}.tar.gz
 fi
