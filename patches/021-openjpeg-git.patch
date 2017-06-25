@@ -1,0 +1,43 @@
+diff --git a/src/lib/openjp2/openjpeg.h b/src/lib/openjp2/openjpeg.h
+index c7c82fcc..6057635b 100644
+--- a/src/lib/openjp2/openjpeg.h
++++ b/src/lib/openjp2/openjpeg.h
+@@ -76,10 +76,10 @@ Most compilers implement their own version of this keyword ...
+ #define OPJ_DEPRECATED(func) func
+ #endif
+ 
+-#if defined(OPJ_STATIC) || !defined(_WIN32)
++#if 1
+ /* http://gcc.gnu.org/wiki/Visibility */
+ #   if __GNUC__ >= 4
+-#       if defined(OPJ_STATIC) /* static library uses "hidden" */
++#       if 1
+ #           define OPJ_API    __attribute__ ((visibility ("hidden")))
+ #       else
+ #           define OPJ_API    __attribute__ ((visibility ("default")))
+diff --git a/src/lib/openjp3d/openjp3d.h b/src/lib/openjp3d/openjp3d.h
+index 0dd8aed8..b38f4310 100644
+--- a/src/lib/openjp3d/openjp3d.h
++++ b/src/lib/openjp3d/openjp3d.h
+@@ -42,7 +42,7 @@
+ ==========================================================
+ */
+ 
+-#if defined(OPJ_STATIC) || !defined(_WIN32)
++#if 1
+ /* http://gcc.gnu.org/wiki/Visibility */
+ #if __GNUC__ >= 4
+ #define OPJ_API    __attribute__ ((visibility ("default")))
+diff --git a/src/lib/openmj2/openjpeg.h b/src/lib/openmj2/openjpeg.h
+index f6b39737..ce582fc3 100644
+--- a/src/lib/openmj2/openjpeg.h
++++ b/src/lib/openmj2/openjpeg.h
+@@ -45,7 +45,7 @@
+ ==========================================================
+ */
+ 
+-#if defined(OPJ_STATIC) || !defined(_WIN32)
++#if 1
+ /* http://gcc.gnu.org/wiki/Visibility */
+ #if __GNUC__ >= 4
+ #define OPJ_API    __attribute__ ((visibility ("default")))
