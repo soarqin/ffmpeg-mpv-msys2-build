@@ -51,4 +51,5 @@ popd
 
 pushd ${BUILD_INSTALL_ROOT}/lib
 cp -f python3.6/config-3.6m/libpython3.6m.dll.a .
+cp -f ./libpython3.6m.dll.a ./libpython3.6m.a
 popd
