@@ -96,7 +96,7 @@ function download_file {
         any_dirty=true
     fi
     save_name=${DOWNLOAD_ROOT}/${dirname}.tar${filename#*.tar}
-    if [ -f "${SRC_ROOT}/${dirname}" ]; then
+    if [ -d "${SRC_ROOT}/${dirname}" ]; then
         rm -Rf ${SRC_ROOT}/${dirname}
     fi
     if [ ! -f "${save_name}" ]; then
