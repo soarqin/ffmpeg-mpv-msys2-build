@@ -84,8 +84,11 @@ check_version rubberband 'http://breakfastquay.com/rubberband/' 'Rubber Band Lib
 check_version FFMPEG 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
 check_version libarchive 'https://github.com/libarchive/libarchive/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBARCHIVE_VERSION}
 check_version libjpeg-turbo 'https://github.com/libjpeg-turbo/libjpeg-turbo/releases/latest' 'tag/([0-9\.]+[0-9])' ${LIBJPEG_TURBO_VERSION}
+check_version libffi 'https://github.com/libffi/libffi/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBFFI_VERSION}
 check_version LuaJIT 'http://luajit.org/download.html' 'LuaJIT-([0-9\.]+[0-9]-[a-z]+[0-9])' ${LUAJIT_VERSION}
 check_version lcms2 'http://www.littlecms.com/download.html' 'Current version is ([0-9\.]+[0-9])' ${LCMS2_VERSION}
+check_version Python 'https://www.python.org/downloads/source/' 'Latest\ Python\ 3\ Release\ -\ Python\ ([0-9\.]+[0-9])' ${PYTHON_VERSION}
+check_version vapoursynth 'https://github.com/vapoursynth/vapoursynth/releases/latest' 'Release\ ([A-Z][0-9]+)' ${VAPOURSYNTH_VERSION}
 check_version uchardet 'https://www.freedesktop.org/wiki/Software/uchardet/' 'uchardet\ version\ ([0-9\.]+[0-9])' ${UCHARDET_VERSION}
 check_version dvdcss 'http://www.videolan.org/developers/libdvdcss.html' 'libdvdcss<\/code> is <b>([0-9\.]+[0-9])' ${DVDCSS_VERSION}
 check_version dvdread 'http://www.videolan.org/developers/libdvdnav.html' 'libdvdread<\/code> is <b>([0-9\.]+[0-9])' ${DVDREAD_VERSION}
