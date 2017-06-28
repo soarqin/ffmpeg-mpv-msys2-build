@@ -81,7 +81,7 @@ check_version libmysofa 'https://github.com/hoene/libmysofa/releases/latest' 'ta
 check_version vamp-plugin-sdk 'http://www.vamp-plugins.org/develop.html' '\(version ([0-9\.]+[0-9])\)' ${VAMP_VERSION}
 check_version libsamplerate 'http://www.mega-nerd.com/SRC/download.html' 'libsamplerate-([0-9\.]+[0-9])\.tar\.gz' ${LIBSAMPLERATE_VERSION}
 check_version rubberband 'http://breakfastquay.com/rubberband/' 'Rubber Band Library v([0-9\.]+[0-9])' ${RUBBERBAND_VERSION}
-check_version FFMPEG 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
+check_version FFmpeg 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
 check_version libarchive 'https://github.com/libarchive/libarchive/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBARCHIVE_VERSION}
 check_version libjpeg-turbo 'https://github.com/libjpeg-turbo/libjpeg-turbo/releases/latest' 'tag/([0-9\.]+[0-9])' ${LIBJPEG_TURBO_VERSION}
 check_version libffi 'https://github.com/libffi/libffi/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBFFI_VERSION}
