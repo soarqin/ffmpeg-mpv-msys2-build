@@ -43,7 +43,7 @@ export ac_cv_working_tzset=no
   OPT="" \
   CFLAGS="-fwrapv -D__USE_MINGW_ANSI_STDIO=1 -DNDEBUG" \
   CXXFLAGS="-fwrapv -D__USE_MINGW_ANSI_STDIO=1 -DNDEBUG" \
-  LDFLAGS="-s" LIBS="-Wl,-Bstatic -lpthread -lgcov -Wl,-Bdynamic"
+  LDFLAGS="-s" LIBS="-static-libgcc -Wl,-Bstatic -lpthread -lgcov -Wl,-Bdynamic"
 
 make ${MAKE_JOBS}
 make install

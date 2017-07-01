@@ -4,8 +4,10 @@ currdir=$(realpath $(dirname $0))
 
 if [ "x${USE_REPO}" == "x" ]; then
     . $currdir/scripts/version.inc
+    DIR_SUFFIX=
 else
     . $currdir/scripts/version-repo.inc
+    DIR_SUFFIX=_repo
 fi
 
 case `gcc -dumpmachine` in
@@ -72,16 +74,20 @@ distdir=$currdir/dist
 mkdir -p $currdir/package
 dpush $currdir/package
 
+pdir_dev=FFmpeg-${FFMPEG_VERSION}-dev-${PACKAGE_SUFFIX}
+pdir_shared=FFmpeg-${FFMPEG_VERSION}-shared-${PACKAGE_SUFFIX}
+pdir_static=FFmpeg-${FFMPEG_VERSION}-static-${PACKAGE_SUFFIX}
+
 echo 'Packaging FFmpeg dev dist...'
-pdir=FFmpeg-${FFMPEG_VERSION}-dev-${PACKAGE_SUFFIX}
-mkdir -p $pdir
-dpush $pdir
+mkdir -p $pdir_dev
+dpush $pdir_dev
 mkdir -p bin include lib share license
 cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE_NOTES} $(pwd)/
-cp -vf $currdir/dist/$ARCH-shared/usr/bin/{*.dll,*.lib} $(pwd)/bin/
-cp -vrf $currdir/dist/$ARCH-shared/usr/include/* $(pwd)/include/
-cp -vrf $currdir/dist/$ARCH-shared/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
-cp -vrf $currdir/dist/$ARCH-shared/usr/share/* $(pwd)/share/
+cp -vf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/bin/{*.dll,*.lib} $(pwd)/bin/
+cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
+cp -vrf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/include/* $(pwd)/include/
+cp -vrf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
+cp -vrf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/share/* $(pwd)/share/
 dpush license
 
 cplic ffmpeg ${FFMPEG_VERSION}
@@ -140,6 +146,41 @@ cplic vamp-plugin-sdk ${VAMP_VERSION}
 cplic libsamplerate ${LIBSAMPLERATE_VERSION}
 cplic rubberband ${RUBBERBAND_VERSION}
 dpop
+dpop
+
+echo 'Packaging FFmpeg shared dist...'
+mkdir -p $pdir_shared
+dpush $pdir_shared
+mkdir -p bin share license
+cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE_NOTES} $(pwd)/
+cp -vf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/bin/{*.dll,*.exe} $(pwd)/bin/
+cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
+cp -vrf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/share/* $(pwd)/share/
+cp -vrf ../$pdir_dev/license/* $(pwd)/license/
+dpop
+
+echo 'Packaging FFmpeg static dist...'
+mkdir -p $pdir_static
+dpush $pdir_static
+mkdir -p bin share license
+cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE_NOTES} $(pwd)/
+cp -vf $currdir/dist/${ARCH}-static${DIR_SUFFIX}/usr/bin/{*.dll,*.exe} $(pwd)/bin/
+cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
+cp -vrf $currdir/dist/${ARCH}-static${DIR_SUFFIX}/usr/share/* $(pwd)/share/
+cp -vrf ../$pdir_dev/license/* $(pwd)/license/
+dpop
+
+echo 'Packaging mpv...'
+pdir_mpv=mpv-${FFMPEG_VERSION}-${PACKAGE_SUFFIX}
+mkdir -p $pdir_mpv
+dpush $pdir_mpv
+mkdir -p mpv
+cp -vf $currdir/dist/${ARCH}_mpv${DIR_SUFFIX}/{etc,share/doc}/mpv/* $(pwd)/mpv/
+cp -vf $currdir/dist/${ARCH}_mpv${DIR_SUFFIX}/bin/mpv.* $(pwd)/
+cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libpython*.dll $(pwd)/
+chmod 0644 ./*.{exe,dll}
+strip ./*.{exe,dll}
+mkdir -p license
 dpop
 
 dpop
