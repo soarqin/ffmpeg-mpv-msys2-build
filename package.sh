@@ -31,12 +31,12 @@ function dpop {
 }
 function cplic {
     if [ "x$2" == "x" ]; then
-        licdir=$currdir/src/$1
+        licdir=$srcdir/$1
     else
-        licdir=$currdir/src/$1-$2
+        licdir=$srcdir/$1-$2
     fi
     if [ ! -d $licdir ]; then
-        licdir=$currdir/src/$1_$2/
+        licdir=$srcdir/$1_$2/
         if [ ! -d $licdir ]; then
             echo $1" "$2" not found"
             return
@@ -71,23 +71,27 @@ function cplic {
 shopt -s nullglob
 
 distdir=$currdir/dist
+srcdir=$currdir/src
 mkdir -p $currdir/package
 dpush $currdir/package
 
 pdir_dev=FFmpeg-${FFMPEG_VERSION}-dev-${PACKAGE_SUFFIX}
 pdir_shared=FFmpeg-${FFMPEG_VERSION}-shared-${PACKAGE_SUFFIX}
 pdir_static=FFmpeg-${FFMPEG_VERSION}-static-${PACKAGE_SUFFIX}
+pdir_mpv=mpv-${MPV_VERSION}-${PACKAGE_SUFFIX}
+pdir_fdk_aac=fdk-aac-${FDK_AAC_VERSION}-${PACKAGE_SUFFIX}
+pdir_x264_10bit=x264_10bit-${X264_BRANCH}-${PACKAGE_SUFFIX}
 
 echo 'Packaging FFmpeg dev dist...'
 mkdir -p $pdir_dev
 dpush $pdir_dev
 mkdir -p bin include lib share license
-cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
-cp -vf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.lib} $(pwd)/bin/
-cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
-cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/include/* $(pwd)/include/
-cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
-cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
+cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
+cp -vf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.lib} $(pwd)/bin/
+cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libx264*.dll $(pwd)/bin/
+cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/include/* $(pwd)/include/
+cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
+cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
 dpush license
 cplic ffmpeg ${FFMPEG_VERSION}
 cplic zlib ${ZLIB_VERSION}
@@ -150,10 +154,10 @@ echo 'Packaging FFmpeg shared dist...'
 mkdir -p $pdir_shared
 dpush $pdir_shared
 mkdir -p bin share license
-cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE_NOTES} $(pwd)/
-cp -vf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.exe} $(pwd)/bin/
-cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
-cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
+cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
+cp -vf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.exe} $(pwd)/bin/
+cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libx264*.dll $(pwd)/bin/
+cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
 cp -vrf ../$pdir_dev/license/* $(pwd)/license/
 dpop
 
@@ -161,20 +165,19 @@ echo 'Packaging FFmpeg static dist...'
 mkdir -p $pdir_static
 dpush $pdir_static
 mkdir -p bin share license
-cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE_NOTES} $(pwd)/
-cp -vf $currdir/dist/${ARCH}${DIR_SUFFIX}-static/usr/bin/{*.dll,*.exe} $(pwd)/bin/
-cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
-cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-static/usr/share/* $(pwd)/share/
+cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
+cp -vf $distdir/${ARCH}${DIR_SUFFIX}-static/usr/bin/{*.dll,*.exe} $(pwd)/bin/
+cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libx264*.dll $(pwd)/bin/
+cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-static/usr/share/* $(pwd)/share/
 cp -vrf ../$pdir_dev/license/* $(pwd)/license/
 dpop
 
 echo 'Packaging mpv...'
-pdir_mpv=mpv-${MPV_VERSION}-${PACKAGE_SUFFIX}
 mkdir -p $pdir_mpv
 dpush $pdir_mpv
 mkdir -p mpv
-cp -vf $currdir/dist/${ARCH}_mpv${DIR_SUFFIX}/{etc,share/doc}/mpv/* $(pwd)/mpv/
-cp -vf $currdir/dist/${ARCH}_mpv${DIR_SUFFIX}/bin/mpv.* $(pwd)/
+cp -vf $distdir/${ARCH}_mpv${DIR_SUFFIX}/{etc,share/doc}/mpv/* $(pwd)/mpv/
+cp -vf $distdir/${ARCH}_mpv${DIR_SUFFIX}/bin/mpv.* $(pwd)/
 cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libpython*.dll $(pwd)/
 chmod 0644 ./*.{exe,dll}
 strip ./*.{exe,dll}
@@ -228,7 +231,27 @@ cplic vapoursynth ${VAPOURSYNTH_VERSION}
 cplic libdvdcss ${DVDCSS_VERSION}
 cplic libdvdread ${DVDREAD_VERSION}
 cplic libdvdnav ${DVDNAV_VERSION}
+cplic mpv ${MPV_VERSION}
 dpop
 dpop
+
+mkdir $pdir_fdk_aac
+dpush $pdir_fdk_aac
+cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libfdk-aac*.dll $(pwd)/
+cp -vf $srcdir/fdk-aac-${FDK_AAC_VERSION}/NOTICE $(pwd)/
+dpop
+
+mkdir $pdir_x264_10bit
+dpush $pdir_x264_10bit
+cp -vf $distdir/${ARCH}_x264-10bit${DIR_SUFFIX}/usr/bin/libx264*.dll $(pwd)/
+cp -vf $srcdir/x264-git-${X264_BRANCH}/COPYING $(pwd)/
+dpop
+
+for n in $pdir_dev $pdir_shared $pdir_static $pdir_mpv $pdir_fdk_aac $pdir_x264_10bit; do
+    rm -f $n.7z
+    dpush $n
+    7z a -mx=9 ../$n.7z
+    dpop
+done
 
 dpop
