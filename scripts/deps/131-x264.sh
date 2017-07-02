@@ -14,8 +14,5 @@ make install DESTDIR=$(realpath -m ${SCRIPT_ROOT}/../dist/${ARCH}_x264-10bit${BU
 popd
 compile_with_configure x264-git-${X264_BRANCH} --enable-shared --disable-cli --enable-pic $ECFLAGS
 pushd ${BUILD_INSTALL_ROOT}/lib
-gendef ../bin/libx264-*.dll
-sed -i -e 's/^\(x264_.*\..*\)$/"\1"/g' libx264-*.def
-dlltool --def libx264-*.def --output-delaylib libx264.a
-rm -f libx264-*.def
+cp -f libx264.dll.a libx264.a
 popd
