@@ -3,7 +3,7 @@ if [ "x${SNAPPY_VERSION}" == "xgit" ]; then
 else
     download_file https://github.com/google/snappy/releases/download/${SNAPPY_VERSION}/snappy-${SNAPPY_VERSION}.tar.gz
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 patch_source snappy-${SNAPPY_VERSION} 004-snappy.patch
 auto_reconf snappy-${SNAPPY_VERSION}
 pushd $SRC_ROOT/snappy-${SNAPPY_VERSION}

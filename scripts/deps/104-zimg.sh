@@ -3,5 +3,5 @@ if [ "x${ZIMG_VERSION}" == "xgit" ]; then
 else
     download_file https://github.com/sekrit-twc/zimg/archive/${ZIMG_VERSION}.tar.gz zimg-${ZIMG_VERSION}
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 compile_with_configure zimg-${ZIMG_VERSION} --enable-static --disable-shared

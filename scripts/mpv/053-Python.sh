@@ -1,7 +1,7 @@
 py_ver=${PYTHON_VERSION}${PYTHON_RC}
 download_file https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${py_ver}.tar.xz
 
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 
 patch_source Python-${py_ver} 053-Python.patch
 

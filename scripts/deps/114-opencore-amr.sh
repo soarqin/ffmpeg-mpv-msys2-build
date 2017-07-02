@@ -3,5 +3,5 @@ if [ "x${OPENCORE_AMR_VERSION}" == "xgit" ]; then
 else
     download_file https://sourceforge.net/projects/opencore-amr/files/opencore-amr/opencore-amr-${OPENCORE_AMR_VERSION}.tar.gz/download opencore-amr-${OPENCORE_AMR_VERSION}
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 compile_with_configure opencore-amr-${OPENCORE_AMR_VERSION} --enable-static --disable-shared

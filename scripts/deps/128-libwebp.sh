@@ -3,7 +3,7 @@ if [ "x${WEBP_VERSION}" == "xgit" ]; then
 else
     download_file https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-${WEBP_VERSION}.tar.gz
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 pushd $SRC_ROOT/libwebp-${WEBP_VERSION}
 dos2unix configure.ac
 popd

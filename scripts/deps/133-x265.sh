@@ -1,6 +1,6 @@
 if [ "x${X265_VERSION}" == "xhg" ]; then
     hg_clone https://bitbucket.org/multicoreware/x265 x265_${X265_VERSION}
-    if [ $result == true ]; then return; fi
+    if [ "$result" = true ]; then return; fi
     pushd $SRC_ROOT/x265_${X265_VERSION}
     hg log -r0 --template "repo: {node}\n" > .hg_archival.txt
     hg log -r. --template "node: {node}\n" >> .hg_archival.txt
@@ -8,12 +8,12 @@ if [ "x${X265_VERSION}" == "xhg" ]; then
     hg log -r. --template "latesttag: {latesttag}\n" >> .hg_archival.txt
     hg log -r. --template "latesttagdistance: {latesttagdistance}\n" >> .hg_archival.txt
     popd
-    if [ $result == true ]; then return; fi
+    if [ "$result" = true ]; then return; fi
     patch_source x265_${X265_VERSION} 133-x265-hg.patch
 else
     download_file https://bitbucket.org/multicoreware/x265/downloads/x265_${X265_VERSION}.tar.gz
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 
 rm -rf $BUILD_ROOT/x265_${X265_VERSION}
 mkdir -p $BUILD_ROOT/x265_${X265_VERSION}

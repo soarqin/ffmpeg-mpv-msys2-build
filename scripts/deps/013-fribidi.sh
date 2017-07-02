@@ -3,7 +3,7 @@ if [ "x${FRIBIDI_VERSION}" == "xgit" ]; then
 else
     download_file https://fribidi.org/download/fribidi-${FRIBIDI_VERSION}.tar.bz2
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 mkdir -p $BUILD_ROOT/fribidi-${FRIBIDI_VERSION}
 pushd $BUILD_ROOT/fribidi-${FRIBIDI_VERSION}
 mkdir -p gen.tab/unidata

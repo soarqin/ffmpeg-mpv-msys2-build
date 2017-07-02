@@ -4,7 +4,7 @@ if [ "x${VAPOURSYNTH_VERSION}" == "xgit" ]; then
 else
     download_file https://github.com/vapoursynth/vapoursynth/archive/${VAPOURSYNTH_VERSION}.tar.gz vapoursynth-${VAPOURSYNTH_VERSION}
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 patch_source vapoursynth-${VAPOURSYNTH_VERSION} 062-vapoursynth.patch
 export OLD_PATH=${PATH}
 export PATH=${SRC_ROOT}/cython-git/bin:${PATH}

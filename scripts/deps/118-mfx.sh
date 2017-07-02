@@ -3,5 +3,5 @@ if [ "x${MFX_VERSION}" == "xgit" ]; then
 else
     download_file https://github.com/lu-zero/mfx_dispatch/archive/${MFX_VERSION}.tar.gz mfx_dispatch-${MFX_VERSION}
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 compile_with_configure mfx_dispatch-${MFX_VERSION} --enable-static --disable-shared

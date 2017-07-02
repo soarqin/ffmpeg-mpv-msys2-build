@@ -3,7 +3,7 @@ if [ "x${FREI0R_VERSION}" == "xgit" ]; then
 else
     download_file http://files.dyne.org/frei0r/frei0r-plugins-${FREI0R_VERSION}.tar.gz
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 pushd ${SRC_ROOT}/frei0r-plugins-${FREI0R_VERSION}
 touch README TODO ChangeLog AUTHORS
 rm -f configure

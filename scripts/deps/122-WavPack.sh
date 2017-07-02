@@ -3,5 +3,5 @@ if [ "x${WAVPACK_VERSION}" == "xgit" ]; then
 else
     download_file https://github.com/dbry/WavPack/archive/${WAVPACK_VERSION}.tar.gz WavPack-${WAVPACK_VERSION}
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 compile_with_configure WavPack-${WAVPACK_VERSION} --enable-static --disable-shared --disable-apps --disable-rpath --disable-tests

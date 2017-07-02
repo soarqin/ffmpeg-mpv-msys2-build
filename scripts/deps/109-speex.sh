@@ -3,5 +3,5 @@ if [ "x${SPEEX_VERSION}" == "xgit" ]; then
 else
     download_file http://downloads.xiph.org/releases/speex/speex-${SPEEX_VERSION}.tar.gz
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 compile_with_configure speex-${SPEEX_VERSION} --enable-static --disable-shared

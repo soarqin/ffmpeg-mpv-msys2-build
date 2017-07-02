@@ -3,7 +3,7 @@ if [ "x${FFMPEG_VERSION}" == "xgit" ]; then
 else
     download_file http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2
 fi
-if [ $any_dirty != true ]; then return; fi
+if [ "$any_dirty" != true ]; then return; fi
 rm -Rf ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 mkdir -p ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 pushd ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}

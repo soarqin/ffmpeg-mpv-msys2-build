@@ -3,7 +3,7 @@ if [ "x${THEORA_VERSION}" == "xgit" ]; then
 else
     download_file http://downloads.xiph.org/releases/theora/libtheora-${THEORA_VERSION}.tar.xz
 fi
-if [ $result == true ]; then return; fi
+if [ "$result" = true ]; then return; fi
 pushd $SRC_ROOT/libtheora-git
 rm -f configure
 dos2unix configure.ac
