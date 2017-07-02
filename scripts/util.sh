@@ -90,7 +90,7 @@ function download_file {
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
         fi
-        return 0
+        return
     else
         result=false
         any_dirty=true

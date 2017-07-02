@@ -1,4 +1,6 @@
+old_any_dirty=$any_dirty
 git_clone https://github.com/cython/cython cython-git
+any_dirty=$old_any_dirty
 if [ "x${VAPOURSYNTH_VERSION}" == "xgit" ]; then
     git_clone https://github.com/vapoursynth/vapoursynth vapoursynth-${VAPOURSYNTH_VERSION}
 else
