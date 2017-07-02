@@ -41,7 +41,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-libfribidi \
   --enable-libgme \
   --enable-libilbc \
-  --enable-libkvazaar \
   --enable-libmfx \
   --enable-libopenjpeg \
   --enable-libopenmpt \

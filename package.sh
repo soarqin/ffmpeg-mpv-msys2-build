@@ -82,14 +82,13 @@ echo 'Packaging FFmpeg dev dist...'
 mkdir -p $pdir_dev
 dpush $pdir_dev
 mkdir -p bin include lib share license
-cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE_NOTES} $(pwd)/
-cp -vf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/bin/{*.dll,*.lib} $(pwd)/bin/
+cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
+cp -vf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.lib} $(pwd)/bin/
 cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
-cp -vrf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/include/* $(pwd)/include/
-cp -vrf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
-cp -vrf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/share/* $(pwd)/share/
+cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/include/* $(pwd)/include/
+cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
+cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
 dpush license
-
 cplic ffmpeg ${FFMPEG_VERSION}
 cplic zlib ${ZLIB_VERSION}
 cplic bzip2 ${BZIP_VERSION}
@@ -121,7 +120,6 @@ cplic lame ${LAME_VERSION}
 cplic twolame ${TWOLAME_VERSION}
 cplic soxr git
 cplic opencore-amr ${OPENCORE_AMR_VERSION}
-cplic mpg123 ${MPG123_VERSION}
 cplic libcaca ${CACA_VERSION}
 cplic vid.stab ${VIDSTAB_VERSION}
 cplic mfx_dispatch ${MFX_VERSION}
@@ -153,9 +151,9 @@ mkdir -p $pdir_shared
 dpush $pdir_shared
 mkdir -p bin share license
 cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE_NOTES} $(pwd)/
-cp -vf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/bin/{*.dll,*.exe} $(pwd)/bin/
+cp -vf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.exe} $(pwd)/bin/
 cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
-cp -vrf $currdir/dist/${ARCH}-shared${DIR_SUFFIX}/usr/share/* $(pwd)/share/
+cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
 cp -vrf ../$pdir_dev/license/* $(pwd)/license/
 dpop
 
@@ -164,14 +162,14 @@ mkdir -p $pdir_static
 dpush $pdir_static
 mkdir -p bin share license
 cp -vf $currdir/src/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE_NOTES} $(pwd)/
-cp -vf $currdir/dist/${ARCH}-static${DIR_SUFFIX}/usr/bin/{*.dll,*.exe} $(pwd)/bin/
+cp -vf $currdir/dist/${ARCH}${DIR_SUFFIX}-static/usr/bin/{*.dll,*.exe} $(pwd)/bin/
 cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/{libx264*.dll,libfdk-aac*.dll} $(pwd)/bin/
-cp -vrf $currdir/dist/${ARCH}-static${DIR_SUFFIX}/usr/share/* $(pwd)/share/
+cp -vrf $currdir/dist/${ARCH}${DIR_SUFFIX}-static/usr/share/* $(pwd)/share/
 cp -vrf ../$pdir_dev/license/* $(pwd)/license/
 dpop
 
 echo 'Packaging mpv...'
-pdir_mpv=mpv-${FFMPEG_VERSION}-${PACKAGE_SUFFIX}
+pdir_mpv=mpv-${MPV_VERSION}-${PACKAGE_SUFFIX}
 mkdir -p $pdir_mpv
 dpush $pdir_mpv
 mkdir -p mpv
@@ -181,6 +179,56 @@ cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libpython*.dll $(pwd)/
 chmod 0644 ./*.{exe,dll}
 strip ./*.{exe,dll}
 mkdir -p license
+dpush license
+cplic ffmpeg ${FFMPEG_VERSION}
+cplic zlib ${ZLIB_VERSION}
+cplic bzip2 ${BZIP_VERSION}
+cplic xz ${XZ_VERSION}
+cplic snappy ${SNAPPY_VERSION}
+cplic gmp ${GMP_VERSION}
+cplic libxml2 ${LIBXML2_VERSION}
+cplic fribidi ${FRIBIDI_VERSION}
+cplic nettle ${NETTLE_VERSION}
+cplic gnutls ${GNUTLS_VERSION}
+cplic fftw ${FFTW_VERSION}
+cplic openjpeg ${OPENJPEG_VERSION}
+cplic libpng ${LIBPNG_VERSION}
+cplic freetype ${FREETYPE_VERSION}
+cplic fontconfig ${FONTCONFIG_VERSION}
+cplic harfbuzz ${HARFBUZZ_VERSION}
+cplic frei0r-plugins ${FREI0R_VERSION}
+cplic zimg ${ZIMG_VERSION}
+cplic speex ${SPEEX_VERSION}
+cplic soxr git
+cplic libcaca ${CACA_VERSION}
+cplic vid.stab ${VIDSTAB_VERSION}
+cplic mfx_dispatch ${MFX_VERSION}
+cplic libsndfile ${LIBSNDFILE_VERSION}
+cplic libbs2b git
+cplic libilbc ${LIBILBC_VERSION}
+cplic game-music-emu ${GME_VERSION}
+cplic libass ${LIBASS_VERSION}
+cplic libbluray ${LIBBLUERAY_VERSION}
+cplic rtmpdump git
+cplic libopenmpt ${LIBOPENMPT_VERSION}
+cplic libmysofa ${LIBMYSOFA_VERSION}
+cplic vamp-plugin-sdk ${VAMP_VERSION}
+cplic libsamplerate ${LIBSAMPLERATE_VERSION}
+cplic rubberband ${RUBBERBAND_VERSION}
+cplic libarchive ${LIBARCHIVE_VERSION}
+cplic libffi ${LIBFFI_VERSION}
+cplic uchardet ${UCHARDET_VERSION}
+cplic angle git
+cplic LuaJIT ${LUAJIT_VERSION}
+cplic mujs git
+cplic Python ${PYTHON_VERSION}
+cplic lcms2 ${LCMS2_VERSION}
+cplic cython git
+cplic vapoursynth ${VAPOURSYNTH_VERSION}
+cplic libdvdcss ${DVDCSS_VERSION}
+cplic libdvdread ${DVDREAD_VERSION}
+cplic libdvdnav ${DVDNAV_VERSION}
+dpop
 dpop
 
 dpop
