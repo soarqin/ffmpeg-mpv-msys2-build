@@ -66,6 +66,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-libzimg \
   --enable-lzma \
   --enable-nvenc \
+  --enable-schannel \
   --enable-zlib \
   ${FFMPEG_EXTRA_FLAGS}
 make ${MAKE_JOBS}
