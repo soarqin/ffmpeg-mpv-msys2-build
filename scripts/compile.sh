@@ -8,7 +8,7 @@ function compile_with_configure {
     rm -rf $BUILD_ROOT/$dst_dir && mkdir -p $BUILD_ROOT/$dst_dir 
     pushd $BUILD_ROOT/$dst_dir
     `realpath -m --relative-to=. $SRC_ROOT`/$src_dir/configure --prefix="$BUILD_INSTALL_ROOT" $*
-    make ${MAKE_JOBS} || make ${MAKE_JOBS}
+    make ${MAKE_JOBS} || make
     make install
     popd
 }
@@ -25,7 +25,7 @@ function compile_with_configure_dirty {
         autoreconf -fi
     fi
     ./configure --prefix=$BUILD_INSTALL_ROOT $*
-    make ${MAKE_JOBS}
+    make ${MAKE_JOBS} || make
     make install
     popd
 }
@@ -37,7 +37,7 @@ function compile_with_cmake {
     rm -rf $BUILD_ROOT/$dst_dir && mkdir -p $BUILD_ROOT/$dst_dir
     pushd $BUILD_ROOT/$dst_dir
     cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$BUILD_INSTALL_ROOT" $* $SRC_ROOT/$src_dir
-    make ${MAKE_JOBS}
+    make ${MAKE_JOBS} || make
     make install
     popd
 }
@@ -51,7 +51,7 @@ function compile_with_cmake_dirty {
     mkdir -p build
     cd build
     cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$BUILD_INSTALL_ROOT" $* ..
-    make ${MAKE_JOBS}
+    make ${MAKE_JOBS} || make
     make install
     popd
 }

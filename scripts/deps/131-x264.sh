@@ -9,7 +9,7 @@ mkdir -p ${BUILD_ROOT}/x264-git-${X264_BRANCH}
 pushd ${BUILD_ROOT}/x264-git-${X264_BRANCH}
 ${SRC_ROOT}/x264-git-${X264_BRANCH}/configure --prefix=/usr --enable-shared --disable-cli --bit-depth=10 --enable-pic $ECFLAGS
 make ${MAKE_JOBS}
-dstdir=$(realpath -m ${SCRIPT_ROOT}/../dist/${ARCH}_x264-10bit${BUILD_EXTRA_SUFFIX})
+dstdir=$(realpath -m ${DIST_ROOT}/${ARCH}_x264-10bit${BUILD_EXTRA_SUFFIX})
 rm -f ${dstdir}/usr/bin/libx264-*.dll
 make install DESTDIR=${dstdir}
 popd

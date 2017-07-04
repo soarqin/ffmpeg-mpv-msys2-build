@@ -11,7 +11,7 @@ rm -Rf ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 mkdir -p ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 pushd ${BUILD_ROOT}/ffmpeg-${FFMPEG_VERSION}
 LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_VERSION}/configure \
-  --prefix=$(realpath -m ${SCRIPT_ROOT}/../dist/${ARCH}_mpv${BUILD_EXTRA_SUFFIX}) \
+  --prefix=$(realpath -m ${DIST_ROOT}/${ARCH}_mpv${BUILD_EXTRA_SUFFIX}) \
   --enable-static \
   --disable-shared \
   --pkg-config-flags='--static' \
@@ -56,6 +56,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-schannel \
   --enable-zlib \
   ${FFMPEG_EXTRA_FLAGS}
-make ${MAKE_JOBS} || make ${MAKE_JOBS}
+make ${MAKE_JOBS} || make
 make install
 popd

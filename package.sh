@@ -70,12 +70,12 @@ function cplic {
 
 shopt -s nullglob
 
-distdir=$currdir/dist
+distdir=/ff/dist
 srcdir=$currdir/src
-installdir=$currdir/install/mingw${ARCH}${DIR_SUFFIX}
+installdir=/ff/install/mingw${ARCH}${DIR_SUFFIX}
 
-mkdir -p $currdir/package
-dpush $currdir/package
+mkdir -p /ff/package
+dpush /ff/package
 
 pdir_dev=FFmpeg-${FFMPEG_VERSION}-dev-${PACKAGE_SUFFIX}
 pdir_shared=FFmpeg-${FFMPEG_VERSION}-shared-${PACKAGE_SUFFIX}
