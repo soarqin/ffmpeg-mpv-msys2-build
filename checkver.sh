@@ -60,7 +60,6 @@ check_version speex 'https://www.xiph.org/downloads/' 'speex-([0-9\.]+[0-9])' ${
 check_version libopus 'http://www.opus-codec.org/downloads/' '>libopus\ ([0-9\.]+[0-9])' ${OPUS_VERSION}
 check_version twolame 'http://www.twolame.org' 'twolame\ ([0-9\.]+[0-9])' ${TWOLAME_VERSION}
 check_version opencore-amr 'https://sourceforge.net/projects/opencore-amr/' 'opencore-amr-([0-9\.]+[0-9])' ${OPENCORE_AMR_VERSION}
-check_version mpg123 'https://www.mpg123.de/download.shtml' 'mpg123\ ([0-9\.]+[0-9])' ${MPG123_VERSION}
 check_version libcaca 'https://github.com/cacalabs/libcaca/releases/latest' 'tag\/v([0-9\.a-z]+[0-9])' ${CACA_VERSION}
 check_version vid.stab 'https://github.com/georgmartius/vid.stab/releases/latest' 'tag\/(release-[0-9\.]+[0-9a-z])' ${VIDSTAB_VERSION}
 check_version mfx 'https://github.com/lu-zero/mfx_dispatch/releases/latest' 'tag\/([0-9\.]+[0-9])' ${MFX_VERSION}
