@@ -56,6 +56,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-schannel \
   --enable-zlib \
   ${FFMPEG_EXTRA_FLAGS}
-make ${MAKE_JOBS}
+make ${MAKE_JOBS} || make ${MAKE_JOBS}
 make install
 popd

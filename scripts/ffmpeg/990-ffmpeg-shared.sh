@@ -69,6 +69,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-schannel \
   --enable-zlib \
   ${FFMPEG_EXTRA_FLAGS}
-make ${MAKE_JOBS}
+make ${MAKE_JOBS} || make ${MAKE_JOBS}
 make install DESTDIR="$(realpath -m ${SCRIPT_ROOT}/../dist/${ARCH}${BUILD_EXTRA_SUFFIX}-shared)"
 popd

@@ -72,6 +72,8 @@ shopt -s nullglob
 
 distdir=$currdir/dist
 srcdir=$currdir/src
+installdir=$currdir/install/mingw${ARCH}${DIR_SUFFIX}
+
 mkdir -p $currdir/package
 dpush $currdir/package
 
@@ -88,7 +90,7 @@ dpush $pdir_dev
 mkdir -p bin include lib share license
 cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
 cp -vf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.lib} $(pwd)/bin/
-cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libx264*.dll $(pwd)/bin/
+cp -vf $installdir/bin/libx264*.dll $(pwd)/bin/
 cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/include/* $(pwd)/include/
 cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
 cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
@@ -156,7 +158,7 @@ dpush $pdir_shared
 mkdir -p bin share license
 cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
 cp -vf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.exe} $(pwd)/bin/
-cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libx264*.dll $(pwd)/bin/
+cp -vf $installdir/bin/libx264*.dll $(pwd)/bin/
 cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
 cp -vrf ../$pdir_dev/license/* $(pwd)/license/
 dpop
@@ -167,7 +169,7 @@ dpush $pdir_static
 mkdir -p bin share license
 cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
 cp -vf $distdir/${ARCH}${DIR_SUFFIX}-static/usr/bin/{*.dll,*.exe} $(pwd)/bin/
-cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libx264*.dll $(pwd)/bin/
+cp -vf $installdir/bin/libx264*.dll $(pwd)/bin/
 cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-static/usr/share/* $(pwd)/share/
 cp -vrf ../$pdir_dev/license/* $(pwd)/license/
 dpop
@@ -178,7 +180,7 @@ dpush $pdir_mpv
 mkdir -p mpv
 cp -vf $distdir/${ARCH}_mpv${DIR_SUFFIX}/{etc,share/doc}/mpv/* $(pwd)/mpv/
 cp -vf $distdir/${ARCH}_mpv${DIR_SUFFIX}/bin/mpv.* $(pwd)/
-cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libpython*.dll $(pwd)/
+cp -vf $installdir/bin/libpython*.dll $(pwd)/
 chmod 0644 ./*.{exe,dll}
 strip ./*.{exe,dll}
 mkdir -p license
@@ -237,7 +239,7 @@ dpop
 
 mkdir $pdir_fdk_aac
 dpush $pdir_fdk_aac
-cp -vf $HOME/mingw${ARCH}${DIR_SUFFIX}/bin/libfdk-aac*.dll $(pwd)/
+cp -vf $installdir/bin/libfdk-aac*.dll $(pwd)/
 cp -vf $srcdir/fdk-aac-${FDK_AAC_VERSION}/NOTICE $(pwd)/
 dpop
 
