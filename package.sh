@@ -89,11 +89,11 @@ mkdir -p $pdir_dev
 dpush $pdir_dev
 mkdir -p bin include lib share license
 cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
-cp -vf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.lib} $(pwd)/bin/
+cp -vf $distdir/${ARCH}-shared${DIR_SUFFIX}/usr/bin/{*.dll,*.lib} $(pwd)/bin/
 cp -vf $installdir/bin/libx264*.dll $(pwd)/bin/
-cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/include/* $(pwd)/include/
-cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
-cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
+cp -vrf $distdir/${ARCH}-shared${DIR_SUFFIX}/usr/include/* $(pwd)/include/
+cp -vrf $distdir/${ARCH}-shared${DIR_SUFFIX}/usr/lib/{pkgconfig,*.a} $(pwd)/lib/
+cp -vrf $distdir/${ARCH}-shared${DIR_SUFFIX}/usr/share/* $(pwd)/share/
 dpush license
 cplic ffmpeg ${FFMPEG_VERSION}
 cplic zlib ${ZLIB_VERSION}
@@ -157,9 +157,9 @@ mkdir -p $pdir_shared
 dpush $pdir_shared
 mkdir -p bin share license
 cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
-cp -vf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/bin/{*.dll,*.exe} $(pwd)/bin/
+cp -vf $distdir/${ARCH}-shared${DIR_SUFFIX}/usr/bin/{*.dll,*.exe} $(pwd)/bin/
 cp -vf $installdir/bin/libx264*.dll $(pwd)/bin/
-cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-shared/usr/share/* $(pwd)/share/
+cp -vrf $distdir/${ARCH}-shared${DIR_SUFFIX}/usr/share/* $(pwd)/share/
 cp -vrf ../$pdir_dev/license/* $(pwd)/license/
 dpop
 
@@ -168,9 +168,9 @@ mkdir -p $pdir_static
 dpush $pdir_static
 mkdir -p bin share license
 cp -vf $srcdir/ffmpeg-${FFMPEG_VERSION}/{README*,RELEASE*} $(pwd)/
-cp -vf $distdir/${ARCH}${DIR_SUFFIX}-static/usr/bin/{*.dll,*.exe} $(pwd)/bin/
+cp -vf $distdir/${ARCH}-static${DIR_SUFFIX}/usr/bin/{*.dll,*.exe} $(pwd)/bin/
 cp -vf $installdir/bin/libx264*.dll $(pwd)/bin/
-cp -vrf $distdir/${ARCH}${DIR_SUFFIX}-static/usr/share/* $(pwd)/share/
+cp -vrf $distdir/${ARCH}-static${DIR_SUFFIX}/usr/share/* $(pwd)/share/
 cp -vrf ../$pdir_dev/license/* $(pwd)/license/
 dpop
 
