@@ -1,6 +1,5 @@
-src_root=libmysofa-${LIBMYSOFA_VERSION}
 if [ "x${LIBMYSOFA_VERSION}" == "xgit" ]; then
-    git_clone https://github.com/hoene/libmysofa $src_root
+    git_clone https://github.com/hoene/libmysofa libmysofa-${LIBMYSOFA_VERSION}
 else
     download_file https://github.com/hoene/libmysofa/archive/v${LIBMYSOFA_VERSION}.tar.gz libmysofa-${LIBMYSOFA_VERSION}
 fi

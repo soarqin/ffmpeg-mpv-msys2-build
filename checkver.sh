@@ -46,6 +46,7 @@ check_version GnuTLS 'http://www.gnutls.org/news.html' 'GnuTLS.(3\.5\.[0-9]+)' $
 check_version fftw 'http://www.fftw.org/download.html' 'fftw-([0-9\.]+[0-9]-pl[0-9])' ${FFTW_VERSION}
 check_version OpenJPEG 'https://github.com/uclouvain/openjpeg/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${OPENJPEG_VERSION}
 check_version libpng 'http://libpng.org/pub/png/libpng.html' 'version:[^\.]+<B>([0-9\.]+[0-9])' ${LIBPNG_VERSION}
+check_version graphite2 'https://github.com/silnrsi/graphite/releases/latest' 'tag\/([0-9\.]+[0-9])' ${GRAPHITE2_VERSION}
 check_version FreeType 'https://www.freetype.org' 'FreeType\ ([0-9\.]+[0-9])' ${FREETYPE_VERSION}
 check_version FontConfig 'https://www.freedesktop.org/software/fontconfig/release/?C=M;O=D' 'fontconfig-([0-9\.]+[0-9])' ${FONTCONFIG_VERSION}
 check_version HarfBuzz 'https://www.freedesktop.org/software/harfbuzz/release/?C=M;O=D' 'harfbuzz-([0-9\.]+[0-9])\.tar\.bz2' ${HARFBUZZ_VERSION}
