@@ -80,7 +80,7 @@ function download_file {
     if [ $# -gt 1 ]; then
         dirname=$2
     else
-        dirname=${filename%.tar*}
+        dirname=${filename%.t*}
     fi
     export _lib_revision="${fnprefix} ${dirname}"
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
@@ -95,7 +95,7 @@ function download_file {
         result=false
         any_dirty=true
     fi
-    save_name=${DOWNLOAD_ROOT}/${dirname}.tar${filename#*.tar}
+    save_name=${DOWNLOAD_ROOT}/${dirname}.t${filename#*.t}
     if [ -d "${SRC_ROOT}/${dirname}" ]; then
         rm -Rf ${SRC_ROOT}/${dirname}
     fi
