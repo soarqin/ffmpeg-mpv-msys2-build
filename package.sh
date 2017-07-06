@@ -238,13 +238,13 @@ cplic mpv ${MPV_VERSION}
 dpop
 dpop
 
-mkdir $pdir_fdk_aac
+mkdir -p $pdir_fdk_aac
 dpush $pdir_fdk_aac
 cp -vf $installdir/bin/libfdk-aac*.dll $(pwd)/
 cp -vf $srcdir/fdk-aac-${FDK_AAC_VERSION}/NOTICE $(pwd)/
 dpop
 
-mkdir $pdir_x264_10bit
+mkdir -p $pdir_x264_10bit
 dpush $pdir_x264_10bit
 cp -vf $distdir/${ARCH}_x264-10bit${DIR_SUFFIX}/usr/bin/libx264*.dll $(pwd)/
 cp -vf $srcdir/x264-git-${X264_BRANCH}/COPYING $(pwd)/
