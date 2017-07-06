@@ -1,7 +1,17 @@
-diff -ur bzip2-1.0.6-orig/Makefile bzip2-1.0.6/Makefile
---- bzip2-1.0.6-orig/Makefile	2017-05-25 17:12:34.848382400 +0800
-+++ bzip2-1.0.6/Makefile	2017-05-25 17:12:53.066420000 +0800
-@@ -23,9 +23,6 @@
+--- a/Makefile.orig	2017-07-06 11:54:48.555208626 +0000
++++ a/Makefile	2017-07-06 11:55:28.241026456 +0000
+@@ -15,17 +15,14 @@
+ SHELL=/bin/sh
+ 
+ # To assist in cross-compiling
+-CC=gcc
+-AR=ar
+-RANLIB=ranlib
++CC=${CHOST}gcc
++AR=${CHOST}ar
++RANLIB=${CHOST}ranlib
+ LDFLAGS=
+ 
  BIGFILES=-D_FILE_OFFSET_BITS=64
  CFLAGS=-Wall -Winline -O2 -g $(BIGFILES)
  
@@ -11,3 +21,14 @@ diff -ur bzip2-1.0.6-orig/Makefile bzip2-1.0.6/Makefile
  
  OBJS= blocksort.o  \
        huffman.o    \
+--- a/bzip2.c.orig	2017-07-06 11:58:32.487823343 +0000
++++ a/bzip2.c	2017-07-06 11:59:25.783921649 +0000
+@@ -128,7 +128,7 @@
+ #if BZ_LCCWIN32
+ #   include <io.h>
+ #   include <fcntl.h>
+-#   include <sys\stat.h>
++#   include <sys/stat.h>
+ 
+ #   define NORETURN       /**/
+ #   define PATH_SEP       '\\'

@@ -7,7 +7,7 @@ function compile_with_configure {
     fi
     rm -rf $BUILD_ROOT/$dst_dir && mkdir -p $BUILD_ROOT/$dst_dir 
     pushd $BUILD_ROOT/$dst_dir
-    `realpath -m --relative-to=. $SRC_ROOT`/$src_dir/configure --prefix="$BUILD_INSTALL_ROOT" $*
+    `realpath -m --relative-to=. $SRC_ROOT`/$src_dir/configure --host=${BUILD_CHOST} --prefix="$BUILD_INSTALL_ROOT" $*
     make ${MAKE_JOBS} || make
     make install
     popd
@@ -24,7 +24,7 @@ function compile_with_configure_dirty {
     if [ ! -f ./configure ]; then
         autoreconf -fi
     fi
-    ./configure --prefix=$BUILD_INSTALL_ROOT $*
+    ./configure --host=${BUILD_CHOST} --prefix=$BUILD_INSTALL_ROOT $*
     make ${MAKE_JOBS} || make
     make install
     popd

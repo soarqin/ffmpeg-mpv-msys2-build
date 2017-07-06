@@ -5,7 +5,7 @@ pushd $BUILD_ROOT
 rm -rf zlib
 cp -Rf $SRC_ROOT/zlib-${ZLIB_VERSION} ./zlib
 pushd zlib
-CHOST=${MINGW_CHOST} ./configure --prefix=${BUILD_INSTALL_ROOT} --static
+CHOST=${BUILD_CHOST} ./configure --prefix=${BUILD_INSTALL_ROOT} --static
 make
 make install
 popd
