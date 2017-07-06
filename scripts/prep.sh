@@ -13,3 +13,8 @@ cd ${SCRIPT_ROOT}
 . env.sh
 . util.sh
 . compile.sh
+
+if [ "x$TEST_SHELL" != "x" ]; then
+    bash
+    exit 0
+fi

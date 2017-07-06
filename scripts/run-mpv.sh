@@ -7,7 +7,9 @@ any_dirty=false
 #. ${SCRIPT_ROOT}/run-deps.sh
 BUILD_TARGET_SUFFIX=_mpv
 . ${SCRIPT_ROOT}/setup-build.sh
-for v in ${SCRIPT_ROOT}/mpv/[0-9][0-9][0-9]-*.sh; do
+declare -a components=()
+load_components 'mpv'
+for v in ${components[@]}; do
     fn=${v##*/}
     fnprefix=${fn:0:3}
     export -n _lib_revision=""

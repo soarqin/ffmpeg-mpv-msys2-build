@@ -1,4 +1,6 @@
-for v in ${SCRIPT_ROOT}/deps/[0-9][0-9][0-9]-*.sh; do
+declare -a components
+load_components 'deps'
+for v in ${components[@]}; do
     fn=${v##*/}
     fnprefix=${fn:0:3}
     export -n _lib_revision=""

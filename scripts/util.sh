@@ -126,3 +126,19 @@ function auto_reconf {
     autoreconf -fi
     popd
 }
+
+function load_components {
+    if [ "x${BUILD_COMP}" = "x" ]; then
+        for v in ${SCRIPT_ROOT}/$1/[0-9][0-9][0-9]-*.sh; do
+            components+=($v)
+        done
+    else
+        for v in ${BUILD_COMP}; do
+            for fn in ${SCRIPT_ROOT}/$1/$v-*.sh; do
+                if [ -f $fn ]; then
+                    components+=($fn)
+                fi
+            done
+        done
+    fi
+}

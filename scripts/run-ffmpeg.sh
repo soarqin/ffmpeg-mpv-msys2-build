@@ -5,7 +5,9 @@ BUILD_TARGET_SUFFIX=
 
 any_dirty=false
 . ${SCRIPT_ROOT}/run-deps.sh
-for v in ${SCRIPT_ROOT}/ffmpeg/[0-9][0-9][0-9]-*.sh; do
+declare -a components=()
+load_components 'ffmpeg'
+for v in ${components[@]}; do
     fn=${v##*/}
     fnprefix=${fn:0:3}
     export -n _lib_revision=""

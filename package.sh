@@ -71,7 +71,7 @@ function cplic {
 shopt -s nullglob
 
 distdir=/ff/dist
-srcdir=$currdir/src
+srcdir=/ff/src
 installdir=/ff/install/mingw${ARCH}${DIR_SUFFIX}
 
 mkdir -p /ff/package
@@ -178,6 +178,7 @@ echo 'Packaging mpv...'
 mkdir -p $pdir_mpv
 dpush $pdir_mpv
 mkdir -p mpv
+cp -vf $srcdir/mpv-${MPV_VERSION}/{README*,RELEASE*} $(pwd)/
 cp -vf $distdir/${ARCH}_mpv${DIR_SUFFIX}/{etc,share/doc}/mpv/* $(pwd)/mpv/
 cp -vf $distdir/${ARCH}_mpv${DIR_SUFFIX}/bin/mpv.* $(pwd)/
 cp -vf $installdir/bin/libpython*.dll $(pwd)/
