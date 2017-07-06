@@ -1,0 +1,20 @@
+--- a/wscript.orig	2017-07-06 13:35:18.795927500 +0800
++++ a/wscript	2017-07-06 13:35:02.029168900 +0800
+@@ -658,7 +658,7 @@
+                                 'eglCreateWindowSurface(0, 0, 0, 0)',
+                                 cflags=['-DGL_APICALL=', '-DEGLAPI=',
+                                         '-DANGLE_NO_ALIASES', '-DANGLE_EXPORT='],
+-                                lib=['EGL', 'GLESv2', 'dxguid', 'd3d9',
++                                stlib=['EGL', 'GLESv2', 'dxguid', 'd3d9',
+                                      'gdi32', 'stdc++'])
+     } , {
+         'name': '--vdpau',
+@@ -714,7 +714,7 @@
+         'name': '--jpeg',
+         'desc': 'JPEG support',
+         'func': check_cc(header_name=['stdio.h', 'jpeglib.h'],
+-                         lib='jpeg', use='libm'),
++                         stlib='jpeg', use='libm'),
+     }, {
+         'name': '--direct3d',
+         'desc': 'Direct3D support',
