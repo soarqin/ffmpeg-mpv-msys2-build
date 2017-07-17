@@ -76,7 +76,7 @@ check_version libvpx 'https://chromium.googlesource.com/webm/libvpx' '>v([0-9\.]
 check_version openh264 'https://github.com/cisco/openh264/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${OPENH264_VERSION}
 check_version kvazaar 'https://github.com/ultravideo/kvazaar/releases/latest' 'tag\/(v[0-9\.]+[0-9])' v${KVAZAAR_VERSION}
 check_version x265 'https://bitbucket.org/multicoreware/x265/downloads' 'x265_([0-9\.]+[0-9])' ${X265_VERSION}
-check_version libopenmpt 'https://lib.openmpt.org/libopenmpt' '>([0-9\.]+[0-9])-(beta[0-9]+)' ${LIBOPENMPT_VERSION} ${LIBOPENMPT_VERSION_BETA}
+check_version libopenmpt 'https://lib.openmpt.org/libopenmpt/download/' '>([0-9\.]+[0-9])-(beta[0-9]+)' ${LIBOPENMPT_VERSION} ${LIBOPENMPT_VERSION_BETA}
 check_version libmysofa 'https://github.com/hoene/libmysofa/releases/latest' 'tag\/v([0-9\.,]+[0-9])' ${LIBMYSOFA_VERSION}
 check_version vamp-plugin-sdk 'http://www.vamp-plugins.org/develop.html' '\(version ([0-9\.]+[0-9])\)' ${VAMP_VERSION}
 check_version libsamplerate 'http://www.mega-nerd.com/SRC/download.html' 'libsamplerate-([0-9\.]+[0-9])\.tar\.gz' ${LIBSAMPLERATE_VERSION}
