@@ -1,22 +1,22 @@
-diff -ur openjpeg-2.1.2-orig/src/lib/openjp2/openjpeg.h openjpeg-2.1.2/src/lib/openjp2/openjpeg.h
---- openjpeg-2.1.2-orig/src/lib/openjp2/openjpeg.h	2017-05-25 17:21:13.884283900 +0800
-+++ openjpeg-2.1.2/src/lib/openjp2/openjpeg.h	2017-05-25 17:22:44.915463700 +0800
+diff -ur openjpeg-2.2.0-orig/src/lib/openjp2/openjpeg.h openjpeg-2.2.0/src/lib/openjp2/openjpeg.h
+--- openjpeg-2.2.0-orig/src/lib/openjp2/openjpeg.h	2017-05-25 17:21:13.884283900 +0800
++++ openjpeg-2.2.0/src/lib/openjp2/openjpeg.h	2017-05-25 17:22:44.915463700 +0800
 @@ -76,10 +76,10 @@
- 	#define OPJ_DEPRECATED(func) func
+ #define OPJ_DEPRECATED(func) func
  #endif
  
 -#if defined(OPJ_STATIC) || !defined(_WIN32)
 +#if 1
  /* http://gcc.gnu.org/wiki/Visibility */
- #	if __GNUC__ >= 4
--#		if defined(OPJ_STATIC) /* static library uses "hidden" */
-+#		if 1 /* static library uses "hidden" */
- #			define OPJ_API    __attribute__ ((visibility ("hidden")))
- #		else
- #			define OPJ_API    __attribute__ ((visibility ("default")))
-diff -ur openjpeg-2.1.2-orig/src/lib/openjp3d/openjp3d.h openjpeg-2.1.2/src/lib/openjp3d/openjp3d.h
---- openjpeg-2.1.2-orig/src/lib/openjp3d/openjp3d.h	2017-05-25 17:21:14.065412100 +0800
-+++ openjpeg-2.1.2/src/lib/openjp3d/openjp3d.h	2017-05-25 17:23:01.015100500 +0800
+ #   if __GNUC__ >= 4
+-#       if defined(OPJ_STATIC) /* static library uses "hidden" */
++#       if 1 /* static library uses "hidden" */
+ #           define OPJ_API    __attribute__ ((visibility ("hidden")))
+ #       else
+ #           define OPJ_API    __attribute__ ((visibility ("default")))
+diff -ur openjpeg-2.2.0-orig/src/lib/openjp3d/openjp3d.h openjpeg-2.2.0/src/lib/openjp3d/openjp3d.h
+--- openjpeg-2.2.0-orig/src/lib/openjp3d/openjp3d.h	2017-05-25 17:21:14.065412100 +0800
++++ openjpeg-2.2.0/src/lib/openjp3d/openjp3d.h	2017-05-25 17:23:01.015100500 +0800
 @@ -42,7 +42,7 @@
  ==========================================================
  */
@@ -26,9 +26,9 @@ diff -ur openjpeg-2.1.2-orig/src/lib/openjp3d/openjp3d.h openjpeg-2.1.2/src/lib/
  /* http://gcc.gnu.org/wiki/Visibility */
  #if __GNUC__ >= 4
  #define OPJ_API    __attribute__ ((visibility ("default")))
-diff -ur openjpeg-2.1.2-orig/src/lib/openmj2/openjpeg.h openjpeg-2.1.2/src/lib/openmj2/openjpeg.h
---- openjpeg-2.1.2-orig/src/lib/openmj2/openjpeg.h	2017-05-25 17:21:15.687560900 +0800
-+++ openjpeg-2.1.2/src/lib/openmj2/openjpeg.h	2017-05-25 17:23:40.580720200 +0800
+diff -ur openjpeg-2.2.0-orig/src/lib/openmj2/openjpeg.h openjpeg-2.2.0/src/lib/openmj2/openjpeg.h
+--- openjpeg-2.2.0-orig/src/lib/openmj2/openjpeg.h	2017-05-25 17:21:15.687560900 +0800
++++ openjpeg-2.2.0/src/lib/openmj2/openjpeg.h	2017-05-25 17:23:40.580720200 +0800
 @@ -45,7 +45,7 @@
  ==========================================================
  */
