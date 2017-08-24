@@ -40,7 +40,8 @@ check_version XZ 'http://tukaani.org/xz/' '([0-9\.]+[0-9])\ was\ released\ on' $
 check_version Snappy 'https://github.com/google/snappy/releases/latest' 'Snappy\ ([0-9\.]+[0-9])' ${SNAPPY_VERSION}
 check_version libxml2 'http://xmlsoft.org/news.html' 'public\ releases:</p><h3>[^0-9\.]*([0-9\.]+[0-9])' ${LIBXML2_VERSION}
 check_version fribidi 'https://fribidi.org' 'fribidi-([0-9\.]+[0-9])' ${FRIBIDI_VERSION}
-check_version nettle 'https://ftp.gnu.org/gnu/nettle/?C=M;O=D' 'nettle-([0-9\.]+[0-9])' ${NETTLE_VERSION}
+check_version libgpg-error 'https://www.gnupg.org/download/index.html' 'Libgpg-error[^0-9]*([0-9\.]+[0-9])' ${LIBGPG_ERROR_VERSION}
+check_version libgcryto 'https://www.gnupg.org/download/index.html' 'Libgcrypt[^0-9]*([0-9\.]+[0-9])' ${LIBGCRYPT_VERSION}
 check_version fftw 'http://www.fftw.org/download.html' 'fftw-([0-9\.]+[0-9]-pl[0-9])' ${FFTW_VERSION}
 check_version OpenJPEG 'https://github.com/uclouvain/openjpeg/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${OPENJPEG_VERSION}
 check_version libpng 'http://libpng.org/pub/png/libpng.html' 'version:[^\.]+<B>([0-9\.]+[0-9])' ${LIBPNG_VERSION}
@@ -62,12 +63,13 @@ check_version opencore-amr 'https://sourceforge.net/projects/opencore-amr/' 'ope
 check_version libcaca 'https://github.com/cacalabs/libcaca/releases/latest' 'tag\/v([0-9\.a-z]+[0-9])' ${CACA_VERSION}
 check_version vid.stab 'https://github.com/georgmartius/vid.stab/releases/latest' 'tag\/(release-[0-9\.]+[0-9a-z])' ${VIDSTAB_VERSION}
 check_version mfx 'https://github.com/lu-zero/mfx_dispatch/releases/latest' 'tag\/([0-9\.]+[0-9])' ${MFX_VERSION}
-check_version libsndfile 'https://github.com/erikd/libsndfile/releases/latest' 'tag\/([0-9\.]+[0-9])' ${LIBSNDFILE_VERSION}
-check_version libilbc 'https://github.com/TimothyGu/libilbc/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBILBC_VERSION}
-check_version WavPack 'https://github.com/dbry/WavPack/releases/latest' 'tag\/([0-9\.]+[0-9])' ${WAVPACK_VERSION}
-check_version libgme 'https://bitbucket.org/mpyne/game-music-emu/downloads/' 'game-music-emu-([0-9\.]+[0-9])' ${GME_VERSION}
 check_version libass 'https://github.com/libass/libass/releases/latest' 'tag\/([0-9\.]+[0-9])' ${LIBASS_VERSION}
-check_version libbluray 'http://www.videolan.org/developers/libbluray.html' 'libbluray\ ([0-9\.]+[0-9])' ${LIBBLUERAY_VERSION}
+check_version WavPack 'https://github.com/dbry/WavPack/releases/latest' 'tag\/([0-9\.]+[0-9])' ${WAVPACK_VERSION}
+check_version libilbc 'https://github.com/TimothyGu/libilbc/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBILBC_VERSION}
+check_version libgme 'https://bitbucket.org/mpyne/game-music-emu/downloads/' 'game-music-emu-([0-9\.]+[0-9])' ${GME_VERSION}
+check_version libaacs 'http://www.videolan.org/developers/libaacs.html' 'libaacs\ ([0-9\.]+[0-9])' ${LIBAACS_VERSION}
+check_version libbdplus 'http://www.videolan.org/developers/libbdplus.html' 'libbdplus\ ([0-9\.]+[0-9])' ${LIBBDPLUS_VERSION}
+check_version libbluray 'http://www.videolan.org/developers/libbluray.html' 'libbluray\ ([0-9\.]+[0-9])' ${LIBBLURAY_VERSION}
 check_version xvidcore 'https://labs.xvid.com/source/' 'Xvid\ ([0-9\.]+[0-9])\ stable\ release' ${XVID_VERSION}
 check_version libwebp 'https://developers.google.com/speed/webp/download' 'webp\/libwebp-([0-9\.]+[0-9])\.tar\.gz' ${WEBP_VERSION}
 check_version libvpx 'https://chromium.googlesource.com/webm/libvpx' '>v([0-9\.]+[0-9])' ${LIBVPX_VERSION}

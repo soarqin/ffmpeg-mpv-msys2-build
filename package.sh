@@ -100,11 +100,8 @@ cplic zlib ${ZLIB_VERSION}
 cplic bzip2 ${BZIP_VERSION}
 cplic xz ${XZ_VERSION}
 cplic snappy ${SNAPPY_VERSION}
-cplic gmp ${GMP_VERSION}
 cplic libxml2 ${LIBXML2_VERSION}
 cplic fribidi ${FRIBIDI_VERSION}
-cplic nettle ${NETTLE_VERSION}
-cplic gnutls ${GNUTLS_VERSION}
 cplic fftw ${FFTW_VERSION}
 cplic openjpeg ${OPENJPEG_VERSION}
 cplic libpng ${LIBPNG_VERSION}
@@ -129,7 +126,6 @@ cplic opencore-amr ${OPENCORE_AMR_VERSION}
 cplic libcaca ${CACA_VERSION}
 cplic vid.stab ${VIDSTAB_VERSION}
 cplic mfx_dispatch ${MFX_VERSION}
-cplic libsndfile ${LIBSNDFILE_VERSION}
 cplic libbs2b git
 cplic libilbc ${LIBILBC_VERSION}
 cplic WavPack ${WAVPACK_VERSION}
@@ -137,7 +133,6 @@ cplic game-music-emu ${GME_VERSION}
 cplic libass ${LIBASS_VERSION}
 cplic libbluray ${LIBBLUERAY_VERSION}
 cplic xvidcore
-cplic rtmpdump git
 cplic libwebp ${WEBP_VERSION}
 cplic libvpx ${LIBVPX_VERSION}
 cplic openh264 ${OPENH264_VERSION}
@@ -146,8 +141,6 @@ cplic kvazaar ${KVAZAAR_VERSION}
 cplic x265 ${X265_VERSION}
 cplic libopenmpt ${LIBOPENMPT_VERSION}
 cplic libmysofa ${LIBMYSOFA_VERSION}
-cplic vamp-plugin-sdk ${VAMP_VERSION}
-cplic libsamplerate ${LIBSAMPLERATE_VERSION}
 cplic rubberband ${RUBBERBAND_VERSION}
 dpop
 dpop
@@ -182,7 +175,9 @@ cp -vf $srcdir/mpv-${MPV_VERSION}/{README*,RELEASE*} $(pwd)/
 cp -vf $distdir/${ARCH}_mpv${DIR_SUFFIX}/{etc,share/doc}/mpv/* $(pwd)/mpv/
 cp -vf $distdir/${ARCH}_mpv${DIR_SUFFIX}/bin/mpv.* $(pwd)/
 cp -vf $installdir/bin/libpython*.dll $(pwd)/
-chmod 0644 ./*.{exe,dll}
+cp -vf $installdir/bin/libaacs*.dll $(pwd)/libaacs.dll
+cp -vf $installdir/bin/libbdplus*.dll $(pwd)/libbdplus.dll
+chmod 0755 ./*.{exe,dll}
 strip ./*.{exe,dll}
 mkdir -p license
 dpush license
@@ -191,11 +186,8 @@ cplic zlib ${ZLIB_VERSION}
 cplic bzip2 ${BZIP_VERSION}
 cplic xz ${XZ_VERSION}
 cplic snappy ${SNAPPY_VERSION}
-cplic gmp ${GMP_VERSION}
 cplic libxml2 ${LIBXML2_VERSION}
 cplic fribidi ${FRIBIDI_VERSION}
-cplic nettle ${NETTLE_VERSION}
-cplic gnutls ${GNUTLS_VERSION}
 cplic fftw ${FFTW_VERSION}
 cplic openjpeg ${OPENJPEG_VERSION}
 cplic libpng ${LIBPNG_VERSION}
@@ -209,17 +201,16 @@ cplic soxr git
 cplic libcaca ${CACA_VERSION}
 cplic vid.stab ${VIDSTAB_VERSION}
 cplic mfx_dispatch ${MFX_VERSION}
-cplic libsndfile ${LIBSNDFILE_VERSION}
 cplic libbs2b git
 cplic libilbc ${LIBILBC_VERSION}
 cplic game-music-emu ${GME_VERSION}
 cplic libass ${LIBASS_VERSION}
 cplic libbluray ${LIBBLUERAY_VERSION}
+cplic libaacs ${LIBAACS_VERSION}
+cplic libbdplus ${LIBBDPLUS_VERSION}
 cplic rtmpdump git
 cplic libopenmpt ${LIBOPENMPT_VERSION}
 cplic libmysofa ${LIBMYSOFA_VERSION}
-cplic vamp-plugin-sdk ${VAMP_VERSION}
-cplic libsamplerate ${LIBSAMPLERATE_VERSION}
 cplic rubberband ${RUBBERBAND_VERSION}
 cplic libarchive ${LIBARCHIVE_VERSION}
 cplic libffi ${LIBFFI_VERSION}
