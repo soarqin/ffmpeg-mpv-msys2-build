@@ -10,19 +10,19 @@ function git_clone {
     git clean -dfx . && git checkout -f ${branch} && git submodule foreach 'git clean -dfx && git checkout -f .' && git pull --recurse-submodules origin ${branch}
     _lib_revision=$(git reflog -n1 HEAD)
     export _lib_revision="${fnprefix} $2-${_lib_revision/ *}"
+    popd
+
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
-    popd
     if [ "x${found}" != "x" ]; then
         if [ "x$4" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
         fi
         return
-    else
-        result=false
-        any_dirty=true
     fi
+    result=false
+    any_dirty=true
 }
 
 function hg_clone {
@@ -32,19 +32,19 @@ function hg_clone {
     pushd ${SRC_ROOT}/$2
     hg clean --all && hg revert --all && hg pull -u
     export _lib_revision="${fnprefix} $2-$(hg log -r. --template "{node}" | cut -c-8)"
+    popd
+
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
-    popd
     if [ "x${found}" != "x" ]; then
         if [ "x$3" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
         fi
         return
-    else
-        result=false
-        any_dirty=true
     fi
+    result=false
+    any_dirty=true
 }
 
 function svn_checkout {
@@ -54,19 +54,19 @@ function svn_checkout {
     pushd ${SRC_ROOT}/$2
     svnclean -f && svn revert -R . && svn update
     export _lib_revision="${fnprefix} $2-r$(svn info --show-item revision)"
+    popd
+
     found=$(grep "^${_lib_revision}\$" "${FINISHED}" || true)
     result=true
-    popd
     if [ "x${found}" != "x" ]; then
         if [ "x$3" == "x" ]; then
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
         fi
         return
-    else
-        result=false
-        any_dirty=true
     fi
+    result=false
+    any_dirty=true
 }
 
 function download_file {
@@ -90,9 +90,7 @@ function download_file {
             echo "${_lib_revision} is up-to-date."
             export -n _lib_revision=""
         fi
-    else
-        result=false
-        any_dirty=true
+        return
     fi
     save_name=${DOWNLOAD_ROOT}/${dirname}.t${filename#*.t}
     if [ -d "${SRC_ROOT}/${dirname}" ]; then
@@ -101,17 +99,20 @@ function download_file {
     if [ ! -f "${save_name}" ]; then
         curl -LJ -o "${save_name}" $1
     fi
+    mkdir -p "${SRC_ROOT}/${dirname}"
     case ${filename} in
         *.tgz) ;&
-        *.tar.gz) tar xfz "${save_name}" -C "${SRC_ROOT}"
+        *.tar.gz) tar xfz "${save_name}" -C "${SRC_ROOT}/${dirname}" --strip-components=1 || tar xfz "${save_name}" -C "${SRC_ROOT}/${dirname}" --strip-components=1
             ;;
         *.tbz2) ;&
-        *.tar.bz2) tar xfj "${save_name}" -C "${SRC_ROOT}"
+        *.tar.bz2) tar xfj "${save_name}" -C "${SRC_ROOT}/${dirname}" --strip-components=1 || tar xfj "${save_name}" -C "${SRC_ROOT}/${dirname}" --strip-components=1
             ;;
         *.txz) ;&
-        *.tar.xz) tar xfJ "${save_name}" -C "${SRC_ROOT}"
+        *.tar.xz) tar xfJ "${save_name}" -C "${SRC_ROOT}/${dirname}" --strip-components=1 || tar xfJ "${save_name}" -C "${SRC_ROOT}/${dirname}" --strip-components=1
             ;;
     esac
+    result=false
+    any_dirty=true
 }
 
 function patch_source {

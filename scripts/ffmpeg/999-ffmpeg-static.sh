@@ -25,8 +25,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-dxva2 \
   --enable-fontconfig \
   --enable-frei0r \
-  --enable-gmp \
-  --enable-gnutls \
   --enable-iconv \
   --enable-libass \
   --enable-libbluray \
@@ -47,7 +45,6 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-libopenjpeg \
   --enable-libopenmpt \
   --enable-libopus \
-  --enable-librtmp \
   --enable-librubberband \
   --enable-libsnappy \
   --enable-libsoxr \

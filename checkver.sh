@@ -38,11 +38,9 @@ check_version zlib 'http://zlib.net' 'Current\ release:[^z]*zlib\ ([0-9\.]+[0-9]
 check_version bzip2 'http://bzip.org' 'The\ current\ version\ is[^0-9]*([0-9\.]+[0-9])' ${BZIP_VERSION}
 check_version XZ 'http://tukaani.org/xz/' '([0-9\.]+[0-9])\ was\ released\ on' ${XZ_VERSION}
 check_version Snappy 'https://github.com/google/snappy/releases/latest' 'Snappy\ ([0-9\.]+[0-9])' ${SNAPPY_VERSION}
-check_version GMP 'https://gmplib.org' 'gmp-([0-9\.]+[0-9])' ${GMP_VERSION}
 check_version libxml2 'http://xmlsoft.org/news.html' 'public\ releases:</p><h3>[^0-9\.]*([0-9\.]+[0-9])' ${LIBXML2_VERSION}
 check_version fribidi 'https://fribidi.org' 'fribidi-([0-9\.]+[0-9])' ${FRIBIDI_VERSION}
 check_version nettle 'https://ftp.gnu.org/gnu/nettle/?C=M;O=D' 'nettle-([0-9\.]+[0-9])' ${NETTLE_VERSION}
-check_version GnuTLS 'http://www.gnutls.org/news.html' 'GnuTLS.(3\.5\.[0-9]+)' ${GNUTLS_VERSION}
 check_version fftw 'http://www.fftw.org/download.html' 'fftw-([0-9\.]+[0-9]-pl[0-9])' ${FFTW_VERSION}
 check_version OpenJPEG 'https://github.com/uclouvain/openjpeg/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${OPENJPEG_VERSION}
 check_version libpng 'http://libpng.org/pub/png/libpng.html' 'version:[^\.]+<B>([0-9\.]+[0-9])' ${LIBPNG_VERSION}
@@ -78,8 +76,6 @@ check_version kvazaar 'https://github.com/ultravideo/kvazaar/releases/latest' 't
 check_version x265 'https://bitbucket.org/multicoreware/x265/downloads' 'x265_([0-9\.]+[0-9])' ${X265_VERSION}
 check_version libopenmpt 'https://lib.openmpt.org/libopenmpt/download/' '>([0-9\.]+[0-9])-(beta[0-9]+)' ${LIBOPENMPT_VERSION} ${LIBOPENMPT_VERSION_BETA}
 check_version libmysofa 'https://github.com/hoene/libmysofa/releases/latest' 'tag\/v([0-9\.,]+[0-9])' ${LIBMYSOFA_VERSION}
-check_version vamp-plugin-sdk 'http://www.vamp-plugins.org/develop.html' '\(version ([0-9\.]+[0-9])\)' ${VAMP_VERSION}
-check_version libsamplerate 'http://www.mega-nerd.com/SRC/download.html' 'libsamplerate-([0-9\.]+[0-9])\.tar\.gz' ${LIBSAMPLERATE_VERSION}
 check_version rubberband 'http://breakfastquay.com/rubberband/' 'Rubber Band Library v([0-9\.]+[0-9])' ${RUBBERBAND_VERSION}
 check_version FFmpeg 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
 check_version libarchive 'https://github.com/libarchive/libarchive/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBARCHIVE_VERSION}

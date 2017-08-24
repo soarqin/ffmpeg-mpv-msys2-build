@@ -1,11 +1,7 @@
-if [ "x${THEORA_VERSION}" == "xgit" ]; then
-    git_clone https://git.xiph.org/theora.git libtheora-${THEORA_VERSION}
-else
-    download_file http://downloads.xiph.org/releases/theora/libtheora-${THEORA_VERSION}.tar.xz
-fi
+git_clone https://git.xiph.org/theora.git libtheora-${THEORA_VERSION}
 if [ "$result" = true ]; then return; fi
-pushd $SRC_ROOT/libtheora-git
+pushd $SRC_ROOT/libtheora-${THEORA_VERSION}
 rm -f configure
 dos2unix configure.ac
 popd
-compile_with_configure libtheora-git --enable-static --disable-shared --disable-examples --disable-oggtest --disable-vorbistest --disable-sdltest
+compile_with_configure libtheora-${THEORA_VERSION} --enable-static --disable-shared --disable-examples --disable-oggtest --disable-vorbistest --disable-sdltest

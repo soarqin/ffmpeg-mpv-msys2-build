@@ -31,6 +31,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-libx264 \
   --enable-lzma \
   --enable-nvenc \
+  --enable-schannel \
   --enable-zlib
 make ${MAKE_JOBS}
 make install
