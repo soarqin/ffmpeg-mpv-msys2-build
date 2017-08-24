@@ -102,6 +102,8 @@ cplic xz ${XZ_VERSION}
 cplic snappy ${SNAPPY_VERSION}
 cplic libxml2 ${LIBXML2_VERSION}
 cplic fribidi ${FRIBIDI_VERSION}
+cplic libgpg-error ${LIBGPG_ERROR_VERSION}
+cplic libgcrypt ${LIBGCRYPT_VERSION}
 cplic fftw ${FFTW_VERSION}
 cplic openjpeg ${OPENJPEG_VERSION}
 cplic libpng ${LIBPNG_VERSION}
@@ -121,7 +123,7 @@ cplic speex ${SPEEX_VERSION}
 cplic opus ${OPUS_VERSION}
 cplic lame ${LAME_VERSION}
 cplic twolame ${TWOLAME_VERSION}
-cplic soxr git
+cplic soxr ${SOXR_VERSION}
 cplic opencore-amr ${OPENCORE_AMR_VERSION}
 cplic libcaca ${CACA_VERSION}
 cplic vid.stab ${VIDSTAB_VERSION}
@@ -131,7 +133,7 @@ cplic libilbc ${LIBILBC_VERSION}
 cplic WavPack ${WAVPACK_VERSION}
 cplic game-music-emu ${GME_VERSION}
 cplic libass ${LIBASS_VERSION}
-cplic libbluray ${LIBBLUERAY_VERSION}
+cplic libbluray ${LIBBLURAY_VERSION}
 cplic xvidcore
 cplic libwebp ${WEBP_VERSION}
 cplic libvpx ${LIBVPX_VERSION}
@@ -188,6 +190,8 @@ cplic xz ${XZ_VERSION}
 cplic snappy ${SNAPPY_VERSION}
 cplic libxml2 ${LIBXML2_VERSION}
 cplic fribidi ${FRIBIDI_VERSION}
+cplic libgpg-error ${LIBGPG_ERROR_VERSION}
+cplic libgcrypt ${LIBGCRYPT_VERSION}
 cplic fftw ${FFTW_VERSION}
 cplic openjpeg ${OPENJPEG_VERSION}
 cplic libpng ${LIBPNG_VERSION}
@@ -197,7 +201,7 @@ cplic harfbuzz ${HARFBUZZ_VERSION}
 cplic frei0r-plugins ${FREI0R_VERSION}
 cplic zimg ${ZIMG_VERSION}
 cplic speex ${SPEEX_VERSION}
-cplic soxr git
+cplic soxr ${SOXR_VERSION}
 cplic libcaca ${CACA_VERSION}
 cplic vid.stab ${VIDSTAB_VERSION}
 cplic mfx_dispatch ${MFX_VERSION}
@@ -205,7 +209,9 @@ cplic libbs2b git
 cplic libilbc ${LIBILBC_VERSION}
 cplic game-music-emu ${GME_VERSION}
 cplic libass ${LIBASS_VERSION}
-cplic libbluray ${LIBBLUERAY_VERSION}
+cplic libaacs ${LIBAACS_VERSION}
+cplic libbdplus ${LIBBDPLUS_VERSION}
+cplic libbluray ${LIBBLURAY_VERSION}
 cplic libaacs ${LIBAACS_VERSION}
 cplic libbdplus ${LIBBDPLUS_VERSION}
 cplic rtmpdump git
