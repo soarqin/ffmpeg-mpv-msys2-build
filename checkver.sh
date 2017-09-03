@@ -80,6 +80,7 @@ check_version libopenmpt 'https://lib.openmpt.org/libopenmpt/download/' '>([0-9\
 check_version libmysofa 'https://github.com/hoene/libmysofa/releases/latest' 'tag\/v([0-9\.,]+[0-9])' ${LIBMYSOFA_VERSION}
 check_version rubberband 'http://breakfastquay.com/rubberband/' 'Rubber Band Library v([0-9\.]+[0-9])' ${RUBBERBAND_VERSION}
 check_version FFmpeg 'http://ffmpeg.org/download.html' 'ffmpeg-([0-9\.]+[0-9])' ${FFMPEG_VERSION}
+check_version lzo 'http://www.oberhumer.com/opensource/lzo/' 'Version ([0-9\.]+[0-9])' ${LZO_VERSION}
 check_version libarchive 'https://github.com/libarchive/libarchive/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBARCHIVE_VERSION}
 check_version libjpeg-turbo 'https://github.com/libjpeg-turbo/libjpeg-turbo/releases/latest' 'tag/([0-9\.]+[0-9])' ${LIBJPEG_TURBO_VERSION}
 check_version libffi 'https://github.com/libffi/libffi/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${LIBFFI_VERSION}
