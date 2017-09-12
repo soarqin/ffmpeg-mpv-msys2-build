@@ -1,20 +1,19 @@
-diff -ur fontconfig-2.12.3-orig/src/fcobjshash.h fontconfig-2.12.3/src/fcobjshash.h
---- fontconfig-2.12.3-orig/src/fcobjshash.h	2017-02-22 20:37:50.000000000 +0800
-+++ fontconfig-2.12.3/src/fcobjshash.h	2017-06-03 19:44:53.222208000 +0800
+--- fontconfig-2.12.5/src/fcobjshash.h.orig	2017-09-11 12:47:19.485981692 -0400
++++ fontconfig-2.12.5/src/fcobjshash.h	2017-09-11 12:48:58.459240470 -0400
 @@ -47,7 +47,7 @@
  #endif
  #endif
  static unsigned int
--FcObjectTypeHash (register const char *str, register unsigned int len)
+-FcObjectTypeHash (register const char *str, register size_t len)
 +FcObjectTypeHash (register const char *str, register FC_GPERF_SIZE_T len)
  {
    static const unsigned char asso_values[] =
      {
-@@ -191,7 +191,7 @@
- #endif
- #endif
+@@ -185,7 +185,7 @@
+   };
+ #define FcObjectTypeNamePool ((const char *) &FcObjectTypeNamePool_contents)
  const struct FcObjectTypeInfo *
--FcObjectTypeLookup (register const char *str, register unsigned int len)
+-FcObjectTypeLookup (register const char *str, register size_t len)
 +FcObjectTypeLookup (register const char *str, register FC_GPERF_SIZE_T len)
  {
    enum
