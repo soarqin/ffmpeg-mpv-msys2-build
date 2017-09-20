@@ -1,4 +1,4 @@
-git_clone https://github.com/google/angle angle-git
+git_clone https://github.com/google/angle angle-git chromium/3163
 if [ "$result" = true ]; then return; fi
 patch_source angle-git 032-angle.patch
 pushd ${SRC_ROOT}/angle-git

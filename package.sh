@@ -187,6 +187,7 @@ cplic ffmpeg ${FFMPEG_VERSION}
 cplic zlib ${ZLIB_VERSION}
 cplic bzip2 ${BZIP_VERSION}
 cplic xz ${XZ_VERSION}
+cplic lzo ${LZO_VERSION}
 cplic snappy ${SNAPPY_VERSION}
 cplic libxml2 ${LIBXML2_VERSION}
 cplic fribidi ${FRIBIDI_VERSION}
