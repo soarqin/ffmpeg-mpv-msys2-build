@@ -16,6 +16,8 @@ for v in ${SCRIPT_ROOT}/obs/{001,009,081,131}-*.sh; do
     fi
 done
 
+. ${SCRIPT_ROOT}/obs-run-deps.sh
+
 pushd ${BUILD_INSTALL_ROOT}
 pushd lib
 if [ -f libz.dll.a ]; then
@@ -55,8 +57,6 @@ sed -i -e "/\\t\".*/d" -e "s/\s@.*//" fdk-aac.def
 dlltool -m i386:x86-64 -d fdk-aac.def -l fdk-aac.lib -D libfdk-aac-1.dll
 popd
 popd
-
-. ${SCRIPT_ROOT}/obs-run-deps.sh
 
 for v in ${SCRIPT_ROOT}/obs/99[0-9]-*.sh; do
     fn=${v##*/}
