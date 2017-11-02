@@ -42,7 +42,7 @@ check_version libxml2 'http://xmlsoft.org/news.html' 'public\ releases:</p><h3>[
 check_version fribidi 'https://fribidi.org' 'fribidi-([0-9\.]+[0-9])' ${FRIBIDI_VERSION}
 check_version libgpg-error 'https://www.gnupg.org/download/index.html' 'Libgpg-error[^0-9]*([0-9\.]+[0-9])' ${LIBGPG_ERROR_VERSION}
 check_version libgcryto 'https://www.gnupg.org/download/index.html' 'Libgcrypt[^0-9]*([0-9\.]+[0-9])' ${LIBGCRYPT_VERSION}
-check_version fftw 'http://www.fftw.org/download.html' 'fftw-([0-9\.]+[0-9]-pl[0-9])' ${FFTW_VERSION}
+check_version fftw 'http://www.fftw.org/download.html' 'fftw-(([0-9]+\.)+[0-9](-pl[0-9])?)' ${FFTW_VERSION}
 check_version OpenJPEG 'https://github.com/uclouvain/openjpeg/releases/latest' 'tag\/v([0-9\.]+[0-9])' ${OPENJPEG_VERSION}
 check_version libpng 'http://libpng.org/pub/png/libpng.html' 'version:[^\.]+<B>([0-9\.]+[0-9])' ${LIBPNG_VERSION}
 check_version graphite2 'https://github.com/silnrsi/graphite/releases/latest' 'tag\/([0-9\.]+[0-9])' ${GRAPHITE2_VERSION}
