@@ -1,7 +1,7 @@
 if [ "x${FRIBIDI_VERSION}" == "xgit" ]; then
-    git_clone https://anongit.freedesktop.org/git/fribidi/fribidi.git fribidi-${FRIBIDI_VERSION}
+    git_clone https://github.com/fribidi/fribidi fribidi-${FRIBIDI_VERSION}
 else
-    download_file https://fribidi.org/download/fribidi-${FRIBIDI_VERSION}.tar.bz2
+    download_file https://github.com/fribidi/fribidi/releases/download/v${FRIBIDI_VERSION}/fribidi-${FRIBIDI_VERSION}.tar.bz2
 fi
 if [ "$result" = true ]; then return; fi
 pushd $SRC_ROOT/fribidi-${FRIBIDI_VERSION}

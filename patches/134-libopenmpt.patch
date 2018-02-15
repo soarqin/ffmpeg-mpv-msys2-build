@@ -10,18 +10,15 @@ diff -ur libopenmpt-0.2.8190-orig/Makefile libopenmpt-0.2.8190/Makefile
  
  HOST=windows
  HOST_FLAVOUR=
-@@ -224,6 +224,10 @@
+@@ -224,6 +224,7 @@
  ifeq ($(UNAME_S),FreeBSD)
  HOST_FLAVOUR=FREEBSD
  endif
-+UNAME_O:=$(shell uname -o)
-+ifeq ($(UNAME_O),Msys)
 +LIBS_DEPS := -lrpcrt4
-+endif
  
  endif
  
-@@ -851,7 +855,7 @@
+@@ -851,7 +852,7 @@
  	$(VERYSILENT)echo 'Version: $(DIST_LIBOPENMPT_VERSION)' >> $@.tmp
  	$(VERYSILENT)echo 'Requires.private: $(PC_REQUIRES_ZLIB) $(PC_REQUIRES_MPG123) $(PC_REQUIRES_OGG) $(PC_REQUIRES_VORBIS) $(PC_REQUIRES_VORBISFILE)' >> $@.tmp
  	$(VERYSILENT)echo 'Libs: -L$${libdir} -lopenmpt' >> $@.tmp

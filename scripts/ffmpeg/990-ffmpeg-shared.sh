@@ -1,6 +1,5 @@
 if [ "x${FFMPEG_VERSION}" == "xgit" ]; then
     git_clone https://git.ffmpeg.org/ffmpeg.git ffmpeg-${FFMPEG_VERSION} master 1
-    FFMPEG_EXTRA_FLAGS=--enable-libmysofa
 else
     download_file http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2
 fi
@@ -65,7 +64,7 @@ LDFLAGS='-static -static-libgcc -static-libstdc++' ${SRC_ROOT}/ffmpeg-${FFMPEG_V
   --enable-nvenc \
   --enable-schannel \
   --enable-zlib \
-  ${FFMPEG_EXTRA_FLAGS}
+  --enable-libmysofa
 make ${MAKE_JOBS} || make
 make install DESTDIR="$(realpath -m ${DIST_ROOT}/${ARCH}-shared${BUILD_EXTRA_SUFFIX})"
 popd
